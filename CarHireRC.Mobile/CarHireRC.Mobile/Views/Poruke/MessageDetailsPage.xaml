@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:CarHireRC.Mobile.ViewModels.Poruke"
+             xmlns:converters="clr-namespace:CarHireRC.Mobile.Converters"
+             x:Class="CarHireRC.Mobile.Views.Poruke.MessageDetailsPage">
+
+
+    <ContentPage.BindingContext>
+        <viewModels:PorukaDetaljiViewModel></viewModels:PorukaDetaljiViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+            <converters:DatetimeToStringConverter x:Key="dtsConv"></converters:DatetimeToStringConverter>
+            <converters:MessageReplyIsVisibleConverter x:Key="mrivConv"></converters:MessageReplyIsVisibleConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="DarkGray"
+                     Orientation="Vertical">
+            <!--PageTitle-->
+            <StackLayout BackgroundColor="MediumPurple">
+                <Label Margin="0,3" 
+                       FontSize="16" 
+                       TextColor="White" 
+                       Text="Detalji poruke"
+                       HorizontalOptions="Center"></Label>
+            </StackLayout>
+             
+            <!--SlikaInformacijeSadrzajPoruke-->
+            
+            <!--SlikaInformacije-->
+            <Grid Margin="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                    <RowDefinition Height="5*"></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid >
+                    <Grid  BackgroundColor="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Aspect="Fill"
+                               Margin="4"
+                              Source="{Binding Poruka.PosiljaocSlikaThumb, Converter={StaticResource imgConv}}"></Image>
+                        <Grid Grid.Column="1" Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                                <Label Text="Pošiljaoc :"
+                                       HorizontalTextAlignment="End"
+                                   FontAttributes="Bold"
+                                       TextColor="Black"></Label>
+                            
+                            <Label Text="Primaoc :"
+                                       HorizontalTextAlignment="End"
+                                   Grid.Row="1"
+                                   FontAttributes="Bold"
+                                       TextColor="Black"></Label>
+                               
+                            <Label Text="Datum i vrijeme :"
+                                   FontAttributes="Bold"
+                                       TextColor="Black"
+                                   Grid.Row="2"></Label>
+                            
+                           
+                            
+                            <Label Text="{Binding Poruka.PosiljaocInfo}"
+                                   TextColor="Black"
+                                   Grid.Column="1"></Label>
+                            <Label Text="{Binding Poruka.PrimaocInfo}"
+                                   TextColor="Black"
+                                   Grid.Row="1"
+                                   Grid.Column="1"></Label>
+                            <Label Text="{Binding Poruka.DatumVrijeme, Converter={StaticResource dtsConv}}"
+                                   TextColor="Black"
+                                   Grid.Row="2"
+                                   Grid.Column="1"></Label>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                
+                
+                <!--NaslovSadrzaj-->
+            <Grid Grid.Row="1"
+                      BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition ></RowDefinition>
+                        <RowDefinition Height="10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                  
+                        <Label Text="Naslov :"
+                               FontAttributes="Bold"
+                               TextColor="Black"
+                               HorizontalTextAlignment="End"
+                               Margin="6"></Label>
+
+                    <Label Text="{Binding Poruka.Naslov}"
+                           TextColor="Black"
+                           HorizontalTextAlignment="Start"
+                           Margin="6"
+                           Grid.Column="1"></Label>
+                    
+                        <Label Text="Sadržaj poruke :"
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               Grid.Row="1"></Label>
+                        
+                    <Label   Text="{Binding Poruka.Sadrzaj}"
+                             BackgroundColor="WhiteSmoke"
+                             Margin="0,0,10,10"
+                             Grid.Row="1"
+                             Grid.Column="1">
+                        
+                    </Label>
+
+                </Grid>
+                <Label x:Name="PosiljaocLabel"
+                       Text="{Binding Poruka.Posiljaoc}"
+                       IsVisible="False">
+                    
+                </Label>
+                <!--OdgovoriButton-->
+            <Button Text="Odogovori"
+                        TextColor="White"
+                        Clicked="ButtonOdgovori_Clicked"
+                        Grid.Row="2"
+                      BackgroundColor="Blue"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        IsEnabled="{Binding Poruka.Posiljaoc, Converter={StaticResource mrivConv}, ConverterParameter={x:Reference PosiljaocLabel}}"
+                        IsVisible="{Binding Poruka.Posiljaoc, Converter={StaticResource mrivConv}, ConverterParameter={x:Reference PosiljaocLabel}}">
+                </Button>
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

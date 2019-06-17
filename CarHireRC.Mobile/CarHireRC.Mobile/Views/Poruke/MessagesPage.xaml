@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:CarHireRC.Mobile.Converters"
+             xmlns:viewModels="clr-namespace:CarHireRC.Mobile.ViewModels.Poruke"
+             x:Class="CarHireRC.Mobile.Views.Poruke.MessagesPage">
+    <ContentPage.BindingContext>
+        <viewModels:PorukaViewModel></viewModels:PorukaViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+            <converters:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></converters:DatetimeToStringConverter>
+            <converters:MessageFontAttributeConverter x:Key="fontConverter"></converters:MessageFontAttributeConverter>
+            <converters:MessageFontColorConverter x:Key="fontColorConverter"></converters:MessageFontColorConverter>
+            <converters:MessageIsVisibleConverter x:Key="isVisibleConverter"></converters:MessageIsVisibleConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="DarkGray" Orientation="Vertical">
+            <Label Text="Moje poruke"
+                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="lista"
+                       ItemsSource="{Binding listaPoruka}"
+                       ItemSelected="Lista_ItemSelected"
+                       Margin="0,5,0,0"
+                       RowHeight="85">
+                <ListView.ItemTemplate>
+                
+                <DataTemplate>
+                        <ViewCell >
+                            
+                                <Grid RowSpacing="10"  ColumnSpacing="0" BackgroundColor="White">
+                                    <Grid.RowDefinitions >
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions >
+                                        <ColumnDefinition ></ColumnDefinition>
+                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <!--SlikaporukaInformacije-->
+                                        <Image Aspect="Fill" 
+                                               Source="{Binding PosiljaocSlikaThumb, Converter={StaticResource imgConv}}"></Image>
+                                    <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="1"  Padding="10,0">
+                                        <Label Text="{Binding Procitano}" 
+                                               x:Name="procitanolabel"
+                                               IsVisible="False"/>
+                                        <Label Text="{Binding PosiljaocInfo}"
+                                               x:Name="PosiljaocInfoLabel"
+                                               LineBreakMode="NoWrap"
+                                               TextColor="{Binding Posiljaoc, Converter={StaticResource fontColorConverter}, ConverterParameter={x:Reference procitanolabel}}"
+                                               Style="{DynamicResource ListItemTextStyle}" 
+                                               FontSize="16"
+                                               FontAttributes="{Binding Posiljaoc, Converter={StaticResource fontConverter}, ConverterParameter={x:Reference procitanolabel}}"/>
+                                        <Label Text="{Binding Sadrzaj}" 
+                                               x:Name="SadrzajLabel"
+                                               TextColor="{Binding Posiljaoc, Converter={StaticResource fontColorConverter}, ConverterParameter={x:Reference procitanolabel}}"
+                                               FontSize="9"
+                                               FontAttributes="{Binding Posiljaoc, Converter={StaticResource fontConverter}, ConverterParameter={x:Reference procitanolabel}}"/>
+                                       
+                                    </StackLayout>
+                                    
+                                    <!--nijeProcitanoDatumVrijeme-->
+                                    <StackLayout Orientation="Vertical"
+                                                 Grid.Column="2" >
+                                        <Label Text="(nije pročitano)"
+                                               TextColor="Black"
+                                               FontAttributes="Bold"
+                                               Margin="0,5"
+                                               FontSize="9"
+                                               IsVisible="{Binding Posiljaoc, Converter={StaticResource isVisibleConverter}, ConverterParameter={x:Reference procitanolabel}}"></Label>
+                                    <Label Text="{Binding DatumVrijeme , Converter={StaticResource cnvDateTimeConverter}}" 
+                                               x:Name="DatumVrijemeLabel"
+                                               Grid.Column="2"
+                                               TextColor="Black"
+                                               VerticalOptions="EndAndExpand"
+                                               LineBreakMode="WordWrap"
+                                               FontSize="9" 
+                                               Margin="0,0,0,5"
+                                               FontAttributes="{Binding Posiljaoc, Converter={StaticResource fontConverter}, ConverterParameter={x:Reference procitanolabel}}"/>
+                                    </StackLayout>
+                                </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

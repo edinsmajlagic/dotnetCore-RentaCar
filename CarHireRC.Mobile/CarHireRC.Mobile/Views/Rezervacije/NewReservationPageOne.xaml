@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:CarHireRC.Mobile.Converters"
+             xmlns:viewModels="clr-namespace:CarHireRC.Mobile.ViewModels.Rezervacije"
+             x:Class="CarHireRC.Mobile.Views.Rezervacije.NewReservationPageOne"
+             BackgroundImage="rentacarbkg.jpg">
+
+   
+    <ContentPage.BindingContext>
+        <viewModels:NovaRezervacijaViewModel ></viewModels:NovaRezervacijaViewModel>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <converters:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></converters:DatetimeToStringConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <StackLayout Orientation="Vertical" Margin="20,15">
+        <Label Text="Booking a Car"
+               FontSize="16"
+               HorizontalTextAlignment="Center" 
+               Margin="0,25,0,30">
+        </Label>
+        <Grid RowSpacing="30" Margin="0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <!--Location-End/StartTrip-->
+
+            <Grid Grid.Row="0" Margin="0,15" >
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <!--Pickup location-->
+
+                <Grid Grid.Row="0" Grid.Column="0" ColumnSpacing="0" BackgroundColor="White" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Entry Text="{Binding LokacijaPreuzimanja}" 
+                        Margin="15,0,0,0" 
+                        VerticalOptions="Center" 
+                        Grid.Row="0" 
+                        Grid.Column="0"></Entry>
+                    <Image Source="placeholder.png" Grid.Row="0" Margin="5,7" Grid.Column="1"></Image>
+                </Grid>
+              
+                <!--Start trip-->
+
+                <Grid Grid.Row="1" Grid.Column="0" ColumnSpacing="0" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DatePicker Date="{Binding RezervacijaOd}"
+                        Grid.Row="0" 
+                        FontSize="13"
+                        Grid.Column="0"
+                        Margin="15,0,0,0" 
+                        VerticalOptions="Center"></DatePicker>
+                    <Image Source="calendar.png" Grid.Row="0" Grid.Column="1" Margin="5,7"></Image>
+                </Grid>
+            
+                <!--End trip-->
+
+                <Grid Grid.Row="2" Grid.Column="0" ColumnSpacing="0" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DatePicker Date="{Binding RezervacijaDo}"
+                                MinimumDate="{Binding RezervacijaOd}"
+                        Grid.Row="0" 
+                        FontSize="13"
+                        Grid.Column="0"
+                        Margin="15,0,0,0"
+                        VerticalOptions="Center"></DatePicker>
+                    <Image Source="calendar.png" Grid.Row="0" Grid.Column="1" Margin="5,7"></Image>
+                </Grid>
+            </Grid>
+            
+                <!--Pickup-HomeDrop-->
+            <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="5"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Vraćanje vozila u poslovnicu"
+                       TextColor="Black" 
+                       Grid.Row="0"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="0"
+                       ></Label>
+                <Switch IsToggled="{Binding VracanjeUposlovnicu}" Margin="0,10" OnColor="Pink"  Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand"></Switch>
+            </Grid>
+
+
+            <!--Kasko osiguranje-->
+            <Grid Grid.Row="2" RowSpacing="0" ColumnSpacing="5"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Kasko osiguranje"
+                       TextColor="Black" 
+                       Grid.Row="0"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="0"
+                       ></Label>
+                <Switch IsToggled="{Binding KaskoOsiguranje}" 
+                        Margin="0,10" 
+                        OnColor="Pink" 
+                        Grid.Row="0" 
+                        Grid.Column="1" 
+                        VerticalOptions="CenterAndExpand"></Switch>
+            </Grid>
+
+
+
+
+            <!--Zavrsi-->
+            <Grid Grid.Row="3" BackgroundColor="Blue">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+              
+                <Button Command="{Binding RezervisiCommand}"
+                        Clicked="Button_Clicked"
+                        BackgroundColor="Purple"
+                        Text="Završi" 
+                        TextColor="White"
+                        FontAttributes="Bold" 
+                        Grid.Row="0"></Button>
+            </Grid>
+
+        </Grid>
+        <Label IsVisible="{Binding IsBusy}" Text="..."></Label>
+
+    </StackLayout>
+</ContentPage>
