@@ -6,10 +6,10 @@ Application consists of services for work with data implemented through APIs(RES
 Desktop UI will be used by workers of car rental agency and mobile UI will be used by clients.
 
 
-Database : SQL Server
-WEB API : .NET Core 2.1
-Desktop Authentication: Basic Authentication
-Mobile Authentication: Basic Authentication
+Database : SQL Server -- 
+WEB API : .NET Core 2.1 --
+Desktop Authentication: Basic Authentication--
+Mobile Authentication: Basic Authentication--
 Desktop UI: Windows forms with (Metro UI) --> https://thielj.github.io/MetroFramework/
 
 
