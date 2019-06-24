@@ -34,8 +34,8 @@ namespace CarHireRC.Mobile.Views.Poruke
         private async void ButtonPosalji_Clicked(object sender, EventArgs e)
         {
             await Application.Current.MainPage.DisplayAlert("Obavijest", "Upješno ste poslali poruku", "OK");
-            await Navigation.PushAsync(new MessagesPage(model.novaPoruka.KlijentId));
-
+            //await Navigation.PushAsync(new MessagesPage(model.novaPoruka.KlijentId));
+            await Navigation.PopAsync();
         }
     }
 }

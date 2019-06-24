@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace CarHireRC.WebAPI.Services
 {
-    public class AutomobilService : BaseCRUDService<Model.Models.Automobil, RezervacijaSearchRequest, Database.Automobil, AutomobiliUPSERTtRequest, AutomobiliUPSERTtRequest>
+    public class AutomobilService : BaseCRUDService<Model.Models.Automobil, AutomobilSearchRequest, Database.Automobil, AutomobiliUPSERTtRequest, AutomobiliUPSERTtRequest>
     {
         public AutomobilService(CarHireRCContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override List<Model.Models.Automobil> Get(Model.Requests.RezervacijaSearchRequest search)
+        public override List<Model.Models.Automobil> Get(Model.Requests.AutomobilSearchRequest search)
         {
             var query = _context.Set<Database.Automobil>().Include(y=> y.Model).AsQueryable();
 
@@ -68,26 +68,46 @@ namespace CarHireRC.WebAPI.Services
                 item.ProizvodjacModel = model.Proizvodjac.Naziv + " " + model.Naziv;
                 item.CijenaIznajmljivanja = vozilo.CijenaIznajmljivanja;
 
-                    var posljednjaRegistracija = _context.RegistracijaVozila.FirstOrDefault(x => x.AutomobilId == item.AutomobilId && x.Status);
+
+                //Provjera da li je vozilo registrovano
+                var posljednjaRegistracija = _context.RegistracijaVozila.FirstOrDefault(x => x.AutomobilId == item.AutomobilId && x.Status);
+                bool isticeRegistracija = false;
+
                 if (posljednjaRegistracija != null)
                 {
                     item.RegistrovanDo = posljednjaRegistracija.VaziDo;
                     item.RegistarskaOznaka = posljednjaRegistracija.RegistarskeOznake;
                     TimeSpan timeSpan = (posljednjaRegistracija.VaziDo - DateTime.Now);
                     if (timeSpan.Days < 15)
+                    {
                         item.Dostupan = false;
+                        isticeRegistracija = true;
+                    }
                 }
 
+                //Provjera da li je vozilo trenutno rezervisano
+                //Ako rezervacija nije u toku ne uzima se u obzir
                 var rezervacije = _context.RezervacijaRentanja.Where(x => x.AutomobilId == vozilo.AutomobilId
-                                                                      && x.RezervacijaOd.Date == DateTime.Now.Date).ToList();
+                                                                      && x.RezervacijaOd.Date == DateTime.Now.Date
+                                                                      && x.Otkazana==false).ToList();
 
-                if (rezervacije != null)
+                if (rezervacije.Count > 0)
+                {
                     item.Dostupan = false;
+                }
 
                 item.DostupanTekst = item.Dostupan ? "Dostupno vozilo" : "Nije dostupan";
+                if (rezervacije.Count > 0)
+                {
+                    item.DostupanTekst = "Trenutno rezervisan";
+                }
+                if (isticeRegistracija)
+                {
+                    item.DostupanTekst = "Uskoro istice registracija";
+                }
 
             }
-
+          
             return result;
         }
 
@@ -111,7 +131,7 @@ namespace CarHireRC.WebAPI.Services
             var rezervacije = _context.RezervacijaRentanja.Where(x => x.AutomobilId == vozilo.AutomobilId
                                                                      && x.RezervacijaOd.Date == DateTime.Now.Date).ToList();
 
-            if (rezervacije != null)
+            if (rezervacije.Count>0)
                 result.Dostupan = false;
 
             result.DostupanTekst = result.Dostupan ? "Dostupno vozilo" : "Nije dostupan";

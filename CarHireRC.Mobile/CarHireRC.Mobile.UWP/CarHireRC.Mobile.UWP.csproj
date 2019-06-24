@@ -171,12 +171,11 @@
     <PackageReference Include="Flurl.Http">
       <Version>2.4.2</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.8" />
-    <PackageReference Include="Xamarin.FFImageLoading.Svg">
-      <Version>2.4.11.982</Version>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.8</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
-      <Version>2.4.11.982</Version>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>4.0.1.5</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
       <Version>4.0.0.497661</Version>

@@ -28,6 +28,7 @@ namespace CarHireRC.Model.Models
         public string ProizvodjacModel { get; set; }
         public string DostupanTekst { get; set; }
         public decimal CijenaIznajmljivanja { get; set; }
-
+        public decimal CijenaKaskoOsiguranja { get; set; }
+        
     }
 }

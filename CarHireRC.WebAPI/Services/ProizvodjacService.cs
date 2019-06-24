@@ -17,14 +17,18 @@ namespace CarHireRC.WebAPI.Services
 
         public override List<Model.Models.Proizvodjac> Get(ProizvodjacSearchRequest search)
         {
-            var query = _context.Set<Database.Proizvodjac>().AsQueryable();
+            var query = _context.Set<Database.Proizvodjac>().OrderBy(x=> x.Naziv).AsQueryable();
 
          
             if (search?.Naziv != null)
             {
                 query = query.Where(x => x.Naziv == search.Naziv);
             }
-
+            if (search.ProizvodjacId > 0)
+            {
+                query = query.Where(x => x.ProizvodjacId == search.ProizvodjacId);
+            }
+           
             var list = query.ToList();
 
             return _mapper.Map<List<Model.Models.Proizvodjac>>(list);

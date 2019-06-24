@@ -47,6 +47,7 @@ namespace CarHireRC.Model.Requests
         public byte[] Slika { get; set; }
         public byte[] SlikaThumb { get; set; }
         public decimal CijenaIznajmljivanja { get; set; }
+        public decimal CijenaKaskoOsiguranja { get; set; }
 
     }
 }

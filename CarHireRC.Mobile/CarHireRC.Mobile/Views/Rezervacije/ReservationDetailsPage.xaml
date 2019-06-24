@@ -55,6 +55,7 @@
                             FontSize="18"></Label>
 
                     <Image  Aspect="Fill"
+                            Margin="80,20"
                             Source="{Binding rezervacijaRentanja.SlikaThumb, Converter={StaticResource imgConv}}"
                             Grid.Row="1"></Image>
                 </Grid>
@@ -112,8 +113,9 @@
                                Text="{Binding rezervacijaRentanja.LokacijaPreuzimanja}" 
                                TextColor="Gray"></Label>
                         <Image  Source="placeholder.png"  
+                                Aspect="Fill"
                                 Grid.Row="0" 
-                                VerticalOptions="Center"
+                                Margin="13,0,13,20"
                                 Grid.Column="1"></Image>
                         
                     </Grid>
@@ -187,23 +189,29 @@
                 <!--Button-->
                 <Grid Grid.Row="4"
                       BackgroundColor="White"
+                      Padding="0,5,0,0"
                       IsVisible="False"
                       x:Name="Red4Button">
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition ></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Label HorizontalOptions="Start"
+                    <Label HorizontalOptions="Center"
                            Grid.Row="0" 
+                           FontAttributes="Bold"
                            Text="Želiš otkazati rezervaciju ?"
-                           FontSize="16" 
+                           FontSize="15" 
                            TextColor="Black"></Label>
                     <Button Text="Otkaži"
                             Grid.Row="1"
                             Clicked="Button_Clicked"
-                            Margin="0,0,0,2"
-                            HorizontalOptions="Center"></Button>                 
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            Margin="0,10,0,10"
+                            BackgroundColor="Red"
+                            Padding="50,0"
+                            HorizontalOptions="CenterAndExpand"></Button>                 
 
 
                 </Grid>
@@ -214,15 +222,16 @@
                       IsVisible="False"
                       x:Name="Red4Ocjena">
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition ></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <Label HorizontalOptions="CenterAndExpand"
                            VerticalOptions="StartAndExpand"
                            Grid.Row="0" 
                            Text="Ocjena rezervacije"
-                           FontSize="16" 
+                           FontSize="15" 
+                           FontAttributes="Bold"
                            TextColor="Black"></Label>
                     <Label x:Name="OcjenaLabel"
                            IsVisible="False"
@@ -234,10 +243,10 @@
                                         MaxStars="5"
                                         IsReadonly="False"
                                         RatingChanged="OnRatingChanged"
-                                        Margin="0,0,0,2"
+                                        Margin="0,5,0,5"
                                         IsEnabled="{Binding rezervacijaRentanja.IsOcjenjena, Converter={StaticResource rbConv}}}"
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="EndAndExpand"/>
+                                        HorizontalOptions="CenterAndExpand"
+                                        />
 
                 </Grid>
             </Grid>

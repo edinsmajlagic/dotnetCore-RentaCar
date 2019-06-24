@@ -73,6 +73,26 @@ namespace CarHireRC.WinUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bookingicon {
+            get {
+                object obj = ResourceManager.GetObject("bookingicon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap car {
+            get {
+                object obj = ResourceManager.GetObject("car", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap customer {
             get {
                 object obj = ResourceManager.GetObject("customer", resourceCulture);
@@ -111,6 +131,36 @@ namespace CarHireRC.WinUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap member {
+            get {
+                object obj = ResourceManager.GetObject("member", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap member1 {
+            get {
+                object obj = ResourceManager.GetObject("member1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap money {
+            get {
+                object obj = ResourceManager.GetObject("money", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vozilo nije dostupno.
         /// </summary>
         internal static string NaslovPorukeNedostupnoVozilo {
@@ -132,9 +182,9 @@ namespace CarHireRC.WinUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap no_image {
+        internal static System.Drawing.Bitmap noImage {
             get {
-                object obj = ResourceManager.GetObject("no-image", resourceCulture);
+                object obj = ResourceManager.GetObject("noImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -170,10 +220,38 @@ namespace CarHireRC.WinUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap unavailablecar {
+            get {
+                object obj = ResourceManager.GetObject("unavailablecar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap usergroupsfilled {
             get {
                 object obj = ResourceManager.GetObject("usergroupsfilled", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email već postoji!.
+        /// </summary>
+        internal static string Validation_EmailExists {
+            get {
+                return ResourceManager.GetString("Validation_EmailExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stara lozinka nije validna !.
+        /// </summary>
+        internal static string Validation_OldPassword {
+            get {
+                return ResourceManager.GetString("Validation_OldPassword", resourceCulture);
             }
         }
         
@@ -192,6 +270,15 @@ namespace CarHireRC.WinUI.Properties {
         internal static string Validation_Required {
             get {
                 return ResourceManager.GetString("Validation_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Korisničko ime je zauzeto!.
+        /// </summary>
+        internal static string Validation_UsernameExists {
+            get {
+                return ResourceManager.GetString("Validation_UsernameExists", resourceCulture);
             }
         }
     }

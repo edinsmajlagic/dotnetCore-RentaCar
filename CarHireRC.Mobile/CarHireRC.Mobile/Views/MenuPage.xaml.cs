@@ -23,8 +23,8 @@ namespace CarHireRC.Mobile.Views
                 new HomeMenuItem {Id = MenuItemType.Poruke, Title="Poruke",IconSource="envelope.png" },
                 new HomeMenuItem {Id = MenuItemType.MojeRezervacije, Title="Moje rezervacije",IconSource="car.png" },
                 new HomeMenuItem {Id = MenuItemType.Vozila, Title="Vozila",IconSource="transports.png" },
+                new HomeMenuItem {Id = MenuItemType.OdjaviSe, Title="Odjavi se" },
             };
-
             ListViewMenu.ItemsSource = menuItems;
 
             ListViewMenu.SelectedItem = menuItems[0];
@@ -32,9 +32,12 @@ namespace CarHireRC.Mobile.Views
             {
                 if (e.SelectedItem == null)
                     return;
-
+                
                 var id = (int)((HomeMenuItem)e.SelectedItem).Id;
-                await RootPage.NavigateFromMenu(id);
+                if (id == 6)
+                    Application.Current.MainPage = new LoginPage();
+                else
+                    await RootPage.NavigateFromMenu(id);
             };
         }
     }

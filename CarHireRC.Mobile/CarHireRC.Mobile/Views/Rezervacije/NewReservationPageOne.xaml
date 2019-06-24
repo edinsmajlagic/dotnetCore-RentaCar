@@ -26,9 +26,10 @@
                HorizontalTextAlignment="Center" 
                Margin="0,25,0,30">
         </Label>
-        <Grid RowSpacing="30" Margin="0,10">
+        <Grid RowSpacing="20" Margin="0,10" >
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
                 <RowDefinition Height="35"></RowDefinition>
                 <RowDefinition Height="35"></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
@@ -75,6 +76,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <DatePicker Date="{Binding RezervacijaOd}"
+                                x:Name="rezervacijaod"
                         Grid.Row="0" 
                         FontSize="13"
                         Grid.Column="0"
@@ -95,6 +97,8 @@
                     </Grid.ColumnDefinitions>
                     <DatePicker Date="{Binding RezervacijaDo}"
                                 MinimumDate="{Binding RezervacijaOd}"
+                                x:Name="rezervacijado"
+                                DateSelected="Rezervacijado_DateSelected"
                         Grid.Row="0" 
                         FontSize="13"
                         Grid.Column="0"
@@ -124,7 +128,9 @@
 
 
             <!--Kasko osiguranje-->
-            <Grid Grid.Row="2" RowSpacing="0" ColumnSpacing="5"  >
+            <Grid Grid.Row="2" 
+                  RowSpacing="0" 
+                  ColumnSpacing="5"  >
                 <Grid.RowDefinitions>
                     <RowDefinition ></RowDefinition>
                 </Grid.RowDefinitions>
@@ -139,6 +145,8 @@
                        Grid.Column="0"
                        ></Label>
                 <Switch IsToggled="{Binding KaskoOsiguranje}" 
+                        x:Name="kaskoOsiguranjeSwitch"
+                        Toggled="KaskoOsiguranjeSwitch_Toggled"
                         Margin="0,10" 
                         OnColor="Pink" 
                         Grid.Row="0" 
@@ -146,11 +154,33 @@
                         VerticalOptions="CenterAndExpand"></Switch>
             </Grid>
 
-
+            <!--Cijena osiguranja-->
+            <Grid 
+                  Grid.Row="3"
+                  RowSpacing="0"
+                  ColumnSpacing="5"  
+                Margin="0,0,40,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding CijenaOsiguranja}"
+                       TextColor="Green" 
+                       x:Name="cijenaosiguranja"
+                       IsVisible="False"
+                       Grid.Row="0"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="1"
+                       ></Label>
+               
+            </Grid>
 
 
             <!--Zavrsi-->
-            <Grid Grid.Row="3" BackgroundColor="Blue">
+            <Grid Grid.Row="4" Margin="0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>

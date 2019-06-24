@@ -21,6 +21,21 @@ namespace CarHireRC.WinUI.Poruka
             InitializeComponent();
         }
 
+        private async void frmPoruke_Load(object sender, EventArgs e)
+        {
+            await PretragaPrimljenihPoruka();
+            metroTabControl1.SelectedTab = metroTabPage1;
+            dtpOdPrimljene.MaxDate = DateTime.Now.Date;
+            dtpOdPrimljene.Value = DateTime.Now.Date;
+            dtpDoPrimljene.MaxDate = DateTime.Now.Date;
+            dtpDoPrimljene.Value = DateTime.Now.Date;
+            dtpOdPoslane.MaxDate = DateTime.Now.Date;
+            dtpOdPoslane.Value = DateTime.Now.Date;
+            dtpDoPoslane.MaxDate = DateTime.Now.Date;
+            dtpDoPoslane.Value = DateTime.Now.Date;
+        }
+
+
         private async Task PrimljeneTab()
         {
             PorukaSearchRequest porukaSearchRequest = new PorukaSearchRequest
@@ -65,18 +80,6 @@ namespace CarHireRC.WinUI.Poruka
             }
         }
 
-        private async Task UcitajPrimljenuPoruku(int pid)
-        {
-            var poruka = await _PorukaService.GetById<Model.Models.Poruka>(pid);
-
-           await PrikaziLabele("primljene");
-
-            lblDatumVrijemePrimljene.Text =poruka.DatumVrijeme.ToString();
-            lblNaslovPrimljene.Text =poruka.Naslov;
-            lblPosiljaoc.Text =poruka.PosiljaocInfo;
-            rtxtSadrzajPrimljene.Text =poruka.Sadrzaj;
-        }
-
         private async void dgvPoslanePoruke_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int Id = 0;
@@ -92,6 +95,21 @@ namespace CarHireRC.WinUI.Poruka
         }
 
 
+        //Ucitavanje odabrane primljene poruke
+        private async Task UcitajPrimljenuPoruku(int pid)
+        {
+            var poruka = await _PorukaService.GetById<Model.Models.Poruka>(pid);
+
+           await PrikaziLabele("primljene");
+
+            lblDatumVrijemePrimljene.Text =poruka.DatumVrijeme.ToString();
+            lblNaslovPrimljene.Text =poruka.Naslov;
+            lblPosiljaoc.Text =poruka.PosiljaocInfo;
+            rtxtSadrzajPrimljene.Text =poruka.Sadrzaj;
+        }
+
+
+        //Ucitavanje odabrane poslane poruke
         private async Task UcitajPoslanuPoruku(int id)
         {
             var poruka = await _PorukaService.GetById<Model.Models.Poruka>(id);
@@ -157,11 +175,9 @@ namespace CarHireRC.WinUI.Poruka
             }
         }
 
-        private void lblDatumVrijemePoslane_Click(object sender, EventArgs e)
-        {
 
-        }
 
+        //Ako promjeni trenutni tab
         private async void metroTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (metroTabControl1.SelectedIndex)
@@ -184,6 +200,12 @@ namespace CarHireRC.WinUI.Poruka
         private async void btnPrikaziPoslane_Click(object sender, EventArgs e)
         {
             await PretragaPoslanihPoruka();
+
+        }
+
+        private async void btnPrikaziPrimljene_Click(object sender, EventArgs e)
+        {
+            await PretragaPrimljenihPoruka();
 
         }
 
@@ -222,12 +244,6 @@ namespace CarHireRC.WinUI.Poruka
             dgvPoslanePoruke.DataSource = result;
         }
 
-        private async void btnPrikaziPrimljene_Click(object sender, EventArgs e)
-        {
-            await PretragaPrimljenihPoruka();
-
-        }
-
         private async Task PretragaPrimljenihPoruka()
         {
             var search = new PorukaSearchRequest();
@@ -263,6 +279,19 @@ namespace CarHireRC.WinUI.Poruka
             dgvPrimljenePoruke.DataSource = result;
         }
 
+
+        //Nova poruka
+        private async void btnPoruka_Click(object sender, EventArgs e)
+        {
+            Model.Models.Poruka p = await _PorukaService.GetById<Model.Models.Poruka>(_PorukaID);
+            frmNovaPorukaDialog frm = new frmNovaPorukaDialog(p.RezervacijaRentanjaId, _UserID);
+            _PorukaID = 0;
+            btnPoruka.Visible = false;
+            frm.Show();
+        }
+
+
+        #region Key press validation
         private void txtSearchImePosiljaoc_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Provjera da li je uneseno slovo ili prazno mjesto
@@ -348,28 +377,7 @@ namespace CarHireRC.WinUI.Poruka
             else
                 dtpDoPoslane.Enabled = false;
         }
+        #endregion 
 
-        private async void frmPoruke_Load(object sender, EventArgs e)
-        {
-            await PretragaPrimljenihPoruka();
-            metroTabControl1.SelectedTab = metroTabPage1;
-            dtpOdPrimljene.MaxDate = DateTime.Now.Date;
-            dtpOdPrimljene.Value = DateTime.Now.Date;
-            dtpDoPrimljene.MaxDate = DateTime.Now.Date;
-            dtpDoPrimljene.Value = DateTime.Now.Date;
-            dtpOdPoslane.MaxDate = DateTime.Now.Date;
-            dtpOdPoslane.Value = DateTime.Now.Date;
-            dtpDoPoslane.MaxDate = DateTime.Now.Date;
-            dtpDoPoslane.Value = DateTime.Now.Date;
-        }
-
-        private async void btnPoruka_Click(object sender, EventArgs e)
-        {
-            Model.Models.Poruka p =await _PorukaService.GetById<Model.Models.Poruka>(_PorukaID);
-            frmNovaPorukaDialog frm = new frmNovaPorukaDialog(p.RezervacijaRentanjaId, _UserID);
-            _PorukaID = 0;
-            btnPoruka.Visible = false;
-            frm.Show();
-        }
     }
 }

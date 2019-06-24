@@ -16,7 +16,6 @@ namespace CarHireRC.Mobile.ViewModels.Rezervacije
         private readonly APIService _klijentiService = new APIService("Klijent");
         private readonly APIService _korisniciService = new APIService("Korisnik");
         private readonly APIService _porukeService = new APIService("Poruka");
-        private readonly APIService _vozilaService = new APIService("Automobil");
         private readonly APIService _rezervacijeService = new APIService("RezervacijaRentanja");
 
         public RezervacijaDetaljiViewModel()
@@ -31,8 +30,9 @@ namespace CarHireRC.Mobile.ViewModels.Rezervacije
             TimeSpan timeSpan = rezervacijaRentanja.RezervacijaOd - DateTime.Now;
             //Moguće otkazati rezervaciju samo 3 dana prije početka rezervacije
 
-            if ( timeSpan.Days>3)
+            if (timeSpan.Days > 3)
             {
+                _provjera = true;
                 RezervacijaRentanjaUpsertRequest request = new RezervacijaRentanjaUpsertRequest()
                 {
                     RezervacijaRentanjaId = rezervacijaRentanja.RezervacijaRentanjaId,
@@ -49,18 +49,27 @@ namespace CarHireRC.Mobile.ViewModels.Rezervacije
                     RacunId = rezervacijaRentanja.RacunId,
                     Opis = rezervacijaRentanja.Opis,
                     Popust = rezervacijaRentanja.Popust,
-                    Otkazana=true
+                    Otkazana = true
                 };
 
                 try
                 {
-                   var entity= await _rezervacijeService.Update<Model.Models.RezervacijaRentanja>(rezervacijaRentanja.RezervacijaRentanjaId, request);
+                    var entity = await _rezervacijeService.Update<Model.Models.RezervacijaRentanja>(rezervacijaRentanja.RezervacijaRentanjaId, request);
 
                     if (entity != null)
                     {
+                        KorisniciSearchRequest korisniciSearch = new KorisniciSearchRequest();
 
-                        //Pošalji poruku uposlenicima
-                        var korisnici = await _korisniciService.Get<List<Model.Models.Korisnici>>(new KorisniciSearchRequest());
+                        //Slanje poruke samo korisnicima sa ulogom "Uposlenik"
+                        List<string> uloge = new List<string>();
+                        uloge.Add("Uposlenik");
+
+                        korisniciSearch.Status = true;
+                        korisniciSearch.uloge = uloge;
+
+                        var korisnici = await _korisniciService.Get<List<Model.Models.Korisnici>>(korisniciSearch);
+
+
                         foreach (var korisnik in korisnici)
                         {
 
@@ -76,17 +85,17 @@ namespace CarHireRC.Mobile.ViewModels.Rezervacije
                                 Naslov = "Rezervacija otkazana",
                                 Procitano = false,
                                 Posiljaoc = "Uposlenik",
-                                Sadrzaj = "Pozdrav" + uposlenik.ImePrezime + ", \n"
-                                         + "Rezervacija klijenta" + klijent.Ime + " " + klijent.Prezime
-                                         + "kreirana dana " + rezervacijaRentanja.DatumKreiranja.ToShortDateString()
-                                         + "je otkazana."
+                                Sadrzaj = "Pozdrav " + uposlenik.ImePrezime + ", \n"
+                                         + " Rezervacija klijenta " + klijent.Ime + " " + klijent.Prezime
+                                         + " kreirana dana " + rezervacijaRentanja.DatumKreiranja.ToShortDateString()
+                                         + " je otkazana."
                             };
 
                             //Slanje poruke za uposlenika sa UposlenikID
                             await _porukeService.Insert<Model.Models.Poruka>(porukaUpsert);
                         }
 
-                      
+
                     }
 
                 }
@@ -98,12 +107,21 @@ namespace CarHireRC.Mobile.ViewModels.Rezervacije
                 }
             }
             else
+            {
+                _provjera = false;
                 await Application.Current.MainPage.DisplayAlert("Greška", "Nije moguće otkazati rezervaciju koja počinje za manje od tri dana", "OK");
-
+            }
 
         }
 
         public RezervacijaRentanja rezervacijaRentanja{ get; set; }
+
+        bool _provjera = false;
+        public bool Provjera
+        {
+            get { return _provjera; }
+            set { SetProperty(ref _provjera, value); }
+        }
         public OcjenaUpsertRequest novaOcjena { get; set; } = new OcjenaUpsertRequest();
 
         public async Task  DodajOcjenu(int RezervacijaID,float ocjena)

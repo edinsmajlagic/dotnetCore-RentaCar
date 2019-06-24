@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarHireRC.Mobile.iOS", "Car
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarHireRC.Mobile.UWP", "CarHireRC.Mobile\CarHireRC.Mobile.UWP\CarHireRC.Mobile.UWP.csproj", "{52D74728-EAED-4644-AF32-77C4A240868C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarHireRC.Mobile", "CarHireRC.Mobile\CarHireRC.Mobile\CarHireRC.Mobile.csproj", "{A90081EB-FE38-48A3-B94A-6B12CC394AA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarHireRC.Mobile", "CarHireRC.Mobile\CarHireRC.Mobile\CarHireRC.Mobile.csproj", "{A90081EB-FE38-48A3-B94A-6B12CC394AA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,7 +11,8 @@ namespace CarHireRC.Mobile.Models
         MojeRezervacije,
         Vozila,
         Poruke,
-        KorisnickiProfil
+        KorisnickiProfil,
+        OdjaviSe
     }
     public class HomeMenuItem
     {

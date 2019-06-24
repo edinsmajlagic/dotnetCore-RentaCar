@@ -26,7 +26,7 @@ namespace CarHireRC.Mobile.Views.Poruke
 
         public MessageDetailsPage()
         {
-
+            InitializeComponent();
         }
         private async void ButtonOdgovori_Clicked(object sender, EventArgs e)
         {

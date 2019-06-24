@@ -1,4 +1,5 @@
-﻿using CarHireRC.Model.Models;
+﻿using CarHireRC.Mobile.Helper;
+using CarHireRC.Model.Models;
 using CarHireRC.Model.Requests;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace CarHireRC.Mobile.ViewModels.Vozila
             InitCommand = new Command(async () => await Init());
         }
         public ObservableCollection<Automobil> VozilaList { get; set; } = new ObservableCollection<Automobil>();
+        public ObservableCollection<Automobil> preporucenaVozilaList { get; set; } = new ObservableCollection<Automobil>();
         public ObservableCollection<KategorijaVozila> kategorijaVozila { get; set; } = new ObservableCollection<KategorijaVozila>();
 
 
@@ -53,8 +55,8 @@ namespace CarHireRC.Mobile.ViewModels.Vozila
                     kategorijaVozila.Add(kategorija);
                 }
             }
-            RezervacijaSearchRequest search = new RezervacijaSearchRequest();
-
+            AutomobilSearchRequest search = new AutomobilSearchRequest();
+            
             if (SelectedKategorijaVozila != null)
             {
                 search.KategorijaId = _selectedKategorijaVozila.KategorijaId;
@@ -63,11 +65,24 @@ namespace CarHireRC.Mobile.ViewModels.Vozila
             var list = await _vozilaService.Get<IEnumerable<Automobil>>(search);
 
                 VozilaList.Clear();
-                foreach (var vozilo in list)
+            preporucenaVozilaList.Clear();
+            foreach (var vozilo in list)
+            {
+
+                if ((vozilo.RegistrovanDo - DateTime.Now).Value.Days > 15)
                 {
                     VozilaList.Add(vozilo);
+                    Recommender recommender = new Recommender();
+                    var recommenderVozila = recommender.GetSlicnaVozila(vozilo.AutomobilId);
+
+                    foreach (var item in recommenderVozila)
+                    {
+                        preporucenaVozilaList.Add(item);
+
+                    }
                 }
-           
+            }
+
         }
     }
 }

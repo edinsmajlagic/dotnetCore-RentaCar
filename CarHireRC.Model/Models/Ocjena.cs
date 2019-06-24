@@ -8,6 +8,8 @@ namespace CarHireRC.Model.Models
     {
         public int OcjenaId { get; set; }
         public int RezervacijaRentanjaId { get; set; }
+        public int VoziloId { get; set; }
+        public int KlijentId { get; set; }
         public DateTime DatumEvidentiranja { get; set; }
         public int Ocjena1 { get; set; }
         public string Napomena { get; set; }

@@ -26,6 +26,11 @@ namespace CarHireRC.WebAPI.Mappers
             CreateMap<Database.Racun, Model.Requests.RacunUpsertRequest>().ReverseMap();
             CreateMap<Database.Ocjena, Model.Models.Ocjena>().ReverseMap();
             CreateMap<Database.Ocjena, Model.Requests.OcjenaUpsertRequest>().ReverseMap();
+            CreateMap<Database.Proizvodjac, Model.Models.Proizvodjac>().ReverseMap();
+            CreateMap<Database.Proizvodjac, Model.Requests.ProizvodjacUpsertRequest>().ReverseMap();
+            CreateMap<Database.Model, Model.Models.ModelAutomobila>().ReverseMap();
+            CreateMap<Database.Model, Model.Requests.ModelAutomobilaUpsertRequest>().ReverseMap();
+
         }
     }
 }

@@ -13,7 +13,6 @@ namespace CarHireRC.Mobile.ViewModels.Rezervacije
     public class RezervacijeViewModel:BaseViewModel
     {
         private readonly APIService _rezervacijeService = new APIService("RezervacijaRentanja");
-        private readonly APIService _vozilaService = new APIService("Automobil");
 
         public int KlijentID;
 

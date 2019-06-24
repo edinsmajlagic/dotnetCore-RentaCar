@@ -21,7 +21,7 @@ namespace CarHireRC.Mobile.Views
             InitializeComponent();
             KlijentID = Klijent;
             MasterBehavior = MasterBehavior.Popover;
-            MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
+            MenuPages.Add((int)MenuItemType.Poruke, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -30,14 +30,9 @@ namespace CarHireRC.Mobile.Views
             {
                 switch (id)
                 {
-                    case (int)MenuItemType.Browse:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
-                        break;
-                    case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
-                        break;
+                   
                     case (int)MenuItemType.KorisnickiProfil:
-                        MenuPages.Add(id, new NavigationPage(new UserProfilePage()));
+                        MenuPages.Add(id, new NavigationPage(new ProfileSettingsPage(KlijentID)));
                         break;
                     case (int)MenuItemType.Poruke:
                         MenuPages.Add(id, new NavigationPage(new MessagesPage(KlijentID)));
@@ -50,6 +45,7 @@ namespace CarHireRC.Mobile.Views
                         MenuPages.Add(id, new NavigationPage(new VehiclesPage(KlijentID)));
                         break;
                    
+
                 }
             }
 

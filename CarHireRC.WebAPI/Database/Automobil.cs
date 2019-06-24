@@ -27,6 +27,8 @@ namespace CarHireRC.WebAPI.Database
         public bool Dostupan { get; set; }
         public bool Novo { get; set; }
         public decimal CijenaIznajmljivanja { get; set; }
+        public decimal CijenaKaskoOsiguranja { get; set; }
+
         public byte[] Slika { get; set; }
         public byte[] SlikaThumb { get; set; }
 

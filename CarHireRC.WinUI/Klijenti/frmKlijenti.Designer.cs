@@ -95,7 +95,7 @@
             this.metroTabControl1.Controls.Add(this.metroTabPage2);
             this.metroTabControl1.Location = new System.Drawing.Point(-1, 1);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(1054, 812);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
@@ -129,7 +129,7 @@
             // chbAktivan
             // 
             this.chbAktivan.AutoSize = true;
-            this.chbAktivan.Location = new System.Drawing.Point(344, 231);
+            this.chbAktivan.Location = new System.Drawing.Point(331, 212);
             this.chbAktivan.Name = "chbAktivan";
             this.chbAktivan.Size = new System.Drawing.Size(63, 15);
             this.chbAktivan.TabIndex = 114;
@@ -140,7 +140,7 @@
             // 
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel4.Location = new System.Drawing.Point(247, 52);
+            this.metroLabel4.Location = new System.Drawing.Point(247, 34);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(48, 15);
             this.metroLabel4.TabIndex = 113;
@@ -150,7 +150,7 @@
             // 
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel3.Location = new System.Drawing.Point(48, 192);
+            this.metroLabel3.Location = new System.Drawing.Point(48, 174);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(32, 15);
             this.metroLabel3.TabIndex = 112;
@@ -160,7 +160,7 @@
             // 
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel2.Location = new System.Drawing.Point(48, 124);
+            this.metroLabel2.Location = new System.Drawing.Point(48, 106);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(58, 15);
             this.metroLabel2.TabIndex = 111;
@@ -170,7 +170,7 @@
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel1.Location = new System.Drawing.Point(48, 54);
+            this.metroLabel1.Location = new System.Drawing.Point(48, 36);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(26, 15);
             this.metroLabel1.TabIndex = 110;
@@ -179,7 +179,7 @@
             // txtSearchPrezime
             // 
             this.txtSearchPrezime.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearchPrezime.Location = new System.Drawing.Point(247, 77);
+            this.txtSearchPrezime.Location = new System.Drawing.Point(247, 59);
             this.txtSearchPrezime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchPrezime.MaxLength = 50;
             this.txtSearchPrezime.Name = "txtSearchPrezime";
@@ -197,7 +197,7 @@
             this.groupBox2.Controls.Add(this.dtpDo);
             this.groupBox2.Controls.Add(this.dtpOd);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox2.Location = new System.Drawing.Point(499, 47);
+            this.groupBox2.Location = new System.Drawing.Point(499, 29);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -274,7 +274,7 @@
             // 
             // txtSearchUsername
             // 
-            this.txtSearchUsername.Location = new System.Drawing.Point(48, 149);
+            this.txtSearchUsername.Location = new System.Drawing.Point(48, 131);
             this.txtSearchUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchUsername.MaxLength = 50;
             this.txtSearchUsername.Name = "txtSearchUsername";
@@ -286,11 +286,11 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.dgvKlijenti);
-            this.groupBox1.Location = new System.Drawing.Point(3, 279);
+            this.groupBox1.Location = new System.Drawing.Point(3, 256);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(1041, 445);
+            this.groupBox1.Size = new System.Drawing.Size(1041, 414);
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Klijenti";
@@ -314,7 +314,7 @@
             this.dgvKlijenti.ReadOnly = true;
             this.dgvKlijenti.RowTemplate.Height = 24;
             this.dgvKlijenti.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvKlijenti.Size = new System.Drawing.Size(1035, 422);
+            this.dgvKlijenti.Size = new System.Drawing.Size(1035, 391);
             this.dgvKlijenti.TabIndex = 0;
             this.dgvKlijenti.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvKlijenti_MouseDoubleClick);
             // 
@@ -375,7 +375,7 @@
             // cmbSearchGrad
             // 
             this.cmbSearchGrad.FormattingEnabled = true;
-            this.cmbSearchGrad.Location = new System.Drawing.Point(48, 217);
+            this.cmbSearchGrad.Location = new System.Drawing.Point(48, 199);
             this.cmbSearchGrad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbSearchGrad.Name = "cmbSearchGrad";
             this.cmbSearchGrad.Size = new System.Drawing.Size(224, 28);
@@ -384,7 +384,7 @@
             // txtSearchIme
             // 
             this.txtSearchIme.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearchIme.Location = new System.Drawing.Point(48, 79);
+            this.txtSearchIme.Location = new System.Drawing.Point(48, 61);
             this.txtSearchIme.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchIme.MaxLength = 50;
             this.txtSearchIme.Name = "txtSearchIme";
@@ -397,7 +397,7 @@
             this.btnPrikazi.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnPrikazi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnPrikazi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPrikazi.Location = new System.Drawing.Point(926, 208);
+            this.btnPrikazi.Location = new System.Drawing.Point(926, 190);
             this.btnPrikazi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrikazi.Name = "btnPrikazi";
             this.btnPrikazi.Size = new System.Drawing.Size(115, 42);
@@ -573,7 +573,7 @@
             this.btnSacuvajUredi.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnSacuvajUredi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnSacuvajUredi.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSacuvajUredi.Location = new System.Drawing.Point(849, 652);
+            this.btnSacuvajUredi.Location = new System.Drawing.Point(849, 633);
             this.btnSacuvajUredi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSacuvajUredi.Name = "btnSacuvajUredi";
             this.btnSacuvajUredi.Size = new System.Drawing.Size(146, 40);
@@ -642,7 +642,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::CarHireRC.WinUI.Properties.Resources.no_image;
+            this.pictureBox1.Image = global::CarHireRC.WinUI.Properties.Resources.noImage;
             this.pictureBox1.Location = new System.Drawing.Point(48, 78);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";

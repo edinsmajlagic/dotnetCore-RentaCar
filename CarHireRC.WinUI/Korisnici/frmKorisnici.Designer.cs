@@ -56,16 +56,17 @@
             this.txtSearchIme = new System.Windows.Forms.TextBox();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.clbUlogePretraga = new System.Windows.Forms.CheckedListBox();
             this.btnPrikazi = new System.Windows.Forms.Button();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.txtTelefon = new System.Windows.Forms.MaskedTextBox();
             this.metroLabel27 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
             this.txtPasswordPotvrda = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.dtpDatumRodjenja = new System.Windows.Forms.DateTimePicker();
             this.cmbGrad = new System.Windows.Forms.ComboBox();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.metroLabel16 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel15 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
@@ -109,7 +110,6 @@
             this.txtImeEdit = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.txtTelefon = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKorisnici)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -125,7 +125,7 @@
             // cmbSearchGrad
             // 
             this.cmbSearchGrad.FormattingEnabled = true;
-            this.cmbSearchGrad.Location = new System.Drawing.Point(48, 217);
+            this.cmbSearchGrad.Location = new System.Drawing.Point(48, 199);
             this.cmbSearchGrad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbSearchGrad.Name = "cmbSearchGrad";
             this.cmbSearchGrad.Size = new System.Drawing.Size(359, 28);
@@ -133,7 +133,7 @@
             // 
             // txtSearchUsername
             // 
-            this.txtSearchUsername.Location = new System.Drawing.Point(48, 149);
+            this.txtSearchUsername.Location = new System.Drawing.Point(48, 131);
             this.txtSearchUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchUsername.MaxLength = 50;
             this.txtSearchUsername.Name = "txtSearchUsername";
@@ -145,11 +145,11 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.dgvKorisnici);
-            this.groupBox1.Location = new System.Drawing.Point(2, 384);
+            this.groupBox1.Location = new System.Drawing.Point(5, 338);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(1041, 380);
+            this.groupBox1.Size = new System.Drawing.Size(1041, 336);
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Korisnici";
@@ -173,7 +173,7 @@
             this.dgvKorisnici.ReadOnly = true;
             this.dgvKorisnici.RowTemplate.Height = 24;
             this.dgvKorisnici.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvKorisnici.Size = new System.Drawing.Size(1035, 357);
+            this.dgvKorisnici.Size = new System.Drawing.Size(1035, 313);
             this.dgvKorisnici.TabIndex = 0;
             this.dgvKorisnici.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvKorisnici_MouseDoubleClick);
             // 
@@ -234,7 +234,7 @@
             // chbAktivan
             // 
             this.chbAktivan.AutoSize = true;
-            this.chbAktivan.Location = new System.Drawing.Point(344, 272);
+            this.chbAktivan.Location = new System.Drawing.Point(651, 273);
             this.chbAktivan.Name = "chbAktivan";
             this.chbAktivan.Size = new System.Drawing.Size(63, 15);
             this.chbAktivan.TabIndex = 114;
@@ -245,7 +245,7 @@
             // 
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel4.Location = new System.Drawing.Point(247, 52);
+            this.metroLabel4.Location = new System.Drawing.Point(247, 34);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(48, 15);
             this.metroLabel4.TabIndex = 113;
@@ -255,7 +255,7 @@
             // 
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel3.Location = new System.Drawing.Point(48, 192);
+            this.metroLabel3.Location = new System.Drawing.Point(48, 174);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(32, 15);
             this.metroLabel3.TabIndex = 112;
@@ -265,7 +265,7 @@
             // 
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel2.Location = new System.Drawing.Point(48, 124);
+            this.metroLabel2.Location = new System.Drawing.Point(48, 106);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(58, 15);
             this.metroLabel2.TabIndex = 111;
@@ -275,7 +275,7 @@
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel1.Location = new System.Drawing.Point(48, 54);
+            this.metroLabel1.Location = new System.Drawing.Point(48, 36);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(26, 15);
             this.metroLabel1.TabIndex = 110;
@@ -284,7 +284,7 @@
             // txtSearchPrezime
             // 
             this.txtSearchPrezime.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearchPrezime.Location = new System.Drawing.Point(247, 77);
+            this.txtSearchPrezime.Location = new System.Drawing.Point(247, 59);
             this.txtSearchPrezime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchPrezime.MaxLength = 50;
             this.txtSearchPrezime.Name = "txtSearchPrezime";
@@ -302,7 +302,7 @@
             this.groupBox2.Controls.Add(this.dtpDo);
             this.groupBox2.Controls.Add(this.dtpOd);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox2.Location = new System.Drawing.Point(499, 47);
+            this.groupBox2.Location = new System.Drawing.Point(499, 29);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -384,7 +384,7 @@
             // txtSearchIme
             // 
             this.txtSearchIme.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearchIme.Location = new System.Drawing.Point(48, 79);
+            this.txtSearchIme.Location = new System.Drawing.Point(48, 61);
             this.txtSearchIme.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchIme.MaxLength = 50;
             this.txtSearchIme.Name = "txtSearchIme";
@@ -399,14 +399,14 @@
             this.metroTabControl1.Controls.Add(this.metroTabPage3);
             this.metroTabControl1.Location = new System.Drawing.Point(0, 1);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(1054, 812);
             this.metroTabControl1.TabIndex = 1;
             this.metroTabControl1.UseSelectable = true;
             // 
             // metroTabPage1
             // 
-            this.metroTabPage1.Controls.Add(this.checkedListBox2);
+            this.metroTabPage1.Controls.Add(this.clbUlogePretraga);
             this.metroTabPage1.Controls.Add(this.chbAktivan);
             this.metroTabPage1.Controls.Add(this.metroLabel4);
             this.metroTabPage1.Controls.Add(this.metroLabel3);
@@ -431,27 +431,26 @@
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.VerticalScrollbarSize = 10;
             // 
-            // checkedListBox2
+            // clbUlogePretraga
             // 
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
+            this.clbUlogePretraga.FormattingEnabled = true;
+            this.clbUlogePretraga.Items.AddRange(new object[] {
             "Administrator",
             "Menadžer",
-            "Direktor",
-            "Registracija"});
-            this.checkedListBox2.Location = new System.Drawing.Point(48, 272);
-            this.checkedListBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkedListBox2.MultiColumn = true;
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(263, 88);
-            this.checkedListBox2.TabIndex = 115;
+            "Uposlenik"});
+            this.clbUlogePretraga.Location = new System.Drawing.Point(32, 269);
+            this.clbUlogePretraga.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.clbUlogePretraga.MultiColumn = true;
+            this.clbUlogePretraga.Name = "clbUlogePretraga";
+            this.clbUlogePretraga.Size = new System.Drawing.Size(613, 46);
+            this.clbUlogePretraga.TabIndex = 115;
             // 
             // btnPrikazi
             // 
             this.btnPrikazi.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnPrikazi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnPrikazi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPrikazi.Location = new System.Drawing.Point(928, 318);
+            this.btnPrikazi.Location = new System.Drawing.Point(928, 273);
             this.btnPrikazi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrikazi.Name = "btnPrikazi";
             this.btnPrikazi.Size = new System.Drawing.Size(115, 42);
@@ -462,6 +461,7 @@
             // 
             // metroTabPage2
             // 
+            this.metroTabPage2.Controls.Add(this.metroButton1);
             this.metroTabPage2.Controls.Add(this.txtTelefon);
             this.metroTabPage2.Controls.Add(this.metroLabel27);
             this.metroTabPage2.Controls.Add(this.metroLabel13);
@@ -469,7 +469,6 @@
             this.metroTabPage2.Controls.Add(this.txtPassword);
             this.metroTabPage2.Controls.Add(this.dtpDatumRodjenja);
             this.metroTabPage2.Controls.Add(this.cmbGrad);
-            this.metroTabPage2.Controls.Add(this.metroButton1);
             this.metroTabPage2.Controls.Add(this.metroLabel16);
             this.metroTabPage2.Controls.Add(this.metroLabel15);
             this.metroTabPage2.Controls.Add(this.metroLabel14);
@@ -500,11 +499,32 @@
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
             // 
+            // metroButton1
+            // 
+            this.metroButton1.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton1.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.metroButton1.Location = new System.Drawing.Point(150, 474);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(126, 32);
+            this.metroButton1.TabIndex = 175;
+            this.metroButton1.Text = "Učitaj sliku";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            // 
+            // txtTelefon
+            // 
+            this.txtTelefon.Location = new System.Drawing.Point(438, 337);
+            this.txtTelefon.Mask = "(999) 00 000-0000";
+            this.txtTelefon.Name = "txtTelefon";
+            this.txtTelefon.Size = new System.Drawing.Size(257, 26);
+            this.txtTelefon.TabIndex = 174;
+            this.txtTelefon.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // metroLabel27
             // 
             this.metroLabel27.AutoSize = true;
             this.metroLabel27.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel27.Location = new System.Drawing.Point(438, 497);
+            this.metroLabel27.Location = new System.Drawing.Point(438, 474);
             this.metroLabel27.Name = "metroLabel27";
             this.metroLabel27.Size = new System.Drawing.Size(55, 15);
             this.metroLabel27.TabIndex = 173;
@@ -514,7 +534,7 @@
             // 
             this.metroLabel13.AutoSize = true;
             this.metroLabel13.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel13.Location = new System.Drawing.Point(741, 497);
+            this.metroLabel13.Location = new System.Drawing.Point(741, 474);
             this.metroLabel13.Name = "metroLabel13";
             this.metroLabel13.Size = new System.Drawing.Size(98, 15);
             this.metroLabel13.TabIndex = 172;
@@ -522,7 +542,7 @@
             // 
             // txtPasswordPotvrda
             // 
-            this.txtPasswordPotvrda.Location = new System.Drawing.Point(741, 522);
+            this.txtPasswordPotvrda.Location = new System.Drawing.Point(741, 499);
             this.txtPasswordPotvrda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPasswordPotvrda.MaxLength = 50;
             this.txtPasswordPotvrda.Name = "txtPasswordPotvrda";
@@ -534,7 +554,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(438, 522);
+            this.txtPassword.Location = new System.Drawing.Point(438, 499);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
@@ -546,7 +566,7 @@
             // 
             // dtpDatumRodjenja
             // 
-            this.dtpDatumRodjenja.Location = new System.Drawing.Point(438, 277);
+            this.dtpDatumRodjenja.Location = new System.Drawing.Point(438, 254);
             this.dtpDatumRodjenja.MaxDate = new System.DateTime(2019, 5, 21, 0, 0, 0, 0);
             this.dtpDatumRodjenja.MinDate = new System.DateTime(1950, 1, 1, 0, 0, 0, 0);
             this.dtpDatumRodjenja.Name = "dtpDatumRodjenja";
@@ -557,27 +577,17 @@
             // cmbGrad
             // 
             this.cmbGrad.FormattingEnabled = true;
-            this.cmbGrad.Location = new System.Drawing.Point(438, 440);
+            this.cmbGrad.Location = new System.Drawing.Point(438, 417);
             this.cmbGrad.Name = "cmbGrad";
             this.cmbGrad.Size = new System.Drawing.Size(257, 28);
             this.cmbGrad.TabIndex = 168;
             this.cmbGrad.Validating += new System.ComponentModel.CancelEventHandler(this.cmbGrad_Validating);
             // 
-            // metroButton1
-            // 
-            this.metroButton1.Location = new System.Drawing.Point(155, 503);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(122, 22);
-            this.metroButton1.TabIndex = 167;
-            this.metroButton1.Text = "Učitaj sliku";
-            this.metroButton1.UseSelectable = true;
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
-            // 
             // metroLabel16
             // 
             this.metroLabel16.AutoSize = true;
             this.metroLabel16.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel16.Location = new System.Drawing.Point(774, 252);
+            this.metroLabel16.Location = new System.Drawing.Point(774, 229);
             this.metroLabel16.Name = "metroLabel16";
             this.metroLabel16.Size = new System.Drawing.Size(37, 15);
             this.metroLabel16.TabIndex = 164;
@@ -587,7 +597,7 @@
             // 
             this.metroLabel15.AutoSize = true;
             this.metroLabel15.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel15.Location = new System.Drawing.Point(740, 415);
+            this.metroLabel15.Location = new System.Drawing.Point(740, 392);
             this.metroLabel15.Name = "metroLabel15";
             this.metroLabel15.Size = new System.Drawing.Size(43, 15);
             this.metroLabel15.TabIndex = 163;
@@ -597,7 +607,7 @@
             // 
             this.metroLabel14.AutoSize = true;
             this.metroLabel14.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel14.Location = new System.Drawing.Point(438, 334);
+            this.metroLabel14.Location = new System.Drawing.Point(438, 311);
             this.metroLabel14.Name = "metroLabel14";
             this.metroLabel14.Size = new System.Drawing.Size(41, 15);
             this.metroLabel14.TabIndex = 162;
@@ -607,7 +617,7 @@
             // 
             this.metroLabel12.AutoSize = true;
             this.metroLabel12.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel12.Location = new System.Drawing.Point(438, 253);
+            this.metroLabel12.Location = new System.Drawing.Point(438, 230);
             this.metroLabel12.Name = "metroLabel12";
             this.metroLabel12.Size = new System.Drawing.Size(82, 15);
             this.metroLabel12.TabIndex = 160;
@@ -617,7 +627,7 @@
             // 
             this.metroLabel11.AutoSize = true;
             this.metroLabel11.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel11.Location = new System.Drawing.Point(438, 171);
+            this.metroLabel11.Location = new System.Drawing.Point(438, 148);
             this.metroLabel11.Name = "metroLabel11";
             this.metroLabel11.Size = new System.Drawing.Size(33, 15);
             this.metroLabel11.TabIndex = 159;
@@ -626,7 +636,7 @@
             // chBoxAktivan
             // 
             this.chBoxAktivan.AutoSize = true;
-            this.chBoxAktivan.Location = new System.Drawing.Point(741, 578);
+            this.chBoxAktivan.Location = new System.Drawing.Point(741, 555);
             this.chBoxAktivan.Name = "chBoxAktivan";
             this.chBoxAktivan.Size = new System.Drawing.Size(63, 15);
             this.chBoxAktivan.TabIndex = 158;
@@ -637,7 +647,7 @@
             // 
             this.metroLabel7.AutoSize = true;
             this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel7.Location = new System.Drawing.Point(741, 90);
+            this.metroLabel7.Location = new System.Drawing.Point(741, 67);
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(48, 15);
             this.metroLabel7.TabIndex = 157;
@@ -647,7 +657,7 @@
             // 
             this.metroLabel8.AutoSize = true;
             this.metroLabel8.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel8.Location = new System.Drawing.Point(438, 415);
+            this.metroLabel8.Location = new System.Drawing.Point(438, 392);
             this.metroLabel8.Name = "metroLabel8";
             this.metroLabel8.Size = new System.Drawing.Size(32, 15);
             this.metroLabel8.TabIndex = 156;
@@ -657,7 +667,7 @@
             // 
             this.metroLabel9.AutoSize = true;
             this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel9.Location = new System.Drawing.Point(740, 171);
+            this.metroLabel9.Location = new System.Drawing.Point(740, 148);
             this.metroLabel9.Name = "metroLabel9";
             this.metroLabel9.Size = new System.Drawing.Size(58, 15);
             this.metroLabel9.TabIndex = 155;
@@ -667,7 +677,7 @@
             // 
             this.metroLabel10.AutoSize = true;
             this.metroLabel10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel10.Location = new System.Drawing.Point(438, 90);
+            this.metroLabel10.Location = new System.Drawing.Point(438, 67);
             this.metroLabel10.Name = "metroLabel10";
             this.metroLabel10.Size = new System.Drawing.Size(26, 15);
             this.metroLabel10.TabIndex = 154;
@@ -676,7 +686,7 @@
             // cLBUloge
             // 
             this.cLBUloge.FormattingEnabled = true;
-            this.cLBUloge.Location = new System.Drawing.Point(774, 277);
+            this.cLBUloge.Location = new System.Drawing.Point(774, 254);
             this.cLBUloge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cLBUloge.MultiColumn = true;
             this.cLBUloge.Name = "cLBUloge";
@@ -688,7 +698,7 @@
             this.btnSacuvajNovi.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnSacuvajNovi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnSacuvajNovi.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSacuvajNovi.Location = new System.Drawing.Point(849, 652);
+            this.btnSacuvajNovi.Location = new System.Drawing.Point(852, 628);
             this.btnSacuvajNovi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSacuvajNovi.Name = "btnSacuvajNovi";
             this.btnSacuvajNovi.Size = new System.Drawing.Size(146, 40);
@@ -699,7 +709,7 @@
             // 
             // txtAdresa
             // 
-            this.txtAdresa.Location = new System.Drawing.Point(740, 440);
+            this.txtAdresa.Location = new System.Drawing.Point(740, 417);
             this.txtAdresa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAdresa.MaxLength = 100;
             this.txtAdresa.Name = "txtAdresa";
@@ -709,7 +719,7 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(741, 196);
+            this.txtUsername.Location = new System.Drawing.Point(741, 173);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsername.MaxLength = 50;
             this.txtUsername.Name = "txtUsername";
@@ -720,7 +730,7 @@
             // 
             // txtPrezime
             // 
-            this.txtPrezime.Location = new System.Drawing.Point(741, 115);
+            this.txtPrezime.Location = new System.Drawing.Point(741, 92);
             this.txtPrezime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPrezime.MaxLength = 50;
             this.txtPrezime.Name = "txtPrezime";
@@ -731,7 +741,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(438, 196);
+            this.txtEmail.Location = new System.Drawing.Point(438, 173);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
@@ -742,7 +752,7 @@
             // 
             // txtIme
             // 
-            this.txtIme.Location = new System.Drawing.Point(438, 115);
+            this.txtIme.Location = new System.Drawing.Point(438, 92);
             this.txtIme.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtIme.MaxLength = 50;
             this.txtIme.Name = "txtIme";
@@ -753,8 +763,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::CarHireRC.WinUI.Properties.Resources.no_image;
-            this.pictureBox1.Location = new System.Drawing.Point(48, 78);
+            this.pictureBox1.Image = global::CarHireRC.WinUI.Properties.Resources.noImage;
+            this.pictureBox1.Location = new System.Drawing.Point(48, 49);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(346, 406);
@@ -802,7 +812,7 @@
             // txtGrad
             // 
             this.txtGrad.Enabled = false;
-            this.txtGrad.Location = new System.Drawing.Point(438, 440);
+            this.txtGrad.Location = new System.Drawing.Point(438, 411);
             this.txtGrad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtGrad.Name = "txtGrad";
             this.txtGrad.Size = new System.Drawing.Size(257, 26);
@@ -812,7 +822,7 @@
             // 
             this.metroLabel17.AutoSize = true;
             this.metroLabel17.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel17.Location = new System.Drawing.Point(438, 503);
+            this.metroLabel17.Location = new System.Drawing.Point(438, 474);
             this.metroLabel17.Name = "metroLabel17";
             this.metroLabel17.Size = new System.Drawing.Size(37, 15);
             this.metroLabel17.TabIndex = 189;
@@ -822,7 +832,7 @@
             // 
             this.metroLabel18.AutoSize = true;
             this.metroLabel18.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel18.Location = new System.Drawing.Point(740, 415);
+            this.metroLabel18.Location = new System.Drawing.Point(740, 386);
             this.metroLabel18.Name = "metroLabel18";
             this.metroLabel18.Size = new System.Drawing.Size(43, 15);
             this.metroLabel18.TabIndex = 188;
@@ -832,7 +842,7 @@
             // 
             this.metroLabel19.AutoSize = true;
             this.metroLabel19.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel19.Location = new System.Drawing.Point(438, 334);
+            this.metroLabel19.Location = new System.Drawing.Point(438, 305);
             this.metroLabel19.Name = "metroLabel19";
             this.metroLabel19.Size = new System.Drawing.Size(41, 15);
             this.metroLabel19.TabIndex = 187;
@@ -842,7 +852,7 @@
             // 
             this.metroLabel20.AutoSize = true;
             this.metroLabel20.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel20.Location = new System.Drawing.Point(740, 253);
+            this.metroLabel20.Location = new System.Drawing.Point(740, 224);
             this.metroLabel20.Name = "metroLabel20";
             this.metroLabel20.Size = new System.Drawing.Size(97, 15);
             this.metroLabel20.TabIndex = 186;
@@ -852,7 +862,7 @@
             // 
             this.metroLabel21.AutoSize = true;
             this.metroLabel21.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel21.Location = new System.Drawing.Point(438, 253);
+            this.metroLabel21.Location = new System.Drawing.Point(438, 224);
             this.metroLabel21.Name = "metroLabel21";
             this.metroLabel21.Size = new System.Drawing.Size(82, 15);
             this.metroLabel21.TabIndex = 185;
@@ -862,7 +872,7 @@
             // 
             this.metroLabel22.AutoSize = true;
             this.metroLabel22.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel22.Location = new System.Drawing.Point(438, 171);
+            this.metroLabel22.Location = new System.Drawing.Point(438, 142);
             this.metroLabel22.Name = "metroLabel22";
             this.metroLabel22.Size = new System.Drawing.Size(33, 15);
             this.metroLabel22.TabIndex = 184;
@@ -871,7 +881,7 @@
             // cbStatus
             // 
             this.cbStatus.AutoSize = true;
-            this.cbStatus.Location = new System.Drawing.Point(741, 544);
+            this.cbStatus.Location = new System.Drawing.Point(741, 515);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(63, 15);
             this.cbStatus.TabIndex = 183;
@@ -882,7 +892,7 @@
             // 
             this.metroLabel23.AutoSize = true;
             this.metroLabel23.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel23.Location = new System.Drawing.Point(741, 90);
+            this.metroLabel23.Location = new System.Drawing.Point(741, 61);
             this.metroLabel23.Name = "metroLabel23";
             this.metroLabel23.Size = new System.Drawing.Size(48, 15);
             this.metroLabel23.TabIndex = 182;
@@ -892,7 +902,7 @@
             // 
             this.metroLabel24.AutoSize = true;
             this.metroLabel24.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel24.Location = new System.Drawing.Point(438, 415);
+            this.metroLabel24.Location = new System.Drawing.Point(438, 386);
             this.metroLabel24.Name = "metroLabel24";
             this.metroLabel24.Size = new System.Drawing.Size(32, 15);
             this.metroLabel24.TabIndex = 181;
@@ -902,7 +912,7 @@
             // 
             this.metroLabel25.AutoSize = true;
             this.metroLabel25.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel25.Location = new System.Drawing.Point(740, 171);
+            this.metroLabel25.Location = new System.Drawing.Point(740, 142);
             this.metroLabel25.Name = "metroLabel25";
             this.metroLabel25.Size = new System.Drawing.Size(58, 15);
             this.metroLabel25.TabIndex = 180;
@@ -912,7 +922,7 @@
             // 
             this.metroLabel26.AutoSize = true;
             this.metroLabel26.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel26.Location = new System.Drawing.Point(438, 90);
+            this.metroLabel26.Location = new System.Drawing.Point(438, 61);
             this.metroLabel26.Name = "metroLabel26";
             this.metroLabel26.Size = new System.Drawing.Size(26, 15);
             this.metroLabel26.TabIndex = 179;
@@ -921,7 +931,7 @@
             // clbUlogeEdit
             // 
             this.clbUlogeEdit.FormattingEnabled = true;
-            this.clbUlogeEdit.Location = new System.Drawing.Point(438, 528);
+            this.clbUlogeEdit.Location = new System.Drawing.Point(438, 499);
             this.clbUlogeEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clbUlogeEdit.MultiColumn = true;
             this.clbUlogeEdit.Name = "clbUlogeEdit";
@@ -931,7 +941,7 @@
             // txtTelefonEdit
             // 
             this.txtTelefonEdit.Enabled = false;
-            this.txtTelefonEdit.Location = new System.Drawing.Point(438, 359);
+            this.txtTelefonEdit.Location = new System.Drawing.Point(438, 330);
             this.txtTelefonEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTelefonEdit.Name = "txtTelefonEdit";
             this.txtTelefonEdit.Size = new System.Drawing.Size(257, 26);
@@ -940,7 +950,7 @@
             // txtDatumRegistracije
             // 
             this.txtDatumRegistracije.Enabled = false;
-            this.txtDatumRegistracije.Location = new System.Drawing.Point(741, 278);
+            this.txtDatumRegistracije.Location = new System.Drawing.Point(741, 249);
             this.txtDatumRegistracije.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDatumRegistracije.Name = "txtDatumRegistracije";
             this.txtDatumRegistracije.Size = new System.Drawing.Size(257, 26);
@@ -951,7 +961,7 @@
             this.btnSacuvajEdit.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnSacuvajEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnSacuvajEdit.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSacuvajEdit.Location = new System.Drawing.Point(849, 652);
+            this.btnSacuvajEdit.Location = new System.Drawing.Point(852, 628);
             this.btnSacuvajEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSacuvajEdit.Name = "btnSacuvajEdit";
             this.btnSacuvajEdit.Size = new System.Drawing.Size(146, 40);
@@ -963,7 +973,7 @@
             // txtAdresaEdit
             // 
             this.txtAdresaEdit.Enabled = false;
-            this.txtAdresaEdit.Location = new System.Drawing.Point(740, 440);
+            this.txtAdresaEdit.Location = new System.Drawing.Point(740, 411);
             this.txtAdresaEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAdresaEdit.Name = "txtAdresaEdit";
             this.txtAdresaEdit.Size = new System.Drawing.Size(257, 26);
@@ -972,7 +982,7 @@
             // txtDatumRodjenja
             // 
             this.txtDatumRodjenja.Enabled = false;
-            this.txtDatumRodjenja.Location = new System.Drawing.Point(438, 278);
+            this.txtDatumRodjenja.Location = new System.Drawing.Point(438, 249);
             this.txtDatumRodjenja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDatumRodjenja.Name = "txtDatumRodjenja";
             this.txtDatumRodjenja.Size = new System.Drawing.Size(257, 26);
@@ -981,7 +991,7 @@
             // txtUsernameEdit
             // 
             this.txtUsernameEdit.Enabled = false;
-            this.txtUsernameEdit.Location = new System.Drawing.Point(741, 196);
+            this.txtUsernameEdit.Location = new System.Drawing.Point(741, 167);
             this.txtUsernameEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsernameEdit.MaxLength = 50;
             this.txtUsernameEdit.Name = "txtUsernameEdit";
@@ -991,7 +1001,7 @@
             // txtPrezimeEdit
             // 
             this.txtPrezimeEdit.Enabled = false;
-            this.txtPrezimeEdit.Location = new System.Drawing.Point(741, 115);
+            this.txtPrezimeEdit.Location = new System.Drawing.Point(741, 86);
             this.txtPrezimeEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPrezimeEdit.MaxLength = 50;
             this.txtPrezimeEdit.Name = "txtPrezimeEdit";
@@ -1001,7 +1011,7 @@
             // txtEmailEdit
             // 
             this.txtEmailEdit.Enabled = false;
-            this.txtEmailEdit.Location = new System.Drawing.Point(438, 196);
+            this.txtEmailEdit.Location = new System.Drawing.Point(438, 167);
             this.txtEmailEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmailEdit.MaxLength = 100;
             this.txtEmailEdit.Name = "txtEmailEdit";
@@ -1011,7 +1021,7 @@
             // txtImeEdit
             // 
             this.txtImeEdit.Enabled = false;
-            this.txtImeEdit.Location = new System.Drawing.Point(438, 115);
+            this.txtImeEdit.Location = new System.Drawing.Point(438, 86);
             this.txtImeEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtImeEdit.MaxLength = 50;
             this.txtImeEdit.Name = "txtImeEdit";
@@ -1020,8 +1030,8 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::CarHireRC.WinUI.Properties.Resources.no_image;
-            this.pictureBox2.Location = new System.Drawing.Point(48, 78);
+            this.pictureBox2.Image = global::CarHireRC.WinUI.Properties.Resources.noImage;
+            this.pictureBox2.Location = new System.Drawing.Point(48, 49);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(346, 406);
@@ -1032,15 +1042,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // txtTelefon
-            // 
-            this.txtTelefon.Location = new System.Drawing.Point(438, 360);
-            this.txtTelefon.Mask = "(999) 000-0000";
-            this.txtTelefon.Name = "txtTelefon";
-            this.txtTelefon.Size = new System.Drawing.Size(257, 26);
-            this.txtTelefon.TabIndex = 174;
-            this.txtTelefon.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // frmKorisnici
             // 
@@ -1113,7 +1114,6 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtIme;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private MetroFramework.Controls.MetroButton metroButton1;
         private MetroFramework.Controls.MetroTabPage metroTabPage3;
         private System.Windows.Forms.TextBox txtGrad;
         private MetroFramework.Controls.MetroLabel metroLabel17;
@@ -1140,7 +1140,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ComboBox cmbGrad;
         private System.Windows.Forms.DateTimePicker dtpDatumRodjenja;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.CheckedListBox clbUlogePretraga;
         private MetroFramework.Controls.MetroLabel metroLabel27;
         private MetroFramework.Controls.MetroLabel metroLabel13;
         private System.Windows.Forms.TextBox txtPasswordPotvrda;
@@ -1153,5 +1153,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefonn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Aktivann;
         private System.Windows.Forms.MaskedTextBox txtTelefon;
+        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }

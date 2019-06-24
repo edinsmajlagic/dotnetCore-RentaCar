@@ -37,6 +37,36 @@ namespace CarHireRC.Mobile.Views.Vozila
             await Navigation.PushAsync(new NewReservationPageOne(KlijentID,item.AutomobilId));
         }
 
-      
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+
+            ListView sva = (ListView)FindByName("SvaVozila");
+            ListView preporucena = (ListView)FindByName("PreporucenaVozila");
+
+
+            StackLayout sl = (StackLayout)FindByName("sl");
+            if (e.Value)
+            {
+                sl.Children.Remove(sva);
+                if (!sl.Children.Contains(preporucena))
+                    sl.Children.Add(preporucena);
+
+                preporucena.IsVisible = true;
+                preporucena.RowHeight = 110;
+                sva.RowHeight = 0;
+            }
+            else
+            {
+                sl.Children.Remove(preporucena);
+
+                if (!sl.Children.Contains(sva))
+                    sl.Children.Add(sva);
+
+                sva.IsVisible = true;
+                sva.RowHeight = 110;
+                preporucena.RowHeight = 0;
+            }
+        }
+
     }
 }

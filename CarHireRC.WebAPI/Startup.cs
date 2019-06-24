@@ -45,7 +45,13 @@ namespace CarHireRC.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddJsonOptions(options => {
+
+                options.SerializerSettings.ReferenceLoopHandling =
+
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddAutoMapper();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -61,14 +67,14 @@ namespace CarHireRC.WebAPI
 
 
             services.AddScoped<IKorisnikService, KorisnikService>();
-            services.AddScoped<ICRUDService<Model.Models.Automobil, Model.Requests.RezervacijaSearchRequest, Model.Requests.AutomobiliUPSERTtRequest, Model.Requests.AutomobiliUPSERTtRequest>,AutomobilService>();
+            services.AddScoped<ICRUDService<Model.Models.Automobil, Model.Requests.AutomobilSearchRequest, Model.Requests.AutomobiliUPSERTtRequest, Model.Requests.AutomobiliUPSERTtRequest>,AutomobilService>();
             services.AddScoped<IService<Model.Models.Grad, Model.Requests.GradSearchRequest>,BaseService<Model.Models.Grad,Model.Requests.GradSearchRequest,Database.Grad>>();
             services.AddScoped<IService<Model.Models.KategorijaVozila,object>, BaseService<Model.Models.KategorijaVozila, object, Database.KategorijaVozila>>();
             services.AddScoped<IService<Model.Models.Uloge,object>, BaseService<Model.Models.Uloge, object, Database.Uloge>>();
             services.AddScoped<IService<Model.Models.KorisniciUloge,Model.Requests.KorisniciUlogeSearchRequest>, KorisniciUlogeService>();
             services.AddScoped<ICRUDService<Model.Models.Proizvodjac, Model.Requests.ProizvodjacSearchRequest, Model.Requests.ProizvodjacUpsertRequest, Model.Requests.ProizvodjacUpsertRequest>, ProizvodjacService>();
             services.AddScoped<ICRUDService<Model.Models.ModelAutomobila, Model.Requests.ModelAutomobilaSearch, Model.Requests.ModelAutomobilaUpsertRequest, Model.Requests.ModelAutomobilaUpsertRequest>, ModelService>();
-            services.AddScoped<ICRUDService<Model.Models.Klijent, Model.Requests.KlijentSearchRequest, Model.Requests.KlijentUpsertRequest, Model.Requests.KlijentUpsertRequest>, KlijentService>();
+            services.AddScoped<IKlijentService, KlijentService>();
             services.AddScoped<ICRUDService<Model.Models.RegistracijaVozila, Model.Requests.RegistracijaVozilaSearchRequest, Model.Requests.RegistracijaVozilaUpsertRequest, Model.Requests.RegistracijaVozilaUpsertRequest>, RegistracijaVozilaService>();
             services.AddScoped<ICRUDService<Model.Models.RezervacijaRentanja, Model.Requests.RezervacijaRentanjaSearchRequest, Model.Requests.RezervacijaRentanjaUpsertRequest, Model.Requests.RezervacijaRentanjaUpsertRequest>, RezervacijaRentanjaService>();
             services.AddScoped<ICRUDService<Model.Models.Poruka, Model.Requests.PorukaSearchRequest, Model.Requests.PorukaUpsertRequest, Model.Requests.PorukaUpsertRequest>, PorukaService>();

@@ -6,6 +6,7 @@ using AutoMapper;
 using CarHireRC.Model.Models;
 using CarHireRC.Model.Requests;
 using CarHireRC.WebAPI.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarHireRC.WebAPI.Services
 {
@@ -29,7 +30,7 @@ namespace CarHireRC.WebAPI.Services
                 query = query.Where(x => x.UlogaId == search.UlogaId);
             }
 
-            var list = query.ToList();
+            var list = query.Include(x=> x.Uloga).ToList();
 
             return _mapper.Map<List<Model.Models.KorisniciUloge>>(list);
         }

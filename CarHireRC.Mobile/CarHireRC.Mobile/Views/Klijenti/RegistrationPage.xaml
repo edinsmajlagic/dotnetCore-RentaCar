@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:CarHireRC.Mobile.ViewModels.Klijenti"
+             xmlns:converters="clr-namespace:CarHireRC.Mobile.Converters"
+             x:Class="CarHireRC.Mobile.Views.Klijenti.RegistrationPage">
+    
+    <ContentPage.BindingContext>
+        <viewmodels:RegisterViewModel></viewmodels:RegisterViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" 
+                     Padding="0,10"
+                     BackgroundColor="DarkGray">
+            <Label Text="Registruj se"
+                   FontSize="18"
+                HorizontalOptions="CenterAndExpand"
+                   Margin="0,40,0,0"/>
+
+            <Grid Padding="30,0"  Margin="0,30,0,0" RowSpacing="4" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+              
+                    <Entry Placeholder="Ime"
+                           PlaceholderColor="White"
+                           TextColor="Black"
+                           Text="{Binding Ime}"
+                       MaxLength="50"
+                           FontSize="17">
+                    </Entry>
+                    <Entry Placeholder="Prezime"
+                           Text="{Binding Prezime}"
+                       MaxLength="50"
+                            PlaceholderColor="White"
+                           TextColor="Black"
+                           FontSize="17"
+                           Grid.Column="1">
+                    </Entry>
+
+                <Entry Placeholder="Username"
+                       x:Name="username"
+                       Text="{Binding Username}"
+                       Unfocused="Entry_Unfocused_Username"
+                       MaxLength="50"
+                      PlaceholderColor="White"
+                           TextColor="Black"
+                       Grid.Row="1"
+                       FontSize="17"
+                       Grid.ColumnSpan="2">
+                </Entry>
+                <Entry Placeholder="E-mail adresa"
+                       Text="{Binding Email}"
+                       x:Name="email"
+                       Unfocused="Email_Unfocused"
+                       MaxLength="50"
+                       Keyboard="Email"
+                        PlaceholderColor="White"
+                           TextColor="Black"
+                       FontSize="17"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="2">
+                </Entry>
+
+             
+                    <Label Text="Datum rođenja"
+                           TextColor="White"
+                           FontSize="16"
+                           Margin="5,0,0,0"
+                           VerticalOptions="Center"
+                           Grid.Row="3">
+                        
+                    </Label>
+                    <DatePicker Grid.Row="3"
+                                Date="{Binding DatumRodjenja}"
+                                TextColor="Black"
+                                Grid.Column="1"
+                                FontSize="17">
+                    
+                </DatePicker>
+
+
+                
+                <Picker Grid.Row="4"
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Grad}"
+                        SelectedItem="{Binding SelectedGrad}"
+                        ItemDisplayBinding="{Binding Naziv}"
+                        Title="Grad"
+                        TitleColor="White"
+                           TextColor="Black"
+                        FontSize="17">
+                    
+                </Picker>
+                
+                <Entry Placeholder="Adresa"
+                       Text="{Binding Adresa}"
+                       TextColor="Black"
+                       PlaceholderColor="White"
+                       FontSize="17"
+                       Grid.Row="5"
+                       Grid.ColumnSpan="2">
+                </Entry>
+
+
+                <Entry Placeholder="Lozinka"
+                       x:Name="password"
+                       Text="{Binding Password}"
+                       MaxLength="50"
+                        TextColor="Black"
+                       PlaceholderColor="White"
+                       FontSize="17"
+                       IsPassword="True"
+                       Grid.Row="6"
+                       >
+                </Entry>
+                <Entry Placeholder="Lozinka potvrda"
+                       x:Name="passwordConfirm"
+                       Text="{Binding ConfirmPassword}"
+                       MaxLength="50"
+                        TextColor="Black"
+                       PlaceholderColor="White"
+                       Unfocused="Entry_Unfocused"
+                       FontSize="17"
+                       IsPassword="True"
+                       Grid.Row="6"
+                       Grid.Column="1"
+                       >
+                </Entry>
+                
+            <Button Text="Registruj se"
+                    Command="{Binding RegisterCommand}"
+                    Grid.Row="8"
+                    Grid.ColumnSpan="2"
+                    ></Button>
+                
+                <Label Text="Imaš profil?"
+                       Grid.Row="9"
+                       FontSize="16"
+                       TextColor="White"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="End"></Label>
+            <Button Text="Prijavi se"
+                    FontAttributes="Bold"
+                    Command="{Binding LoginCommand}"
+                    Padding="0,0,60,0"
+                    Grid.Row="9"
+                    Grid.Column="1"
+                    BackgroundColor="DarkGray"
+                    TextColor="Blue"
+                    BorderWidth="0"
+                    ></Button>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

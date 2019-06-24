@@ -25,7 +25,7 @@ namespace CarHireRC.WebAPI.Services
 
         public Model.Models.Korisnici Autentificiraj(string username, string password)
         {
-            var user = _context.Korisnici.Include("KorisniciUloge.Uloge").FirstOrDefault(x => x.UserName == username);
+            var user = _context.Korisnici.Include("KorisniciUloge.Uloga").FirstOrDefault(x => x.UserName == username);
             if(user != null)
             {
                 var newHash = GenerateHash(user.LozinkaSalt, password);
@@ -54,6 +54,10 @@ namespace CarHireRC.WebAPI.Services
             {
                 query = query.Where(x => x.Prezime.ToLower().StartsWith(search.Prezime));
             }
+            if (!string.IsNullOrWhiteSpace(search?.Email))
+            {
+                query = query.Where(x => x.Email.ToLower()==search.Email.ToLower());
+            }
             if (!string.IsNullOrWhiteSpace(search?.UserName))
             {
                 query = query.Where(x => x.UserName.ToLower().StartsWith(search.UserName));
@@ -68,9 +72,32 @@ namespace CarHireRC.WebAPI.Services
             }
             query = query.Where(x => x.Status == search.Status);
 
-            var list = query.ToList();
+            List<Database.Korisnici> korisnici=new List<Database.Korisnici>();
+            if (search.uloge != null)
+            {
+                List<Database.KorisniciUloge> korisniciSaUlogama = new List<Database.KorisniciUloge>();
 
-            List<Model.Models.Korisnici> result = _mapper.Map<List<Model.Models.Korisnici>>(list);
+                foreach (var u in search.uloge)
+                {
+                    korisniciSaUlogama.AddRange(_context.KorisniciUloge.Include(y=>y.Uloga).Where(x => x.Uloga.Naziv==u).ToList());
+                }
+                foreach (var k in query.ToList())
+                {
+                    bool postoji = false;
+                    foreach (var ku in korisniciSaUlogama)
+                    {
+                        if (k.KorisnikId == ku.KorisnikId)
+                            korisnici.Add(k);
+                    }
+
+                }
+
+            }
+
+            else
+            korisnici= query.ToList();
+            
+            List<Model.Models.Korisnici> result = _mapper.Map<List<Model.Models.Korisnici>>(korisnici);
             foreach (var item in result)
             {
                 item.ImePrezime = item.Ime + " " + item.Prezime;
@@ -152,6 +179,26 @@ namespace CarHireRC.WebAPI.Services
                 entity.LozinkaSalt = GenerateSalt();
                 entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Password);
             }
+
+
+            var trenutneUloge = _context.KorisniciUloge.Where(x => x.KorisnikId == entity.KorisnikId);
+
+            foreach (var uloga in trenutneUloge)
+            {
+                bool postoji = false;
+                List<int> sveSelectovane = request.Uloge;
+                foreach (var odabrana in sveSelectovane)
+                {
+                    if (uloga.UlogaId == odabrana)
+                        postoji = true;
+                }
+                if (!postoji)
+                {
+                    _context.KorisniciUloge.Remove(uloga);
+                }
+
+            }
+
 
             foreach (var uloga in request.Uloge)
             {

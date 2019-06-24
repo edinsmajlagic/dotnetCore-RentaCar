@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CarHireRC.Model.Requests
 {
-    public class RezervacijaSearchRequest
+    public class AutomobilSearchRequest
     {
         public int AutomobilId { get; set; }
         public int? ModelId { get; set; }

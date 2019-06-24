@@ -8,5 +8,6 @@ namespace CarHireRC.Model.Requests
     {
         public int KorisnikId { get; set; }
         public int UlogaId { get; set; }
+        public string NazivUloge { get; set; }
     }
 }

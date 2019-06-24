@@ -2,10 +2,12 @@
 using CarHireRC.Model.Models;
 using CarHireRC.Model.Requests;
 using CarHireRC.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarHireRC.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class KorisnikController : ControllerBase
@@ -16,20 +18,24 @@ namespace CarHireRC.WebAPI.Controllers
             _service = service;
         }
 
+        //Može se i ukloniti [Authorize]
+        [Authorize(Roles = "Administrator,Menadžer,Uposlenik")]
         [HttpGet]
         public List<Korisnici> Get([FromQuery]KorisniciSearchRequest request)
         {
             return _service.Get(request);
         }
 
-        //[Authorize(Roles = "Administrator")]
+        //Može se i ukloniti [Authorize]
+        [Authorize(Roles = "Administrator,Menadžer,Uposlenik")]
         [HttpPost]
         public Korisnici Insert(KorisniciUpsertRequest request)
         {
             return _service.Insert(request);
         }
 
-        //[Authorize(Roles = "Administrator")]
+        //Može se i ukloniti [Authorize]
+        [Authorize(Roles = "Administrator,Menadžer,Uposlenik")]
         [HttpPut("{id}")]
         public Model.Models.Korisnici Update(int id, [FromBody]KorisniciUpsertRequest request)
         {
@@ -38,6 +44,8 @@ namespace CarHireRC.WebAPI.Controllers
             return r;
         }
 
+        //Može se i ukloniti [Authorize]
+        [Authorize(Roles = "Administrator,Menadžer,Uposlenik")]
         [HttpGet("{id}")]
         public Model.Models.Korisnici GetById(int id)
         {

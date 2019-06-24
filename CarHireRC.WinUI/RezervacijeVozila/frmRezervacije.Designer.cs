@@ -33,6 +33,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.btnPrikaziPrimljene = new System.Windows.Forms.Button();
+            this.cbOtkazane = new MetroFramework.Controls.MetroCheckBox();
+            this.cbSveRezervacije = new MetroFramework.Controls.MetroCheckBox();
             this.chbAktivan = new MetroFramework.Controls.MetroCheckBox();
             this.chBoxKasko = new MetroFramework.Controls.MetroCheckBox();
             this.chBoxVracanjeUPoslovnicu = new MetroFramework.Controls.MetroCheckBox();
@@ -50,15 +53,8 @@
             this.cmbSearchModel = new System.Windows.Forms.ComboBox();
             this.dtpDatumKreiranja = new System.Windows.Forms.DateTimePicker();
             this.txtSearchIme = new System.Windows.Forms.TextBox();
-            this.btnPrikazi = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvRezervacije = new System.Windows.Forms.DataGridView();
-            this.KorisnikId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Od = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Do = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Klijent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vozilo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Iznos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSearchPrezime = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
@@ -94,6 +90,12 @@
             this.btnSacuvajUredi = new System.Windows.Forms.Button();
             this.txtLokacijaPreuzimanja = new System.Windows.Forms.TextBox();
             this.txtKlijent = new System.Windows.Forms.TextBox();
+            this.KorisnikId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RezervacijaOd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RezervacijaDo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Klijent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vozilo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IznosSaPopustom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -109,13 +111,16 @@
             this.metroTabControl1.Controls.Add(this.metroTabPage2);
             this.metroTabControl1.Location = new System.Drawing.Point(0, 2);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(1055, 810);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
             // 
             // metroTabPage1
             // 
+            this.metroTabPage1.Controls.Add(this.btnPrikaziPrimljene);
+            this.metroTabPage1.Controls.Add(this.cbOtkazane);
+            this.metroTabPage1.Controls.Add(this.cbSveRezervacije);
             this.metroTabPage1.Controls.Add(this.chbAktivan);
             this.metroTabPage1.Controls.Add(this.chBoxKasko);
             this.metroTabPage1.Controls.Add(this.chBoxVracanjeUPoslovnicu);
@@ -133,7 +138,6 @@
             this.metroTabPage1.Controls.Add(this.cmbSearchModel);
             this.metroTabPage1.Controls.Add(this.dtpDatumKreiranja);
             this.metroTabPage1.Controls.Add(this.txtSearchIme);
-            this.metroTabPage1.Controls.Add(this.btnPrikazi);
             this.metroTabPage1.Controls.Add(this.groupBox1);
             this.metroTabPage1.Controls.Add(this.txtSearchPrezime);
             this.metroTabPage1.Controls.Add(this.groupBox2);
@@ -149,12 +153,49 @@
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.VerticalScrollbarSize = 10;
             // 
+            // btnPrikaziPrimljene
+            // 
+            this.btnPrikaziPrimljene.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPrikaziPrimljene.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnPrikaziPrimljene.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnPrikaziPrimljene.Location = new System.Drawing.Point(926, 312);
+            this.btnPrikaziPrimljene.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPrikaziPrimljene.Name = "btnPrikaziPrimljene";
+            this.btnPrikaziPrimljene.Size = new System.Drawing.Size(115, 42);
+            this.btnPrikaziPrimljene.TabIndex = 139;
+            this.btnPrikaziPrimljene.Text = "Filtriraj";
+            this.btnPrikaziPrimljene.UseVisualStyleBackColor = false;
+            this.btnPrikaziPrimljene.Click += new System.EventHandler(this.btnPrikazi_Click);
+            // 
+            // cbOtkazane
+            // 
+            this.cbOtkazane.AutoSize = true;
+            this.cbOtkazane.Enabled = false;
+            this.cbOtkazane.Location = new System.Drawing.Point(362, 284);
+            this.cbOtkazane.Name = "cbOtkazane";
+            this.cbOtkazane.Size = new System.Drawing.Size(72, 15);
+            this.cbOtkazane.TabIndex = 138;
+            this.cbOtkazane.Text = "Otkazane";
+            this.cbOtkazane.UseSelectable = true;
+            // 
+            // cbSveRezervacije
+            // 
+            this.cbSveRezervacije.AutoSize = true;
+            this.cbSveRezervacije.Checked = true;
+            this.cbSveRezervacije.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSveRezervacije.Location = new System.Drawing.Point(48, 294);
+            this.cbSveRezervacije.Name = "cbSveRezervacije";
+            this.cbSveRezervacije.Size = new System.Drawing.Size(99, 15);
+            this.cbSveRezervacije.TabIndex = 137;
+            this.cbSveRezervacije.Text = "Sve rezervacije";
+            this.cbSveRezervacije.UseSelectable = true;
+            this.cbSveRezervacije.CheckedChanged += new System.EventHandler(this.cbSveRezervacije_CheckedChanged);
+            // 
             // chbAktivan
             // 
             this.chbAktivan.AutoSize = true;
-            this.chbAktivan.Checked = true;
-            this.chbAktivan.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbAktivan.Location = new System.Drawing.Point(362, 337);
+            this.chbAktivan.Enabled = false;
+            this.chbAktivan.Location = new System.Drawing.Point(362, 330);
             this.chbAktivan.Name = "chbAktivan";
             this.chbAktivan.Size = new System.Drawing.Size(121, 15);
             this.chbAktivan.TabIndex = 136;
@@ -164,9 +205,8 @@
             // chBoxKasko
             // 
             this.chBoxKasko.AutoSize = true;
-            this.chBoxKasko.Checked = true;
-            this.chBoxKasko.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chBoxKasko.Location = new System.Drawing.Point(362, 291);
+            this.chBoxKasko.Enabled = false;
+            this.chBoxKasko.Location = new System.Drawing.Point(580, 330);
             this.chBoxKasko.Name = "chBoxKasko";
             this.chBoxKasko.Size = new System.Drawing.Size(112, 15);
             this.chBoxKasko.TabIndex = 135;
@@ -176,21 +216,19 @@
             // chBoxVracanjeUPoslovnicu
             // 
             this.chBoxVracanjeUPoslovnicu.AutoSize = true;
-            this.chBoxVracanjeUPoslovnicu.Checked = true;
-            this.chBoxVracanjeUPoslovnicu.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chBoxVracanjeUPoslovnicu.Location = new System.Drawing.Point(48, 291);
+            this.chBoxVracanjeUPoslovnicu.Enabled = false;
+            this.chBoxVracanjeUPoslovnicu.Location = new System.Drawing.Point(580, 284);
             this.chBoxVracanjeUPoslovnicu.Name = "chBoxVracanjeUPoslovnicu";
             this.chBoxVracanjeUPoslovnicu.Size = new System.Drawing.Size(139, 15);
             this.chBoxVracanjeUPoslovnicu.TabIndex = 134;
             this.chBoxVracanjeUPoslovnicu.Text = "Vraćanje u poslovnicu";
             this.chBoxVracanjeUPoslovnicu.UseSelectable = true;
-            this.chBoxVracanjeUPoslovnicu.CheckedChanged += new System.EventHandler(this.metroCheckBox1_CheckedChanged);
             // 
             // metroLabel7
             // 
             this.metroLabel7.AutoSize = true;
             this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel7.Location = new System.Drawing.Point(362, 199);
+            this.metroLabel7.Location = new System.Drawing.Point(362, 192);
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(39, 15);
             this.metroLabel7.TabIndex = 133;
@@ -200,7 +238,7 @@
             // 
             this.metroLabel6.AutoSize = true;
             this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel6.Location = new System.Drawing.Point(46, 199);
+            this.metroLabel6.Location = new System.Drawing.Point(46, 192);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(63, 15);
             this.metroLabel6.TabIndex = 132;
@@ -210,7 +248,7 @@
             // 
             this.metroLabel5.AutoSize = true;
             this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel5.Location = new System.Drawing.Point(321, 122);
+            this.metroLabel5.Location = new System.Drawing.Point(321, 115);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(141, 15);
             this.metroLabel5.TabIndex = 131;
@@ -220,7 +258,7 @@
             // 
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel3.Location = new System.Drawing.Point(47, 122);
+            this.metroLabel3.Location = new System.Drawing.Point(47, 115);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(100, 15);
             this.metroLabel3.TabIndex = 130;
@@ -230,7 +268,7 @@
             // 
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel4.Location = new System.Drawing.Point(243, 37);
+            this.metroLabel4.Location = new System.Drawing.Point(243, 30);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(48, 15);
             this.metroLabel4.TabIndex = 129;
@@ -240,7 +278,7 @@
             // 
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel2.Location = new System.Drawing.Point(431, 37);
+            this.metroLabel2.Location = new System.Drawing.Point(431, 30);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(58, 15);
             this.metroLabel2.TabIndex = 128;
@@ -250,7 +288,7 @@
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel1.Location = new System.Drawing.Point(46, 37);
+            this.metroLabel1.Location = new System.Drawing.Point(46, 30);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(26, 15);
             this.metroLabel1.TabIndex = 127;
@@ -259,7 +297,7 @@
             // chBDK
             // 
             this.chBDK.BackColor = System.Drawing.Color.White;
-            this.chBDK.Location = new System.Drawing.Point(605, 142);
+            this.chBDK.Location = new System.Drawing.Point(605, 135);
             this.chBDK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chBDK.Name = "chBDK";
             this.chBDK.Size = new System.Drawing.Size(30, 36);
@@ -269,7 +307,7 @@
             // 
             // txtSearchUsername
             // 
-            this.txtSearchUsername.Location = new System.Drawing.Point(435, 62);
+            this.txtSearchUsername.Location = new System.Drawing.Point(435, 55);
             this.txtSearchUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchUsername.MaxLength = 50;
             this.txtSearchUsername.Name = "txtSearchUsername";
@@ -280,7 +318,7 @@
             // txtRegOznaka
             // 
             this.txtRegOznaka.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtRegOznaka.Location = new System.Drawing.Point(47, 147);
+            this.txtRegOznaka.Location = new System.Drawing.Point(47, 140);
             this.txtRegOznaka.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRegOznaka.MaxLength = 20;
             this.txtRegOznaka.Name = "txtRegOznaka";
@@ -291,7 +329,7 @@
             // cmbSearchProizvodjac
             // 
             this.cmbSearchProizvodjac.FormattingEnabled = true;
-            this.cmbSearchProizvodjac.Location = new System.Drawing.Point(48, 224);
+            this.cmbSearchProizvodjac.Location = new System.Drawing.Point(48, 217);
             this.cmbSearchProizvodjac.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbSearchProizvodjac.Name = "cmbSearchProizvodjac";
             this.cmbSearchProizvodjac.Size = new System.Drawing.Size(236, 28);
@@ -301,7 +339,7 @@
             // cmbSearchModel
             // 
             this.cmbSearchModel.FormattingEnabled = true;
-            this.cmbSearchModel.Location = new System.Drawing.Point(362, 224);
+            this.cmbSearchModel.Location = new System.Drawing.Point(362, 217);
             this.cmbSearchModel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbSearchModel.Name = "cmbSearchModel";
             this.cmbSearchModel.Size = new System.Drawing.Size(236, 28);
@@ -311,7 +349,7 @@
             // 
             this.dtpDatumKreiranja.Enabled = false;
             this.dtpDatumKreiranja.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dtpDatumKreiranja.Location = new System.Drawing.Point(321, 147);
+            this.dtpDatumKreiranja.Location = new System.Drawing.Point(321, 140);
             this.dtpDatumKreiranja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpDatumKreiranja.MaxDate = new System.DateTime(2019, 5, 17, 0, 0, 0, 0);
             this.dtpDatumKreiranja.MinDate = new System.DateTime(2015, 1, 1, 0, 0, 0, 0);
@@ -323,7 +361,7 @@
             // 
             // txtSearchIme
             // 
-            this.txtSearchIme.Location = new System.Drawing.Point(48, 62);
+            this.txtSearchIme.Location = new System.Drawing.Point(48, 55);
             this.txtSearchIme.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchIme.MaxLength = 50;
             this.txtSearchIme.Name = "txtSearchIme";
@@ -331,29 +369,15 @@
             this.txtSearchIme.TabIndex = 109;
             this.txtSearchIme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchIme_KeyPress);
             // 
-            // btnPrikazi
-            // 
-            this.btnPrikazi.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPrikazi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnPrikazi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPrikazi.Location = new System.Drawing.Point(926, 310);
-            this.btnPrikazi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPrikazi.Name = "btnPrikazi";
-            this.btnPrikazi.Size = new System.Drawing.Size(115, 42);
-            this.btnPrikazi.TabIndex = 108;
-            this.btnPrikazi.Text = "Prikaži";
-            this.btnPrikazi.UseVisualStyleBackColor = false;
-            this.btnPrikazi.Click += new System.EventHandler(this.btnPrikazi_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.dgvRezervacije);
-            this.groupBox1.Location = new System.Drawing.Point(3, 366);
+            this.groupBox1.Location = new System.Drawing.Point(3, 358);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(1041, 364);
+            this.groupBox1.Size = new System.Drawing.Size(1041, 313);
             this.groupBox1.TabIndex = 111;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rezervacije";
@@ -365,11 +389,11 @@
             this.dgvRezervacije.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRezervacije.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.KorisnikId,
-            this.Od,
-            this.Do,
+            this.RezervacijaOd,
+            this.RezervacijaDo,
             this.Klijent,
             this.Vozilo,
-            this.Iznos});
+            this.IznosSaPopustom});
             this.dgvRezervacije.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRezervacije.Location = new System.Drawing.Point(3, 21);
             this.dgvRezervacije.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -377,74 +401,13 @@
             this.dgvRezervacije.ReadOnly = true;
             this.dgvRezervacije.RowTemplate.Height = 24;
             this.dgvRezervacije.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRezervacije.Size = new System.Drawing.Size(1035, 341);
+            this.dgvRezervacije.Size = new System.Drawing.Size(1035, 290);
             this.dgvRezervacije.TabIndex = 0;
             this.dgvRezervacije.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvRezervacije_MouseDoubleClick);
             // 
-            // KorisnikId
-            // 
-            this.KorisnikId.DataPropertyName = "RezervacijaRentanjaId";
-            this.KorisnikId.HeaderText = "RezervacijaRentanjaId";
-            this.KorisnikId.Name = "KorisnikId";
-            this.KorisnikId.ReadOnly = true;
-            this.KorisnikId.Visible = false;
-            this.KorisnikId.Width = 140;
-            // 
-            // Od
-            // 
-            this.Od.DataPropertyName = "RezervacijaOd";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Od.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Od.HeaderText = "Od";
-            this.Od.Name = "Od";
-            this.Od.ReadOnly = true;
-            this.Od.ToolTipText = "Od";
-            this.Od.Width = 130;
-            // 
-            // Do
-            // 
-            this.Do.DataPropertyName = "RezervacijaDo";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Do.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Do.HeaderText = "Do";
-            this.Do.Name = "Do";
-            this.Do.ReadOnly = true;
-            this.Do.Width = 130;
-            // 
-            // Klijent
-            // 
-            this.Klijent.DataPropertyName = "Klijent";
-            this.Klijent.HeaderText = "Klijent";
-            this.Klijent.Name = "Klijent";
-            this.Klijent.ReadOnly = true;
-            this.Klijent.ToolTipText = "Klijent";
-            this.Klijent.Width = 150;
-            // 
-            // Vozilo
-            // 
-            this.Vozilo.DataPropertyName = "VoziloInformacije";
-            this.Vozilo.HeaderText = "Vozilo";
-            this.Vozilo.Name = "Vozilo";
-            this.Vozilo.ReadOnly = true;
-            this.Vozilo.Width = 150;
-            // 
-            // Iznos
-            // 
-            this.Iznos.DataPropertyName = "Iznos";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Iznos.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Iznos.HeaderText = "Iznos";
-            this.Iznos.Name = "Iznos";
-            this.Iznos.ReadOnly = true;
-            this.Iznos.ToolTipText = "Iznos";
-            this.Iznos.Width = 120;
-            // 
             // txtSearchPrezime
             // 
-            this.txtSearchPrezime.Location = new System.Drawing.Point(243, 62);
+            this.txtSearchPrezime.Location = new System.Drawing.Point(243, 55);
             this.txtSearchPrezime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchPrezime.MaxLength = 50;
             this.txtSearchPrezime.Name = "txtSearchPrezime";
@@ -462,7 +425,7 @@
             this.groupBox2.Controls.Add(this.dtpDo);
             this.groupBox2.Controls.Add(this.dtpOd);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox2.Location = new System.Drawing.Point(668, 44);
+            this.groupBox2.Location = new System.Drawing.Point(668, 37);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -581,9 +544,9 @@
             // 
             this.btnPoruka.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnPoruka.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnPoruka.Location = new System.Drawing.Point(887, 120);
+            this.btnPoruka.Location = new System.Drawing.Point(887, 77);
             this.btnPoruka.Name = "btnPoruka";
-            this.btnPoruka.Size = new System.Drawing.Size(129, 26);
+            this.btnPoruka.Size = new System.Drawing.Size(129, 35);
             this.btnPoruka.TabIndex = 177;
             this.btnPoruka.Text = "Pošalji poruku";
             this.btnPoruka.UseSelectable = true;
@@ -592,7 +555,7 @@
             // chbVracanjaUPoslovnicu
             // 
             this.chbVracanjaUPoslovnicu.AutoSize = true;
-            this.chbVracanjaUPoslovnicu.Location = new System.Drawing.Point(707, 404);
+            this.chbVracanjaUPoslovnicu.Location = new System.Drawing.Point(707, 370);
             this.chbVracanjaUPoslovnicu.Name = "chbVracanjaUPoslovnicu";
             this.chbVracanjaUPoslovnicu.Size = new System.Drawing.Size(112, 15);
             this.chbVracanjaUPoslovnicu.TabIndex = 176;
@@ -602,7 +565,7 @@
             // chbKasko
             // 
             this.chbKasko.AutoSize = true;
-            this.chbKasko.Location = new System.Drawing.Point(707, 367);
+            this.chbKasko.Location = new System.Drawing.Point(707, 333);
             this.chbKasko.Name = "chbKasko";
             this.chbKasko.Size = new System.Drawing.Size(140, 15);
             this.chbKasko.TabIndex = 175;
@@ -613,7 +576,7 @@
             // 
             this.lblIznosBezPopusta.AutoSize = true;
             this.lblIznosBezPopusta.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.lblIznosBezPopusta.Location = new System.Drawing.Point(887, 519);
+            this.lblIznosBezPopusta.Location = new System.Drawing.Point(887, 485);
             this.lblIznosBezPopusta.Name = "lblIznosBezPopusta";
             this.lblIznosBezPopusta.Size = new System.Drawing.Size(44, 15);
             this.lblIznosBezPopusta.TabIndex = 174;
@@ -623,7 +586,7 @@
             // 
             this.metroLabel19.AutoSize = true;
             this.metroLabel19.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel19.Location = new System.Drawing.Point(707, 519);
+            this.metroLabel19.Location = new System.Drawing.Point(707, 485);
             this.metroLabel19.Name = "metroLabel19";
             this.metroLabel19.Size = new System.Drawing.Size(107, 15);
             this.metroLabel19.TabIndex = 173;
@@ -633,7 +596,7 @@
             // 
             this.metroLabel18.AutoSize = true;
             this.metroLabel18.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel18.Location = new System.Drawing.Point(704, 443);
+            this.metroLabel18.Location = new System.Drawing.Point(704, 409);
             this.metroLabel18.Name = "metroLabel18";
             this.metroLabel18.Size = new System.Drawing.Size(104, 15);
             this.metroLabel18.TabIndex = 172;
@@ -643,7 +606,7 @@
             // 
             this.metroLabel17.AutoSize = true;
             this.metroLabel17.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel17.Location = new System.Drawing.Point(414, 443);
+            this.metroLabel17.Location = new System.Drawing.Point(414, 409);
             this.metroLabel17.Name = "metroLabel17";
             this.metroLabel17.Size = new System.Drawing.Size(42, 15);
             this.metroLabel17.TabIndex = 171;
@@ -653,7 +616,7 @@
             // 
             this.metroLabel16.AutoSize = true;
             this.metroLabel16.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel16.Location = new System.Drawing.Point(414, 264);
+            this.metroLabel16.Location = new System.Drawing.Point(414, 230);
             this.metroLabel16.Name = "metroLabel16";
             this.metroLabel16.Size = new System.Drawing.Size(109, 15);
             this.metroLabel16.TabIndex = 170;
@@ -663,7 +626,7 @@
             // 
             this.metroLabel15.AutoSize = true;
             this.metroLabel15.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel15.Location = new System.Drawing.Point(74, 520);
+            this.metroLabel15.Location = new System.Drawing.Point(74, 486);
             this.metroLabel15.Name = "metroLabel15";
             this.metroLabel15.Size = new System.Drawing.Size(37, 15);
             this.metroLabel15.TabIndex = 169;
@@ -673,7 +636,7 @@
             // 
             this.metroLabel10.AutoSize = true;
             this.metroLabel10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel10.Location = new System.Drawing.Point(414, 111);
+            this.metroLabel10.Location = new System.Drawing.Point(414, 77);
             this.metroLabel10.Name = "metroLabel10";
             this.metroLabel10.Size = new System.Drawing.Size(141, 15);
             this.metroLabel10.TabIndex = 166;
@@ -683,7 +646,7 @@
             // 
             this.metroLabel11.AutoSize = true;
             this.metroLabel11.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel11.Location = new System.Drawing.Point(74, 594);
+            this.metroLabel11.Location = new System.Drawing.Point(74, 560);
             this.metroLabel11.Name = "metroLabel11";
             this.metroLabel11.Size = new System.Drawing.Size(100, 15);
             this.metroLabel11.TabIndex = 165;
@@ -693,7 +656,7 @@
             // 
             this.metroLabel12.AutoSize = true;
             this.metroLabel12.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel12.Location = new System.Drawing.Point(705, 263);
+            this.metroLabel12.Location = new System.Drawing.Point(705, 229);
             this.metroLabel12.Name = "metroLabel12";
             this.metroLabel12.Size = new System.Drawing.Size(44, 15);
             this.metroLabel12.TabIndex = 167;
@@ -703,7 +666,7 @@
             // 
             this.metroLabel13.AutoSize = true;
             this.metroLabel13.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel13.Location = new System.Drawing.Point(704, 189);
+            this.metroLabel13.Location = new System.Drawing.Point(704, 155);
             this.metroLabel13.Name = "metroLabel13";
             this.metroLabel13.Size = new System.Drawing.Size(44, 15);
             this.metroLabel13.TabIndex = 168;
@@ -713,7 +676,7 @@
             // 
             this.metroLabel14.AutoSize = true;
             this.metroLabel14.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel14.Location = new System.Drawing.Point(414, 189);
+            this.metroLabel14.Location = new System.Drawing.Point(414, 155);
             this.metroLabel14.Name = "metroLabel14";
             this.metroLabel14.Size = new System.Drawing.Size(35, 15);
             this.metroLabel14.TabIndex = 164;
@@ -722,7 +685,7 @@
             // txtDatumKreiranjaRezervacije
             // 
             this.txtDatumKreiranjaRezervacije.Enabled = false;
-            this.txtDatumKreiranjaRezervacije.Location = new System.Drawing.Point(414, 136);
+            this.txtDatumKreiranjaRezervacije.Location = new System.Drawing.Point(414, 102);
             this.txtDatumKreiranjaRezervacije.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDatumKreiranjaRezervacije.Name = "txtDatumKreiranjaRezervacije";
             this.txtDatumKreiranjaRezervacije.Size = new System.Drawing.Size(257, 26);
@@ -731,7 +694,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(869, 566);
+            this.label2.Location = new System.Drawing.Point(869, 532);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 20);
             this.label2.TabIndex = 161;
@@ -739,7 +702,7 @@
             // txtIznosSaPopustom
             // 
             this.txtIznosSaPopustom.Enabled = false;
-            this.txtIznosSaPopustom.Location = new System.Drawing.Point(704, 468);
+            this.txtIznosSaPopustom.Location = new System.Drawing.Point(704, 434);
             this.txtIznosSaPopustom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtIznosSaPopustom.Name = "txtIznosSaPopustom";
             this.txtIznosSaPopustom.Size = new System.Drawing.Size(257, 26);
@@ -747,7 +710,7 @@
             // 
             // txtPopust
             // 
-            this.txtPopust.Location = new System.Drawing.Point(414, 468);
+            this.txtPopust.Location = new System.Drawing.Point(414, 434);
             this.txtPopust.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPopust.MaxLength = 3;
             this.txtPopust.Name = "txtPopust";
@@ -759,7 +722,7 @@
             // txtRegOznake
             // 
             this.txtRegOznake.Enabled = false;
-            this.txtRegOznake.Location = new System.Drawing.Point(74, 619);
+            this.txtRegOznake.Location = new System.Drawing.Point(74, 585);
             this.txtRegOznake.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRegOznake.Name = "txtRegOznake";
             this.txtRegOznake.Size = new System.Drawing.Size(257, 26);
@@ -768,7 +731,7 @@
             // txtVozilo
             // 
             this.txtVozilo.Enabled = false;
-            this.txtVozilo.Location = new System.Drawing.Point(74, 545);
+            this.txtVozilo.Location = new System.Drawing.Point(74, 511);
             this.txtVozilo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtVozilo.Name = "txtVozilo";
             this.txtVozilo.Size = new System.Drawing.Size(257, 26);
@@ -776,8 +739,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::CarHireRC.WinUI.Properties.Resources.no_image;
-            this.pictureBox1.Location = new System.Drawing.Point(31, 86);
+            this.pictureBox1.Image = global::CarHireRC.WinUI.Properties.Resources.noImage;
+            this.pictureBox1.Location = new System.Drawing.Point(31, 52);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(346, 406);
@@ -787,14 +750,14 @@
             // 
             // dtpDatumVazenjaDo
             // 
-            this.dtpDatumVazenjaDo.Location = new System.Drawing.Point(704, 289);
+            this.dtpDatumVazenjaDo.Location = new System.Drawing.Point(704, 255);
             this.dtpDatumVazenjaDo.Name = "dtpDatumVazenjaDo";
             this.dtpDatumVazenjaDo.Size = new System.Drawing.Size(312, 26);
             this.dtpDatumVazenjaDo.TabIndex = 151;
             // 
             // dtpDatumVazenjaOd
             // 
-            this.dtpDatumVazenjaOd.Location = new System.Drawing.Point(704, 215);
+            this.dtpDatumVazenjaOd.Location = new System.Drawing.Point(704, 181);
             this.dtpDatumVazenjaOd.Name = "dtpDatumVazenjaOd";
             this.dtpDatumVazenjaOd.Size = new System.Drawing.Size(312, 26);
             this.dtpDatumVazenjaOd.TabIndex = 150;
@@ -804,7 +767,7 @@
             this.btnSacuvajUredi.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnSacuvajUredi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnSacuvajUredi.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSacuvajUredi.Location = new System.Drawing.Point(870, 643);
+            this.btnSacuvajUredi.Location = new System.Drawing.Point(870, 625);
             this.btnSacuvajUredi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSacuvajUredi.Name = "btnSacuvajUredi";
             this.btnSacuvajUredi.Size = new System.Drawing.Size(146, 40);
@@ -815,7 +778,7 @@
             // 
             // txtLokacijaPreuzimanja
             // 
-            this.txtLokacijaPreuzimanja.Location = new System.Drawing.Point(414, 289);
+            this.txtLokacijaPreuzimanja.Location = new System.Drawing.Point(414, 255);
             this.txtLokacijaPreuzimanja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtLokacijaPreuzimanja.Name = "txtLokacijaPreuzimanja";
             this.txtLokacijaPreuzimanja.Size = new System.Drawing.Size(257, 26);
@@ -824,11 +787,71 @@
             // txtKlijent
             // 
             this.txtKlijent.Enabled = false;
-            this.txtKlijent.Location = new System.Drawing.Point(414, 215);
+            this.txtKlijent.Location = new System.Drawing.Point(414, 181);
             this.txtKlijent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtKlijent.Name = "txtKlijent";
             this.txtKlijent.Size = new System.Drawing.Size(257, 26);
             this.txtKlijent.TabIndex = 140;
+            // 
+            // KorisnikId
+            // 
+            this.KorisnikId.DataPropertyName = "RezervacijaRentanjaId";
+            this.KorisnikId.HeaderText = "RezervacijaRentanjaId";
+            this.KorisnikId.Name = "KorisnikId";
+            this.KorisnikId.ReadOnly = true;
+            this.KorisnikId.Visible = false;
+            this.KorisnikId.Width = 140;
+            // 
+            // RezervacijaOd
+            // 
+            this.RezervacijaOd.DataPropertyName = "RezervacijaOd";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.RezervacijaOd.DefaultCellStyle = dataGridViewCellStyle1;
+            this.RezervacijaOd.HeaderText = "Od";
+            this.RezervacijaOd.Name = "RezervacijaOd";
+            this.RezervacijaOd.ReadOnly = true;
+            this.RezervacijaOd.ToolTipText = "Od";
+            // 
+            // RezervacijaDo
+            // 
+            this.RezervacijaDo.DataPropertyName = "RezervacijaDo";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.RezervacijaDo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.RezervacijaDo.HeaderText = "Do";
+            this.RezervacijaDo.Name = "RezervacijaDo";
+            this.RezervacijaDo.ReadOnly = true;
+            this.RezervacijaDo.ToolTipText = "Do";
+            // 
+            // Klijent
+            // 
+            this.Klijent.DataPropertyName = "Klijent";
+            this.Klijent.HeaderText = "Klijent";
+            this.Klijent.Name = "Klijent";
+            this.Klijent.ReadOnly = true;
+            this.Klijent.ToolTipText = "Klijent";
+            this.Klijent.Width = 150;
+            // 
+            // Vozilo
+            // 
+            this.Vozilo.DataPropertyName = "VoziloInformacije";
+            this.Vozilo.HeaderText = "Vozilo";
+            this.Vozilo.Name = "Vozilo";
+            this.Vozilo.ReadOnly = true;
+            this.Vozilo.Width = 170;
+            // 
+            // IznosSaPopustom
+            // 
+            this.IznosSaPopustom.DataPropertyName = "IznosSaPopustom";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.IznosSaPopustom.DefaultCellStyle = dataGridViewCellStyle3;
+            this.IznosSaPopustom.HeaderText = "Iznos";
+            this.IznosSaPopustom.Name = "IznosSaPopustom";
+            this.IznosSaPopustom.ReadOnly = true;
+            this.IznosSaPopustom.ToolTipText = "Iznos";
+            this.IznosSaPopustom.Width = 120;
             // 
             // frmRezervacije
             // 
@@ -866,15 +889,8 @@
         private System.Windows.Forms.ComboBox cmbSearchModel;
         private System.Windows.Forms.DateTimePicker dtpDatumKreiranja;
         private System.Windows.Forms.TextBox txtSearchIme;
-        private System.Windows.Forms.Button btnPrikazi;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvRezervacije;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KorisnikId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Od;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Do;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Klijent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Vozilo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Iznos;
         private System.Windows.Forms.TextBox txtSearchPrezime;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox chbDo;
@@ -919,5 +935,14 @@
         private MetroFramework.Controls.MetroLabel metroLabel13;
         private MetroFramework.Controls.MetroLabel metroLabel14;
         private MetroFramework.Controls.MetroButton btnPoruka;
+        private MetroFramework.Controls.MetroCheckBox cbSveRezervacije;
+        private MetroFramework.Controls.MetroCheckBox cbOtkazane;
+        private System.Windows.Forms.Button btnPrikaziPrimljene;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KorisnikId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RezervacijaOd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RezervacijaDo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Klijent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Vozilo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IznosSaPopustom;
     }
 }

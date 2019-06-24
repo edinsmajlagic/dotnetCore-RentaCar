@@ -55,7 +55,7 @@ namespace CarHireRC.Mobile.Views.Rezervacije
                     sl.Children.Add(zavrsene);
 
                 zavrsene.IsVisible = true;
-                zavrsene.RowHeight = 140;
+                zavrsene.RowHeight = 130;
                 uToku.RowHeight = 0;
             }
             else
@@ -66,7 +66,7 @@ namespace CarHireRC.Mobile.Views.Rezervacije
                     sl.Children.Add(uToku);
 
                 uToku.IsVisible = true;
-                uToku.RowHeight = 140;
+                uToku.RowHeight = 130;
                 zavrsene.RowHeight = 0;
             }
         }

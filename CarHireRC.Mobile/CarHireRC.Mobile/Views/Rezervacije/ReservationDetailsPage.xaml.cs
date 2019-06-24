@@ -36,7 +36,10 @@ namespace CarHireRC.Mobile.Views.Rezervacije
             }
         }
 
-
+        public ReservationDetailsPage()
+        {
+            InitializeComponent();
+        }
         private async void OnRatingChanged(object sender, float e)
         {
             CustomRatingBar customRatingBar = (CustomRatingBar)FindByName("customRatingBar");
@@ -54,8 +57,11 @@ namespace CarHireRC.Mobile.Views.Rezervacije
             if (izbor)
             {
                 await model.OtkaziRezervaciju();
-                await Application.Current.MainPage.DisplayAlert("Obavijest", "Rezervacija otkazana", "OK");
-                await Navigation.PopAsync();
+                if (model.Provjera)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Obavijest", "Rezervacija otkazana", "OK");
+                    await Navigation.PopAsync();
+                }
             }
         }
     }

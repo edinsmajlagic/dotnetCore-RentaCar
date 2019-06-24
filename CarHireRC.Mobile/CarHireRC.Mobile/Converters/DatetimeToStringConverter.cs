@@ -14,7 +14,11 @@ namespace CarHireRC.Mobile.Converters
                 return string.Empty;
 
             var datetime = (DateTime)value;
-            return datetime.ToString("dd.MM.yyyy hh:mm");
+
+            if (parameter != null)
+                return datetime.ToString("dd.MM.yyyy hh:mm");
+            else
+                return datetime.ToShortDateString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

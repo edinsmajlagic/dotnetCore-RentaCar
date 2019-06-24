@@ -32,6 +32,9 @@
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvPrimljenePoruke = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
@@ -47,6 +50,7 @@
             this.txtSearchImePosiljaoc = new System.Windows.Forms.TextBox();
             this.btnPrikaziPrimljene = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnPoruka = new MetroFramework.Controls.MetroButton();
             this.lblspp = new System.Windows.Forms.Label();
             this.lblnp = new System.Windows.Forms.Label();
             this.lblNaslovPrimljene = new System.Windows.Forms.Label();
@@ -81,13 +85,10 @@
             this.rtxtSadrzajPoslane = new System.Windows.Forms.RichTextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.dgvPoslanePoruke = new System.Windows.Forms.DataGridView();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.PorukaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Primaoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naslov = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnPoruka = new MetroFramework.Controls.MetroButton();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -140,9 +141,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvPrimljenePoruke);
-            this.groupBox1.Location = new System.Drawing.Point(9, 258);
+            this.groupBox1.Location = new System.Drawing.Point(9, 198);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(510, 516);
+            this.groupBox1.Size = new System.Drawing.Size(510, 427);
             this.groupBox1.TabIndex = 123;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Poruke";
@@ -161,15 +162,39 @@
             this.dgvPrimljenePoruke.Name = "dgvPrimljenePoruke";
             this.dgvPrimljenePoruke.ReadOnly = true;
             this.dgvPrimljenePoruke.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPrimljenePoruke.Size = new System.Drawing.Size(504, 491);
+            this.dgvPrimljenePoruke.Size = new System.Drawing.Size(504, 402);
             this.dgvPrimljenePoruke.TabIndex = 0;
             this.dgvPrimljenePoruke.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPrimljenePoruke_MouseDoubleClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "PorukaId";
+            this.dataGridViewTextBoxColumn1.HeaderText = "PorukaId";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "PosiljaocInfo";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Pošiljaoc";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 160;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Naslov";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Naslov";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 260;
             // 
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel4.Location = new System.Drawing.Point(230, 42);
+            this.metroLabel4.Location = new System.Drawing.Point(230, 15);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(100, 15);
             this.metroLabel4.TabIndex = 121;
@@ -179,7 +204,7 @@
             // 
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel2.Location = new System.Drawing.Point(30, 132);
+            this.metroLabel2.Location = new System.Drawing.Point(30, 102);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(110, 15);
             this.metroLabel2.TabIndex = 120;
@@ -189,7 +214,7 @@
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel1.Location = new System.Drawing.Point(31, 44);
+            this.metroLabel1.Location = new System.Drawing.Point(30, 15);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(78, 15);
             this.metroLabel1.TabIndex = 119;
@@ -198,7 +223,7 @@
             // txtSearchPrezimePosiljaoc
             // 
             this.txtSearchPrezimePosiljaoc.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearchPrezimePosiljaoc.Location = new System.Drawing.Point(230, 67);
+            this.txtSearchPrezimePosiljaoc.Location = new System.Drawing.Point(230, 40);
             this.txtSearchPrezimePosiljaoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchPrezimePosiljaoc.MaxLength = 50;
             this.txtSearchPrezimePosiljaoc.Name = "txtSearchPrezimePosiljaoc";
@@ -216,7 +241,7 @@
             this.groupBox3.Controls.Add(this.dtpDoPrimljene);
             this.groupBox3.Controls.Add(this.dtpOdPrimljene);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox3.Location = new System.Drawing.Point(490, 42);
+            this.groupBox3.Location = new System.Drawing.Point(490, 11);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -229,7 +254,7 @@
             // 
             this.metroLabel6.AutoSize = true;
             this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel6.Location = new System.Drawing.Point(22, 113);
+            this.metroLabel6.Location = new System.Drawing.Point(22, 107);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(22, 15);
             this.metroLabel6.TabIndex = 116;
@@ -239,7 +264,7 @@
             // 
             this.metroLabel5.AutoSize = true;
             this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel5.Location = new System.Drawing.Point(22, 46);
+            this.metroLabel5.Location = new System.Drawing.Point(22, 40);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(23, 15);
             this.metroLabel5.TabIndex = 115;
@@ -247,7 +272,7 @@
             // 
             // chbDoPrimljene
             // 
-            this.chbDoPrimljene.Location = new System.Drawing.Point(331, 136);
+            this.chbDoPrimljene.Location = new System.Drawing.Point(331, 130);
             this.chbDoPrimljene.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chbDoPrimljene.Name = "chbDoPrimljene";
             this.chbDoPrimljene.Size = new System.Drawing.Size(30, 31);
@@ -257,7 +282,7 @@
             // 
             // chBOdPrimljene
             // 
-            this.chBOdPrimljene.Location = new System.Drawing.Point(331, 70);
+            this.chBOdPrimljene.Location = new System.Drawing.Point(331, 64);
             this.chBOdPrimljene.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chBOdPrimljene.Name = "chBOdPrimljene";
             this.chBOdPrimljene.Size = new System.Drawing.Size(30, 29);
@@ -269,7 +294,7 @@
             // 
             this.dtpDoPrimljene.Enabled = false;
             this.dtpDoPrimljene.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dtpDoPrimljene.Location = new System.Drawing.Point(22, 138);
+            this.dtpDoPrimljene.Location = new System.Drawing.Point(22, 136);
             this.dtpDoPrimljene.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpDoPrimljene.MaxDate = new System.DateTime(2050, 1, 1, 0, 0, 0, 0);
             this.dtpDoPrimljene.MinDate = new System.DateTime(2015, 1, 1, 0, 0, 0, 0);
@@ -282,7 +307,7 @@
             // 
             this.dtpOdPrimljene.Enabled = false;
             this.dtpOdPrimljene.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dtpOdPrimljene.Location = new System.Drawing.Point(22, 71);
+            this.dtpOdPrimljene.Location = new System.Drawing.Point(22, 65);
             this.dtpOdPrimljene.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpOdPrimljene.MaxDate = new System.DateTime(2050, 1, 1, 0, 0, 0, 0);
             this.dtpOdPrimljene.MinDate = new System.DateTime(2015, 1, 1, 0, 0, 0, 0);
@@ -293,7 +318,7 @@
             // 
             // txtSearchUsernamePosiljaoc
             // 
-            this.txtSearchUsernamePosiljaoc.Location = new System.Drawing.Point(30, 157);
+            this.txtSearchUsernamePosiljaoc.Location = new System.Drawing.Point(30, 127);
             this.txtSearchUsernamePosiljaoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchUsernamePosiljaoc.MaxLength = 50;
             this.txtSearchUsernamePosiljaoc.Name = "txtSearchUsernamePosiljaoc";
@@ -304,7 +329,7 @@
             // txtSearchImePosiljaoc
             // 
             this.txtSearchImePosiljaoc.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearchImePosiljaoc.Location = new System.Drawing.Point(31, 69);
+            this.txtSearchImePosiljaoc.Location = new System.Drawing.Point(31, 40);
             this.txtSearchImePosiljaoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchImePosiljaoc.MaxLength = 50;
             this.txtSearchImePosiljaoc.Name = "txtSearchImePosiljaoc";
@@ -317,7 +342,7 @@
             this.btnPrikaziPrimljene.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnPrikaziPrimljene.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnPrikaziPrimljene.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPrikaziPrimljene.Location = new System.Drawing.Point(923, 183);
+            this.btnPrikaziPrimljene.Location = new System.Drawing.Point(923, 141);
             this.btnPrikaziPrimljene.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrikaziPrimljene.Name = "btnPrikaziPrimljene";
             this.btnPrikaziPrimljene.Size = new System.Drawing.Size(115, 42);
@@ -328,6 +353,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.metroButton1);
             this.groupBox2.Controls.Add(this.btnPoruka);
             this.groupBox2.Controls.Add(this.lblspp);
             this.groupBox2.Controls.Add(this.lblnp);
@@ -337,17 +363,30 @@
             this.groupBox2.Controls.Add(this.lbldvp);
             this.groupBox2.Controls.Add(this.lblpp);
             this.groupBox2.Controls.Add(this.rtxtSadrzajPrimljene);
-            this.groupBox2.Location = new System.Drawing.Point(525, 258);
+            this.groupBox2.Location = new System.Drawing.Point(525, 198);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(513, 513);
+            this.groupBox2.Size = new System.Drawing.Size(513, 427);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
+            // 
+            // btnPoruka
+            // 
+            this.btnPoruka.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnPoruka.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnPoruka.Location = new System.Drawing.Point(350, 387);
+            this.btnPoruka.Name = "btnPoruka";
+            this.btnPoruka.Size = new System.Drawing.Size(129, 32);
+            this.btnPoruka.TabIndex = 178;
+            this.btnPoruka.Text = "Odgovori";
+            this.btnPoruka.UseSelectable = true;
+            this.btnPoruka.Visible = false;
+            this.btnPoruka.Click += new System.EventHandler(this.btnPoruka_Click);
             // 
             // lblspp
             // 
             this.lblspp.AutoSize = true;
             this.lblspp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblspp.Location = new System.Drawing.Point(37, 214);
+            this.lblspp.Location = new System.Drawing.Point(37, 190);
             this.lblspp.Name = "lblspp";
             this.lblspp.Size = new System.Drawing.Size(140, 20);
             this.lblspp.TabIndex = 27;
@@ -358,7 +397,7 @@
             // 
             this.lblnp.AutoSize = true;
             this.lblnp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblnp.Location = new System.Drawing.Point(37, 167);
+            this.lblnp.Location = new System.Drawing.Point(37, 148);
             this.lblnp.Name = "lblnp";
             this.lblnp.Size = new System.Drawing.Size(72, 20);
             this.lblnp.TabIndex = 26;
@@ -368,7 +407,7 @@
             // lblNaslovPrimljene
             // 
             this.lblNaslovPrimljene.AutoSize = true;
-            this.lblNaslovPrimljene.Location = new System.Drawing.Point(123, 167);
+            this.lblNaslovPrimljene.Location = new System.Drawing.Point(123, 148);
             this.lblNaslovPrimljene.Name = "lblNaslovPrimljene";
             this.lblNaslovPrimljene.Size = new System.Drawing.Size(51, 20);
             this.lblNaslovPrimljene.TabIndex = 25;
@@ -399,7 +438,7 @@
             // 
             this.lbldvp.AutoSize = true;
             this.lbldvp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lbldvp.Location = new System.Drawing.Point(34, 53);
+            this.lbldvp.Location = new System.Drawing.Point(37, 53);
             this.lbldvp.Name = "lbldvp";
             this.lbldvp.Size = new System.Drawing.Size(194, 20);
             this.lbldvp.TabIndex = 22;
@@ -410,7 +449,7 @@
             // 
             this.lblpp.AutoSize = true;
             this.lblpp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblpp.Location = new System.Drawing.Point(34, 95);
+            this.lblpp.Location = new System.Drawing.Point(37, 95);
             this.lblpp.Name = "lblpp";
             this.lblpp.Size = new System.Drawing.Size(90, 20);
             this.lblpp.TabIndex = 21;
@@ -420,10 +459,10 @@
             // rtxtSadrzajPrimljene
             // 
             this.rtxtSadrzajPrimljene.BackColor = System.Drawing.Color.White;
-            this.rtxtSadrzajPrimljene.Location = new System.Drawing.Point(38, 237);
+            this.rtxtSadrzajPrimljene.Location = new System.Drawing.Point(38, 213);
             this.rtxtSadrzajPrimljene.Name = "rtxtSadrzajPrimljene";
             this.rtxtSadrzajPrimljene.ReadOnly = true;
-            this.rtxtSadrzajPrimljene.Size = new System.Drawing.Size(441, 196);
+            this.rtxtSadrzajPrimljene.Size = new System.Drawing.Size(441, 168);
             this.rtxtSadrzajPrimljene.TabIndex = 20;
             this.rtxtSadrzajPrimljene.Text = "";
             this.rtxtSadrzajPrimljene.Visible = false;
@@ -456,7 +495,7 @@
             // 
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel3.Location = new System.Drawing.Point(230, 44);
+            this.metroLabel3.Location = new System.Drawing.Point(230, 15);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(98, 15);
             this.metroLabel3.TabIndex = 131;
@@ -466,7 +505,7 @@
             // 
             this.metroLabel7.AutoSize = true;
             this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel7.Location = new System.Drawing.Point(30, 132);
+            this.metroLabel7.Location = new System.Drawing.Point(30, 103);
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(108, 15);
             this.metroLabel7.TabIndex = 130;
@@ -476,7 +515,7 @@
             // 
             this.metroLabel8.AutoSize = true;
             this.metroLabel8.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel8.Location = new System.Drawing.Point(31, 44);
+            this.metroLabel8.Location = new System.Drawing.Point(31, 15);
             this.metroLabel8.Name = "metroLabel8";
             this.metroLabel8.Size = new System.Drawing.Size(76, 15);
             this.metroLabel8.TabIndex = 129;
@@ -485,7 +524,7 @@
             // txtSearchPrezimePrimaoc
             // 
             this.txtSearchPrezimePrimaoc.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearchPrezimePrimaoc.Location = new System.Drawing.Point(230, 69);
+            this.txtSearchPrezimePrimaoc.Location = new System.Drawing.Point(230, 40);
             this.txtSearchPrezimePrimaoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchPrezimePrimaoc.MaxLength = 50;
             this.txtSearchPrezimePrimaoc.Name = "txtSearchPrezimePrimaoc";
@@ -503,7 +542,7 @@
             this.groupBox4.Controls.Add(this.dtpDoPoslane);
             this.groupBox4.Controls.Add(this.dtpOdPoslane);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox4.Location = new System.Drawing.Point(490, 42);
+            this.groupBox4.Location = new System.Drawing.Point(490, 10);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -516,7 +555,7 @@
             // 
             this.metroLabel9.AutoSize = true;
             this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel9.Location = new System.Drawing.Point(22, 113);
+            this.metroLabel9.Location = new System.Drawing.Point(22, 110);
             this.metroLabel9.Name = "metroLabel9";
             this.metroLabel9.Size = new System.Drawing.Size(22, 15);
             this.metroLabel9.TabIndex = 116;
@@ -526,7 +565,7 @@
             // 
             this.metroLabel10.AutoSize = true;
             this.metroLabel10.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel10.Location = new System.Drawing.Point(22, 46);
+            this.metroLabel10.Location = new System.Drawing.Point(22, 43);
             this.metroLabel10.Name = "metroLabel10";
             this.metroLabel10.Size = new System.Drawing.Size(23, 15);
             this.metroLabel10.TabIndex = 115;
@@ -534,7 +573,7 @@
             // 
             // cbDoPoslane
             // 
-            this.cbDoPoslane.Location = new System.Drawing.Point(331, 136);
+            this.cbDoPoslane.Location = new System.Drawing.Point(331, 137);
             this.cbDoPoslane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDoPoslane.Name = "cbDoPoslane";
             this.cbDoPoslane.Size = new System.Drawing.Size(30, 31);
@@ -544,7 +583,7 @@
             // 
             // cbOdPoslane
             // 
-            this.cbOdPoslane.Location = new System.Drawing.Point(331, 70);
+            this.cbOdPoslane.Location = new System.Drawing.Point(331, 67);
             this.cbOdPoslane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbOdPoslane.Name = "cbOdPoslane";
             this.cbOdPoslane.Size = new System.Drawing.Size(30, 29);
@@ -569,7 +608,7 @@
             // 
             this.dtpOdPoslane.Enabled = false;
             this.dtpOdPoslane.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dtpOdPoslane.Location = new System.Drawing.Point(22, 71);
+            this.dtpOdPoslane.Location = new System.Drawing.Point(22, 68);
             this.dtpOdPoslane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpOdPoslane.MaxDate = new System.DateTime(2050, 1, 1, 0, 0, 0, 0);
             this.dtpOdPoslane.MinDate = new System.DateTime(2015, 1, 1, 0, 0, 0, 0);
@@ -580,7 +619,7 @@
             // 
             // txtSearchUsernamePrimaoc
             // 
-            this.txtSearchUsernamePrimaoc.Location = new System.Drawing.Point(30, 157);
+            this.txtSearchUsernamePrimaoc.Location = new System.Drawing.Point(30, 128);
             this.txtSearchUsernamePrimaoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchUsernamePrimaoc.MaxLength = 50;
             this.txtSearchUsernamePrimaoc.Name = "txtSearchUsernamePrimaoc";
@@ -591,7 +630,7 @@
             // txtSearchImePrimaoc
             // 
             this.txtSearchImePrimaoc.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearchImePrimaoc.Location = new System.Drawing.Point(31, 69);
+            this.txtSearchImePrimaoc.Location = new System.Drawing.Point(31, 40);
             this.txtSearchImePrimaoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearchImePrimaoc.MaxLength = 50;
             this.txtSearchImePrimaoc.Name = "txtSearchImePrimaoc";
@@ -604,7 +643,7 @@
             this.btnPrikaziPoslane.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnPrikaziPoslane.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnPrikaziPoslane.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPrikaziPoslane.Location = new System.Drawing.Point(923, 183);
+            this.btnPrikaziPoslane.Location = new System.Drawing.Point(923, 142);
             this.btnPrikaziPoslane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrikaziPoslane.Name = "btnPrikaziPoslane";
             this.btnPrikaziPoslane.Size = new System.Drawing.Size(115, 42);
@@ -623,9 +662,9 @@
             this.groupBox5.Controls.Add(this.lbldvpo);
             this.groupBox5.Controls.Add(this.lblppo);
             this.groupBox5.Controls.Add(this.rtxtSadrzajPoslane);
-            this.groupBox5.Location = new System.Drawing.Point(490, 258);
+            this.groupBox5.Location = new System.Drawing.Point(525, 200);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(548, 513);
+            this.groupBox5.Size = new System.Drawing.Size(513, 475);
             this.groupBox5.TabIndex = 123;
             this.groupBox5.TabStop = false;
             // 
@@ -633,7 +672,7 @@
             // 
             this.lblsppo.AutoSize = true;
             this.lblsppo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblsppo.Location = new System.Drawing.Point(53, 212);
+            this.lblsppo.Location = new System.Drawing.Point(37, 190);
             this.lblsppo.Name = "lblsppo";
             this.lblsppo.Size = new System.Drawing.Size(140, 20);
             this.lblsppo.TabIndex = 19;
@@ -644,7 +683,7 @@
             // 
             this.lblnpo.AutoSize = true;
             this.lblnpo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblnpo.Location = new System.Drawing.Point(53, 165);
+            this.lblnpo.Location = new System.Drawing.Point(37, 148);
             this.lblnpo.Name = "lblnpo";
             this.lblnpo.Size = new System.Drawing.Size(72, 20);
             this.lblnpo.TabIndex = 18;
@@ -654,7 +693,7 @@
             // lblNaslovPoslane
             // 
             this.lblNaslovPoslane.AutoSize = true;
-            this.lblNaslovPoslane.Location = new System.Drawing.Point(139, 165);
+            this.lblNaslovPoslane.Location = new System.Drawing.Point(132, 148);
             this.lblNaslovPoslane.Name = "lblNaslovPoslane";
             this.lblNaslovPoslane.Size = new System.Drawing.Size(51, 20);
             this.lblNaslovPoslane.TabIndex = 17;
@@ -664,18 +703,17 @@
             // lblDatumVrijemePoslane
             // 
             this.lblDatumVrijemePoslane.AutoSize = true;
-            this.lblDatumVrijemePoslane.Location = new System.Drawing.Point(259, 51);
+            this.lblDatumVrijemePoslane.Location = new System.Drawing.Point(249, 52);
             this.lblDatumVrijemePoslane.Name = "lblDatumVrijemePoslane";
             this.lblDatumVrijemePoslane.Size = new System.Drawing.Size(117, 20);
             this.lblDatumVrijemePoslane.TabIndex = 14;
             this.lblDatumVrijemePoslane.Text = "Datum i vrijeme";
             this.lblDatumVrijemePoslane.Visible = false;
-            this.lblDatumVrijemePoslane.Click += new System.EventHandler(this.lblDatumVrijemePoslane_Click);
             // 
             // lblPrimaoc
             // 
             this.lblPrimaoc.AutoSize = true;
-            this.lblPrimaoc.Location = new System.Drawing.Point(259, 93);
+            this.lblPrimaoc.Location = new System.Drawing.Point(249, 94);
             this.lblPrimaoc.Name = "lblPrimaoc";
             this.lblPrimaoc.Size = new System.Drawing.Size(51, 20);
             this.lblPrimaoc.TabIndex = 13;
@@ -686,7 +724,7 @@
             // 
             this.lbldvpo.AutoSize = true;
             this.lbldvpo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lbldvpo.Location = new System.Drawing.Point(50, 51);
+            this.lbldvpo.Location = new System.Drawing.Point(37, 52);
             this.lbldvpo.Name = "lbldvpo";
             this.lbldvpo.Size = new System.Drawing.Size(194, 20);
             this.lbldvpo.TabIndex = 12;
@@ -697,7 +735,7 @@
             // 
             this.lblppo.AutoSize = true;
             this.lblppo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblppo.Location = new System.Drawing.Point(50, 93);
+            this.lblppo.Location = new System.Drawing.Point(37, 94);
             this.lblppo.Name = "lblppo";
             this.lblppo.Size = new System.Drawing.Size(83, 20);
             this.lblppo.TabIndex = 11;
@@ -707,10 +745,10 @@
             // rtxtSadrzajPoslane
             // 
             this.rtxtSadrzajPoslane.BackColor = System.Drawing.Color.White;
-            this.rtxtSadrzajPoslane.Location = new System.Drawing.Point(54, 235);
+            this.rtxtSadrzajPoslane.Location = new System.Drawing.Point(38, 213);
             this.rtxtSadrzajPoslane.Name = "rtxtSadrzajPoslane";
             this.rtxtSadrzajPoslane.ReadOnly = true;
-            this.rtxtSadrzajPoslane.Size = new System.Drawing.Size(474, 210);
+            this.rtxtSadrzajPoslane.Size = new System.Drawing.Size(441, 168);
             this.rtxtSadrzajPoslane.TabIndex = 9;
             this.rtxtSadrzajPoslane.Text = "";
             this.rtxtSadrzajPoslane.Visible = false;
@@ -718,9 +756,9 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.dgvPoslanePoruke);
-            this.groupBox6.Location = new System.Drawing.Point(8, 258);
+            this.groupBox6.Location = new System.Drawing.Point(9, 199);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(476, 516);
+            this.groupBox6.Size = new System.Drawing.Size(510, 476);
             this.groupBox6.TabIndex = 122;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Poruke";
@@ -739,9 +777,21 @@
             this.dgvPoslanePoruke.Name = "dgvPoslanePoruke";
             this.dgvPoslanePoruke.ReadOnly = true;
             this.dgvPoslanePoruke.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPoslanePoruke.Size = new System.Drawing.Size(470, 491);
+            this.dgvPoslanePoruke.Size = new System.Drawing.Size(504, 451);
             this.dgvPoslanePoruke.TabIndex = 0;
             this.dgvPoslanePoruke.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPoslanePoruke_MouseDoubleClick);
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.metroButton1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.metroButton1.Location = new System.Drawing.Point(192, 633);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(129, 26);
+            this.metroButton1.TabIndex = 179;
+            this.metroButton1.Text = "Odgovori";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Visible = false;
             // 
             // PorukaId
             // 
@@ -765,44 +815,7 @@
             this.Naslov.HeaderText = "Naslov";
             this.Naslov.Name = "Naslov";
             this.Naslov.ReadOnly = true;
-            this.Naslov.Width = 230;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "PorukaId";
-            this.dataGridViewTextBoxColumn1.HeaderText = "PorukaId";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "PosiljaocInfo";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Pošiljaoc";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 160;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Naslov";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Naslov";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 260;
-            // 
-            // btnPoruka
-            // 
-            this.btnPoruka.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPoruka.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPoruka.Location = new System.Drawing.Point(350, 448);
-            this.btnPoruka.Name = "btnPoruka";
-            this.btnPoruka.Size = new System.Drawing.Size(129, 26);
-            this.btnPoruka.TabIndex = 178;
-            this.btnPoruka.Text = "Odgovori";
-            this.btnPoruka.UseSelectable = true;
-            this.btnPoruka.Visible = false;
-            this.btnPoruka.Click += new System.EventHandler(this.btnPoruka_Click);
+            this.Naslov.Width = 260;
             // 
             // frmPoruke
             // 
@@ -890,12 +903,13 @@
         private System.Windows.Forms.RichTextBox rtxtSadrzajPoslane;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvPrimljenePoruke;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PorukaId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Primaoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Naslov;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private MetroFramework.Controls.MetroButton btnPoruka;
+        private MetroFramework.Controls.MetroButton metroButton1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PorukaId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Primaoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Naslov;
     }
 }

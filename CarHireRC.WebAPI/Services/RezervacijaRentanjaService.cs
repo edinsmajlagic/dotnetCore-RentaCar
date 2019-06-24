@@ -25,6 +25,7 @@ namespace CarHireRC.WebAPI.Services
                                                                     .OrderByDescending(x => x.RezervacijaOd)
                                                                     .AsQueryable();
 
+            #region Search
             if (search.AutomobilId > 0)
             {
                 query = query.Where(x => x.AutomobilId == search.AutomobilId);
@@ -91,18 +92,33 @@ namespace CarHireRC.WebAPI.Services
             {
                 query = query.Where(x => x.DatumKreiranja.Date == search.DatumKreiranja.Value.Date);
             }
-            if(search.StatusAktivna)
+            if(search.StatusAktivna != null)
             {
                 query = query.Where(x => x.RezervacijaDo.Date >= DateTime.Now.Date);
 
             }
-            query = query.Where(x => x.Otkazana == search.Otkazana);
+            if (search.Otkazana != null)
+            {
+                query = query.Where(x => x.Otkazana == search.Otkazana);
 
-            //query = query.Where(x => x.VracanjeUposlovnicu == search.VracanjeUposlovnicu);
-            //query = query.Where(x => x.KaskoOsiguranje == search.KaskoOsiguranje);
+
+            }
+            if (search.VracanjeUposlovnicu != null)
+            {
+                query = query.Where(x => x.VracanjeUposlovnicu == search.VracanjeUposlovnicu);
+
+
+            }
+            if (search.KaskoOsiguranje != null)
+            {
+                query = query.Where(x => x.KaskoOsiguranje == search.KaskoOsiguranje);
+            }
+
+            #endregion
 
             var list = query.ToList();
 
+            #region ModelPLUS attributes
             List<Model.Models.RezervacijaRentanja> result = _mapper.Map<List<Model.Models.RezervacijaRentanja>>(list);
             foreach (var item in result)
             {
@@ -121,13 +137,14 @@ namespace CarHireRC.WebAPI.Services
 
                 if (posljednjaRegistracija != null)
                     item.VoziloInformacije =item.VoziloInformacije+ "  (" + posljednjaRegistracija.RegistarskeOznake + ")";
-                if(vozilo.SlikaThumb != null)
-                item.SlikaThumb = vozilo.SlikaThumb;
+                if(vozilo.Slika != null)
+                item.SlikaThumb = vozilo.Slika;
 
                 item.CijenaIznajmljivanja = vozilo.CijenaIznajmljivanja;
                 item.RezervacijaOdDo = item.RezervacijaOd.ToString() + " - " + item.RezervacijaDo.ToString();
                 item.RezervacijaBrojDana = (item.RezervacijaDo - item.RezervacijaOd).Days.ToString();
-
+                if (item.RezervacijaBrojDana == "0")
+                    item.RezervacijaBrojDana = "1";
                 Database.Ocjena ocjene = _context.Ocjena.FirstOrDefault(x => x.RezervacijaRentanjaId == item.RezervacijaRentanjaId);
                 if (ocjene != null)
                 {
@@ -140,6 +157,7 @@ namespace CarHireRC.WebAPI.Services
                 if (item.LokacijaPreuzimanja == "")
                     item.LokacijaPreuzimanja = "Preuzimanje u poslovnici";
             }
+            #endregion 
 
             return result;
         }
@@ -164,11 +182,14 @@ namespace CarHireRC.WebAPI.Services
                 result.VoziloInformacije = result.VoziloInformacije + "  (" + posljednjaRegistracija.RegistarskeOznake + ")";
 
 
-            if (vozilo.SlikaThumb != null)
-                result.SlikaThumb = vozilo.SlikaThumb;
+            if (vozilo.Slika != null)
+                result.SlikaThumb = vozilo.Slika;
+
             result.CijenaIznajmljivanja = vozilo.CijenaIznajmljivanja;
             result.RezervacijaOdDo = result.RezervacijaOd.ToString() + " - " + result.RezervacijaDo.ToString();
             result.RezervacijaBrojDana = (result.RezervacijaDo - result.RezervacijaOd).Days.ToString();
+            if (result.RezervacijaBrojDana == "0")
+                result.RezervacijaBrojDana = "1";
 
             Database.Ocjena ocjene = _context.Ocjena.FirstOrDefault(x => x.RezervacijaRentanjaId == result.RezervacijaRentanjaId);
             if (ocjene != null)

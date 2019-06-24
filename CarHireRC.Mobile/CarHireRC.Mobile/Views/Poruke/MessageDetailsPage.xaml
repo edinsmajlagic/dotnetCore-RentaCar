@@ -83,7 +83,7 @@
                                    TextColor="Black"
                                    Grid.Row="1"
                                    Grid.Column="1"></Label>
-                            <Label Text="{Binding Poruka.DatumVrijeme, Converter={StaticResource dtsConv}}"
+                            <Label Text="{Binding Poruka.DatumVrijeme, Converter={StaticResource dtsConv}, ConverterParameter={x:Reference DVLabel }}"
                                    TextColor="Black"
                                    Grid.Row="2"
                                    Grid.Column="1"></Label>
@@ -135,6 +135,11 @@
                        Text="{Binding Poruka.Posiljaoc}"
                        IsVisible="False">
                     
+                </Label>
+                <Label x:Name="DVLabel"
+                       Text="dv"
+                       IsVisible="False">
+
                 </Label>
                 <!--OdgovoriButton-->
             <Button Text="Odogovori"

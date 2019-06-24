@@ -19,7 +19,10 @@
     
     <ContentPage.Content>
 
-        <StackLayout BackgroundColor="DarkGray" Orientation="Vertical" x:Name="sl">
+        <StackLayout BackgroundColor="DarkGray" 
+                     Orientation="Vertical"
+                     x:Name="sl">
+            
             <StackLayout BackgroundColor="MediumPurple">
                 <Label Margin="0,7" 
                        FontSize="16" 
@@ -95,11 +98,14 @@
 
 
             <Label Text="Završene rezervacije"
-                       TextColor="Black" 
+                       TextColor="Black"
+                   Margin="10,0,0,0"
+                   FontSize="16"
+                   FontAttributes="Bold"
                        ></Label>
             
             <Switch Toggled="Switch_Toggled"
-                    Margin="0,10"
+                    Margin="10,10"
                     OnColor="Pink"
                     HorizontalOptions="Start"
                     BackgroundColor="Blue"></Switch>
@@ -108,7 +114,7 @@
                       IsVisible="True"
                       ItemsSource="{Binding RezervacijeRetanjaList}"  
                       ItemSelected="ListView_ItemSelected"
-                      RowHeight="140">
+                      RowHeight="130">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -224,7 +230,7 @@
                       IsVisible="False"
                       ItemsSource="{Binding RezervacijeRetanjaListZavrsene}"
                       ItemSelected="ListView_ItemSelected" 
-                      RowHeight="140">
+                      RowHeight="130">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

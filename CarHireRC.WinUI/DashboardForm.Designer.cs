@@ -69,7 +69,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(219, 661);
+            this.panel1.Size = new System.Drawing.Size(246, 870);
             this.panel1.TabIndex = 0;
             // 
             // lblKorisnikId
@@ -77,9 +77,9 @@
             this.lblKorisnikId.AutoSize = true;
             this.lblKorisnikId.Enabled = false;
             this.lblKorisnikId.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblKorisnikId.Location = new System.Drawing.Point(64, 9);
+            this.lblKorisnikId.Location = new System.Drawing.Point(72, 11);
             this.lblKorisnikId.Name = "lblKorisnikId";
-            this.lblKorisnikId.Size = new System.Drawing.Size(0, 17);
+            this.lblKorisnikId.Size = new System.Drawing.Size(0, 20);
             this.lblKorisnikId.TabIndex = 16;
             this.lblKorisnikId.Visible = false;
             // 
@@ -91,10 +91,10 @@
             this.btnOdjaviSe.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnOdjaviSe.Image = global::CarHireRC.WinUI.Properties.Resources.powerbutton;
             this.btnOdjaviSe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOdjaviSe.Location = new System.Drawing.Point(9, 535);
+            this.btnOdjaviSe.Location = new System.Drawing.Point(10, 669);
             this.btnOdjaviSe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOdjaviSe.Name = "btnOdjaviSe";
-            this.btnOdjaviSe.Size = new System.Drawing.Size(206, 46);
+            this.btnOdjaviSe.Size = new System.Drawing.Size(232, 58);
             this.btnOdjaviSe.TabIndex = 15;
             this.btnOdjaviSe.Text = "    Odjavi se";
             this.btnOdjaviSe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -109,10 +109,10 @@
             this.btnProfil.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnProfil.Image = global::CarHireRC.WinUI.Properties.Resources.iconsgears;
             this.btnProfil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProfil.Location = new System.Drawing.Point(16, 148);
+            this.btnProfil.Location = new System.Drawing.Point(18, 185);
             this.btnProfil.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProfil.Name = "btnProfil";
-            this.btnProfil.Size = new System.Drawing.Size(188, 46);
+            this.btnProfil.Size = new System.Drawing.Size(212, 58);
             this.btnProfil.TabIndex = 14;
             this.btnProfil.Text = "  Izmjena profila";
             this.btnProfil.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -122,10 +122,10 @@
             // pnlStats
             // 
             this.pnlStats.BackColor = System.Drawing.Color.Gold;
-            this.pnlStats.Location = new System.Drawing.Point(2, 215);
+            this.pnlStats.Location = new System.Drawing.Point(2, 269);
             this.pnlStats.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlStats.Name = "pnlStats";
-            this.pnlStats.Size = new System.Drawing.Size(9, 26);
+            this.pnlStats.Size = new System.Drawing.Size(10, 32);
             this.pnlStats.TabIndex = 13;
             // 
             // btnRezervacije
@@ -136,10 +136,10 @@
             this.btnRezervacije.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnRezervacije.Image = ((System.Drawing.Image)(resources.GetObject("btnRezervacije.Image")));
             this.btnRezervacije.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRezervacije.Location = new System.Drawing.Point(9, 468);
+            this.btnRezervacije.Location = new System.Drawing.Point(10, 585);
             this.btnRezervacije.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRezervacije.Name = "btnRezervacije";
-            this.btnRezervacije.Size = new System.Drawing.Size(206, 46);
+            this.btnRezervacije.Size = new System.Drawing.Size(232, 58);
             this.btnRezervacije.TabIndex = 10;
             this.btnRezervacije.Text = "    Rezervacije";
             this.btnRezervacije.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -150,32 +150,29 @@
             // 
             this.lblUloga.AutoSize = true;
             this.lblUloga.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblUloga.Location = new System.Drawing.Point(64, 110);
+            this.lblUloga.Location = new System.Drawing.Point(72, 138);
             this.lblUloga.Name = "lblUloga";
-            this.lblUloga.Size = new System.Drawing.Size(91, 17);
+            this.lblUloga.Size = new System.Drawing.Size(0, 20);
             this.lblUloga.TabIndex = 9;
-            this.lblUloga.Text = "Administrator";
             // 
             // lblKorisnik
             // 
             this.lblKorisnik.AutoSize = true;
             this.lblKorisnik.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblKorisnik.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblKorisnik.Location = new System.Drawing.Point(50, 126);
+            this.lblKorisnik.Location = new System.Drawing.Point(56, 158);
             this.lblKorisnik.Name = "lblKorisnik";
-            this.lblKorisnik.Size = new System.Drawing.Size(119, 18);
+            this.lblKorisnik.Size = new System.Drawing.Size(0, 22);
             this.lblKorisnik.TabIndex = 6;
-            this.lblKorisnik.Text = "Edin Smajlagić";
             this.lblKorisnik.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(64, 28);
+            this.pictureBox1.Location = new System.Drawing.Point(72, 35);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(89, 80);
+            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
@@ -188,10 +185,10 @@
             this.btnVozila.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnVozila.Image = global::CarHireRC.WinUI.Properties.Resources.iconstrafficjam;
             this.btnVozila.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVozila.Location = new System.Drawing.Point(9, 414);
+            this.btnVozila.Location = new System.Drawing.Point(10, 518);
             this.btnVozila.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVozila.Name = "btnVozila";
-            this.btnVozila.Size = new System.Drawing.Size(206, 46);
+            this.btnVozila.Size = new System.Drawing.Size(232, 58);
             this.btnVozila.TabIndex = 4;
             this.btnVozila.Text = "    Vozila";
             this.btnVozila.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -207,10 +204,10 @@
             this.btnKlijenti.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnKlijenti.Image = ((System.Drawing.Image)(resources.GetObject("btnKlijenti.Image")));
             this.btnKlijenti.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnKlijenti.Location = new System.Drawing.Point(9, 363);
+            this.btnKlijenti.Location = new System.Drawing.Point(10, 454);
             this.btnKlijenti.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnKlijenti.Name = "btnKlijenti";
-            this.btnKlijenti.Size = new System.Drawing.Size(206, 46);
+            this.btnKlijenti.Size = new System.Drawing.Size(232, 58);
             this.btnKlijenti.TabIndex = 3;
             this.btnKlijenti.Text = "    Klijenti";
             this.btnKlijenti.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -226,10 +223,10 @@
             this.btnKorisnici.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnKorisnici.Image = global::CarHireRC.WinUI.Properties.Resources.usergroupsfilled;
             this.btnKorisnici.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnKorisnici.Location = new System.Drawing.Point(9, 311);
+            this.btnKorisnici.Location = new System.Drawing.Point(10, 389);
             this.btnKorisnici.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnKorisnici.Name = "btnKorisnici";
-            this.btnKorisnici.Size = new System.Drawing.Size(206, 46);
+            this.btnKorisnici.Size = new System.Drawing.Size(232, 58);
             this.btnKorisnici.TabIndex = 2;
             this.btnKorisnici.Text = "    Korisnici";
             this.btnKorisnici.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -246,10 +243,10 @@
             this.btnPoruke.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPoruke.Image = global::CarHireRC.WinUI.Properties.Resources.newpost;
             this.btnPoruke.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPoruke.Location = new System.Drawing.Point(9, 260);
+            this.btnPoruke.Location = new System.Drawing.Point(10, 325);
             this.btnPoruke.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPoruke.Name = "btnPoruke";
-            this.btnPoruke.Size = new System.Drawing.Size(206, 46);
+            this.btnPoruke.Size = new System.Drawing.Size(232, 58);
             this.btnPoruke.TabIndex = 1;
             this.btnPoruke.Text = "    Poruke";
             this.btnPoruke.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -263,29 +260,29 @@
             this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHome.Font = new System.Drawing.Font("Lucida Sans", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnHome.Location = new System.Drawing.Point(9, 204);
+            this.btnHome.Location = new System.Drawing.Point(10, 255);
             this.btnHome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(205, 46);
+            this.btnHome.Size = new System.Drawing.Size(231, 58);
             this.btnHome.TabIndex = 0;
             this.btnHome.Text = "         Home";
             this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.button1_Click);
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // pnlMjesto
             // 
-            this.pnlMjesto.Location = new System.Drawing.Point(219, 0);
+            this.pnlMjesto.Location = new System.Drawing.Point(246, 0);
             this.pnlMjesto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlMjesto.Name = "pnlMjesto";
-            this.pnlMjesto.Size = new System.Drawing.Size(938, 651);
+            this.pnlMjesto.Size = new System.Drawing.Size(1055, 898);
             this.pnlMjesto.TabIndex = 2;
             // 
             // DashboardForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1156, 661);
+            this.ClientSize = new System.Drawing.Size(1300, 870);
             this.Controls.Add(this.pnlMjesto);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

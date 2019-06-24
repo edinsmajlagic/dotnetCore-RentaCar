@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,20 +50,36 @@ namespace CarHireRC.WinUI.Korisnici
 
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
-            if(this.ValidateChildren())
+            bool provjera = this.ValidateChildren();
+            string error1 = errorProvider.GetError(txtEmail);
+            string error2 = errorProvider.GetError(txtUsername);
+            string error3 = errorProvider.GetError(txtStaraLozinka);
+            if (!string.IsNullOrEmpty(error1) || !string.IsNullOrEmpty(error2) || !string.IsNullOrEmpty(error3))
+                provjera = false;
+
+            if (provjera)
                 {
-                var ModelidObj = cmbGrad.SelectedValue;
-                if (int.TryParse(ModelidObj.ToString(), out int GradId))
+                var GradObj = cmbGrad.SelectedValue;
+                if (int.TryParse(GradObj.ToString(), out int GradId))
                 {
                     request.GradId = GradId;
                 }
 
+                var user = await _KorisniciService.GetById<Model.Models.Korisnici>(KorisnikId);
+                var uloge = user.KorisniciUloge.Select(x => x.UlogaId).ToList();
+
+                request.KorisnikId =KorisnikId;
                 request.Ime = txtIme.Text;
                 request.Prezime = txtPrezime.Text;
                 request.Adresa = txtAdresa.Text;
                 request.UserName = txtUsername.Text;
                 request.Email = txtEmail.Text;
                 request.Telefon = txtTelefon.Text;
+                request.DatumRodjenja = user.DatumRodjenja;
+                request.DatumRegistracije = user.DatumRegistracije;
+                request.Status = true;
+                request.Uloge = uloge;
+
                 if (txtPassword.Text != "")
                 {
                     request.Password = txtPassword.Text;
@@ -115,10 +133,7 @@ namespace CarHireRC.WinUI.Korisnici
             cmbGrad.DataSource = result;
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void cmbGrad_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -161,8 +176,9 @@ namespace CarHireRC.WinUI.Korisnici
             }
         }
 
-        private void txtEmail_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private async void txtEmail_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            bool postoji = false;
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
                 errorProvider.SetError(txtEmail, Properties.Resources.Validation_Required);
@@ -170,12 +186,53 @@ namespace CarHireRC.WinUI.Korisnici
             }
             else
             {
-                errorProvider.SetError(txtEmail, null);
+                KorisniciSearchRequest korisniciSearch = new KorisniciSearchRequest()
+                {
+                    Status = true,
+                    Email = txtEmail.Text
+                };
+
+                var users = await _KorisniciService.Get<List<Model.Models.Korisnici>>(korisniciSearch);
+
+                if (users.Count > 0)
+                {
+                    foreach (var item in users)
+                    {
+                        if(item.KorisnikId!=KorisnikId)
+                            postoji = true;
+
+                    }
+                }
+
+                korisniciSearch.Status = false;
+
+                users = await _KorisniciService.Get< List<Model.Models.Korisnici>>(korisniciSearch);
+                if (users.Count > 0)
+                {
+                    foreach (var item in users)
+                    {
+                        if (item.KorisnikId != KorisnikId)
+                            postoji = true;
+
+                    }
+                }
+
+
+
+                if (postoji)
+                {
+                    errorProvider.SetError(txtEmail, Properties.Resources.Validation_EmailExists);
+                    e.Cancel = true;
+                }
+                else
+                    errorProvider.SetError(txtEmail, null);
             }
         }
 
-        private void txtUsername_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private async void txtUsername_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            bool postoji = false;
+
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
                 errorProvider.SetError(txtUsername, Properties.Resources.Validation_Required);
@@ -183,6 +240,39 @@ namespace CarHireRC.WinUI.Korisnici
             }
             else
             {
+                KorisniciSearchRequest korisniciSearch = new KorisniciSearchRequest()
+                {
+                    Status=true,
+                    UserName=txtUsername.Text
+                };
+
+
+                var user = await _KorisniciService.Get<List<Model.Models.Korisnici>>(korisniciSearch);
+                if (user.Count > 0)
+                {
+                    foreach (var item in user)
+                    {
+                        if (item.KorisnikId != KorisnikId)
+                            postoji = true;
+                    }
+                }
+
+                korisniciSearch.Status = false;
+                user = await _KorisniciService.Get< List<Model.Models.Korisnici>>(korisniciSearch);
+                if (user.Count>0) {
+                    foreach (var item in user)
+                    {
+                        if (item.KorisnikId != KorisnikId)
+                            postoji = true;
+                    }
+                }
+
+                if(postoji)
+                {
+                    errorProvider.SetError(txtUsername, Properties.Resources.Validation_UsernameExists);
+                    e.Cancel = true;
+                }
+                else
                 errorProvider.SetError(txtUsername, null);
             }
         }
@@ -208,7 +298,7 @@ namespace CarHireRC.WinUI.Korisnici
         private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Provjera da li je uneseno slovo ili prazno mjesto
-            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && (e.KeyChar != '.')  && (e.KeyChar != '-'))
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && (e.KeyChar != '.')  && (e.KeyChar != '-') && (e.KeyChar != '@'))
             {
                 e.Handled = true;
             }
@@ -238,6 +328,70 @@ namespace CarHireRC.WinUI.Korisnici
             if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != ' ') && (e.KeyChar != '-') && (e.KeyChar != '/'))
             {
                 e.Handled = true;
+            }
+        }
+
+      
+        private async void txtStaraLozinka_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            bool izmjena = false;
+            if ( !string.IsNullOrEmpty(txtPassword.Text) || !string.IsNullOrEmpty(txtPasswordPotvrda.Text))
+            {
+                izmjena = true;
+            }
+            
+            //Ako nije unesena stara lozinka
+            if(string.IsNullOrEmpty(txtStaraLozinka.Text) && izmjena)
+            {
+                errorProvider.SetError(txtStaraLozinka, Properties.Resources.Validation_OldPassword);
+                e.Cancel = true;
+            }
+           
+            else if (!string.IsNullOrEmpty(txtStaraLozinka.Text) && izmjena)
+            {
+                var user = await _KorisniciService.GetById<Model.Models.Korisnici>(KorisnikId);
+
+                string hash = GenerateHash(user.LozinkaSalt, txtStaraLozinka.Text);
+
+                if (user.LozinkaHash != hash)
+                {
+                    errorProvider.SetError(txtStaraLozinka, Properties.Resources.Validation_OldPassword);
+                    e.Cancel = true;
+                }
+                else
+                {
+                    errorProvider.SetError(txtStaraLozinka, null);
+                }
+            }
+            else if (string.IsNullOrEmpty(txtStaraLozinka.Text) && !izmjena)
+            {
+                errorProvider.SetError(txtStaraLozinka, null);
+            }
+        }
+        public static string GenerateHash(string salt, string password)
+        {
+            byte[] src = Convert.FromBase64String(salt);
+            byte[] bytes = Encoding.Unicode.GetBytes(password);
+            byte[] dst = new byte[src.Length + bytes.Length];
+
+            System.Buffer.BlockCopy(src, 0, dst, 0, src.Length);
+            System.Buffer.BlockCopy(bytes, 0, dst, src.Length, bytes.Length);
+
+            HashAlgorithm algorithm = HashAlgorithm.Create("SHA1");
+            byte[] inArray = algorithm.ComputeHash(dst);
+            return Convert.ToBase64String(inArray);
+        }
+
+        private void txtPasswordPotvrda_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (txtPassword.Text != txtPasswordPotvrda.Text)
+            {
+                errorProvider.SetError(txtPasswordPotvrda, Properties.Resources.Validation_PasswordNotEqual);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtPasswordPotvrda, null);
             }
         }
     }

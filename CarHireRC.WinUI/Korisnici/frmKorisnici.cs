@@ -1,4 +1,5 @@
 ﻿using CarHireRC.Model.Requests;
+using CarHireRC.WinUI.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,33 +23,26 @@ namespace CarHireRC.WinUI.Korisnici
         KorisniciUpsertRequest DodajRequest = new KorisniciUpsertRequest();
         KorisniciUpsertRequest UrediRequest = new KorisniciUpsertRequest();
         int _KorisnikID=0;
+        private bool ulogaAdmin = false, ulogaMenadzer = false, ulogaUposlenik = false;
 
-        public frmKorisnici()
+        public frmKorisnici(bool ulogaA, bool ulogaM, bool ulogaU)
         {
+            ulogaAdmin = ulogaA;
+            ulogaMenadzer = ulogaM;
+            ulogaUposlenik = ulogaU;
             InitializeComponent();
-        }
-
-        private async Task LoadGradovi()
-        {
-            var result = await _gradoviService.Get<List<Model.Models.Grad>>(null);
-            result.Insert(0, new Model.Models.Grad());
-            cmbGrad.DisplayMember = "Naziv";
-            cmbGrad.ValueMember = "GradId";
-            cmbGrad.DataSource = result;
-        }
-        private async Task LoadSearchGradovi()
-        {
-            var result = await _gradoviService.Get<List<Model.Models.Grad>>(null);
-            result.Insert(0, new Model.Models.Grad());
-            cmbSearchGrad.DisplayMember = "Naziv";
-            cmbSearchGrad.ValueMember = "GradId";
-            cmbSearchGrad.DataSource = result;
         }
 
         private async void frmKorisnici_Load(object sender, EventArgs e)
         {
             metroTabControl1.HideTab(metroTabPage3);
             metroTabControl1.SelectedTab = metroTabPage1;
+
+            if (!ulogaAdmin)
+            {
+                metroTabControl1.HideTab(metroTabPage2);
+            }
+
 
             await LoadGradovi();
             await LoadSearchGradovi();
@@ -63,35 +57,186 @@ namespace CarHireRC.WinUI.Korisnici
             chbAktivan.Checked = true;
         }
 
-        private async Task LoadUloge()
+        //Dodavanje novog korisnika
+        private async void btnSacuvajNovi_Click(object sender, EventArgs e)
         {
-            var result = await _ulogeService.Get<List<Model.Models.Uloge>>(null);
-            cLBUloge.DataSource = result;
-            cLBUloge.DisplayMember = "Naziv";
-        }
-        private async Task LoadUlogeEdit()
-        {
-            var result = await _ulogeService.Get<List<Model.Models.Uloge>>(null);
-            clbUlogeEdit.DataSource = result;
-            clbUlogeEdit.ValueMember = "UlogaId";
-            clbUlogeEdit.DisplayMember = "Naziv";
-        }
-        private void chBOd_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chBOd.Checked)
-                dtpOd.Enabled = true;
-            else
-                dtpOd.Enabled = false;
+            bool provjera = this.ValidateChildren();
+            string error1 = errorProvider.GetError(txtEmail);
+            string error2 = errorProvider.GetError(txtUsername);
+            if (!string.IsNullOrEmpty(error1) || !string.IsNullOrEmpty(error2))
+                provjera = false;
+
+
+            if (provjera)
+            {
+                var uloge = cLBUloge.CheckedItems.Cast<Model.Models.Uloge>().Select(x => x.UlogaId).ToList();
+
+                var gradIdObj = cmbGrad.SelectedValue;
+
+                if (int.TryParse(gradIdObj.ToString(), out int gId))
+                {
+                    DodajRequest.GradId = gId;
+                }
+
+                if (DodajRequest.Slika == null)
+                {
+                    var filename = Properties.Resources.noImage;
+
+                    MemoryStream ms = new MemoryStream();
+                    filename.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+
+                    DodajRequest.Slika = ms.ToArray();
+
+                    Image image = Image.FromStream(new MemoryStream(DodajRequest.Slika));
+                    Image thumb = image.GetThumbnailImage(75, 75, () => false, IntPtr.Zero);
+
+                    ImageConverter _imageConverter = new ImageConverter();
+                    byte[] imagethumbbyte = (byte[])_imageConverter.ConvertTo(thumb, typeof(byte[]));
+                    DodajRequest.SlikaThumb = imagethumbbyte;
+                }
+
+                DodajRequest.Ime = txtIme.Text;
+                DodajRequest.Prezime = txtPrezime.Text;
+                DodajRequest.Email = txtEmail.Text;
+                DodajRequest.UserName = txtUsername.Text;
+                DodajRequest.Telefon = txtTelefon.Text;
+                DodajRequest.Adresa = txtAdresa.Text;
+                DodajRequest.Password = txtPassword.Text;
+                DodajRequest.PasswordPotvrda = txtPasswordPotvrda.Text;
+                DodajRequest.Status = chBoxAktivan.Checked;
+                DodajRequest.DatumRegistracije = DateTime.Now;
+                DodajRequest.DatumRodjenja = dtpDatumRodjenja.Value;
+                DodajRequest.Uloge = uloge;
+
+                var entity = await _korisniciService.Insert<Model.Models.Korisnici>(DodajRequest);
+
+                if (entity != null)
+                {
+                    MessageBox.Show("Korisnik uspješno dodan");
+
+                    cmbGrad.SelectedIndex = -1;
+                    txtIme.Clear();
+                    txtPrezime.Clear();
+                    txtEmail.Clear();
+                    txtUsername.Clear();
+                    txtTelefon.Clear();
+                    txtAdresa.Clear();
+                    txtPassword.Clear();
+                    txtPasswordPotvrda.Clear();
+                    chBoxAktivan.Checked = true;
+                    dtpDatumRodjenja.Value = DateTime.Now.Date;
+
+                    //Postavljanje defaultne slike u picturebox
+                    var filename = Properties.Resources.noImage;
+                    MemoryStream ms = new MemoryStream();
+                    filename.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                    Image image = Image.FromStream(ms);
+                    pictureBox1.Image = image;
+
+                    metroTabControl1.SelectedTab = metroTabPage1;
+                }
+            }
         }
 
-        private void chbDo_CheckedChanged(object sender, EventArgs e)
+
+        private async void dgvKorisnici_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (chbDo.Checked)
-                dtpDo.Enabled = true;
-            else
-                dtpDo.Enabled = false;
+            if (ulogaAdmin)
+            {
+                int Id = 0;
+                if (dgvKorisnici.RowCount > 0)
+                {
+                    var val = dgvKorisnici.SelectedRows[0].Cells[0].Value;
+                    Id = int.Parse(val.ToString());
+                }
+                if (_KorisnikID <= 0 && Id > 0)
+                {
+                    _KorisnikID = Id;
+                    metroTabControl1.ShowTab(metroTabPage3);
+                    await UcitajEditTab();
+                    metroTabControl1.SelectedTab = metroTabPage3;
+                }
+            }
         }
 
+        //Učitavanje tab page-a za uređivanje podataka o korisniku
+        private async Task UcitajEditTab()
+        {
+            var user = await _korisniciService.GetById<Model.Models.Korisnici>(_KorisnikID);
+            KorisniciUlogeSearchRequest searchRequest = new KorisniciUlogeSearchRequest
+            {
+                KorisnikId = user.KorisnikId
+            };
+            var userUloge = await _korisniciUlogeService.Get<List<Model.Models.KorisniciUloge>>(searchRequest);
+            var grad = await _gradoviService.GetById<Model.Models.Grad>(user.GradId);
+
+            await LoadUlogeEdit();
+
+
+
+            UrediRequest.Ime = user.Ime;
+            UrediRequest.Prezime = user.Prezime;
+            UrediRequest.Adresa = user.Adresa;
+            UrediRequest.UserName = user.UserName;
+            UrediRequest.Email = user.Email;
+            UrediRequest.Telefon = user.Telefon;
+            UrediRequest.GradId = user.GradId;
+            UrediRequest.Status = user.Status;
+            UrediRequest.DatumRegistracije = user.DatumRegistracije;
+            UrediRequest.DatumRodjenja = user.DatumRodjenja;
+
+            if (user.Slika.Length > 0)
+            {
+                UrediRequest.Slika = user.Slika;
+                UrediRequest.SlikaThumb = user.SlikaThumb;
+                byte[] slika = user.Slika;
+                MemoryStream memoryStream = new MemoryStream(slika);
+                pictureBox2.Image = Image.FromStream(memoryStream);
+            }
+            txtImeEdit.Text = UrediRequest.Ime;
+            txtPrezimeEdit.Text = UrediRequest.Prezime;
+            txtAdresaEdit.Text = UrediRequest.Adresa;
+            txtUsernameEdit.Text = UrediRequest.UserName;
+            txtEmailEdit.Text = UrediRequest.Email;
+            txtTelefonEdit.Text = UrediRequest.Telefon;
+            txtDatumRegistracije.Text = UrediRequest.DatumRegistracije.Date.ToShortDateString();
+            if (UrediRequest.DatumRodjenja != null)
+                txtDatumRodjenja.Text = UrediRequest.DatumRodjenja.Value.ToShortDateString();
+            txtGrad.Text = grad.Naziv;
+            cbStatus.Checked = UrediRequest.Status;
+            for (int i = 0; i < userUloge.Count; i++)
+            {
+                foreach (var item in clbUlogeEdit.Items.Cast<Model.Models.Uloge>().ToList())
+                {
+                    if (item.UlogaId == userUloge.ElementAt(i).UlogaId)
+                        clbUlogeEdit.SetItemChecked(userUloge.ElementAt(i).UlogaId - 1, true);
+                }
+            }
+        }
+
+
+        //Spremanje izmjena podataka
+        private async void btnSacuvajEdit_Click(object sender, EventArgs e)
+        {
+            UrediRequest.Status = cbStatus.Checked;
+            UrediRequest.KorisnikId = _KorisnikID;
+            var uloge = clbUlogeEdit.CheckedItems.Cast<Model.Models.Uloge>().Select(x => x.UlogaId).ToList();
+
+            UrediRequest.Uloge = uloge;
+
+            var entity = await _korisniciService.Update<Model.Models.Korisnici>(_KorisnikID, UrediRequest);
+            if (entity != null)
+            {
+                MessageBox.Show("Uspješno izmjenjeni podaci o korisniku");
+                _KorisnikID = 0;
+                metroTabControl1.SelectedTab = metroTabPage1;
+                metroTabControl1.HideTab(metroTabPage3);
+                await PretragaKorisnika();
+            }
+        }
+
+
+        //Pretraga korisnika
         private async void btnPrikazi_Click(object sender, EventArgs e)
         {
             await PretragaKorisnika();
@@ -101,6 +246,8 @@ namespace CarHireRC.WinUI.Korisnici
         {
             var search = new KorisniciSearchRequest();
             var GraddObj = cmbSearchGrad.SelectedValue;
+
+            var uloge = clbUlogePretraga.CheckedItems.Cast<string>().ToList();
 
             if (int.TryParse(GraddObj.ToString(), out int GradId))
             {
@@ -128,78 +275,16 @@ namespace CarHireRC.WinUI.Korisnici
             }
 
             search.Status = chbAktivan.Checked;
+            search.uloge = uloge;
 
             var result = await _korisniciService.Get<List<Model.Models.Korisnici>>(search);
             dgvKorisnici.AutoGenerateColumns = false;
             dgvKorisnici.DataSource = result;
         }
 
-        private async void btnSacuvajNovi_Click(object sender, EventArgs e)
-        {
 
-            if (this.ValidateChildren())
-            {
-                var uloge = cLBUloge.CheckedItems.Cast<Model.Models.Uloge>().Select(x=> x.UlogaId).ToList();
 
-                var gradIdObj = cmbGrad.SelectedValue;
-
-                if (int.TryParse(gradIdObj.ToString(), out int gId))
-                {
-                    DodajRequest.GradId = gId;
-                }
-
-               if(DodajRequest.Slika == null )
-                {
-                    var filename = Properties.Resources.no_image;
-
-                    MemoryStream ms = new MemoryStream();
-                    filename.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-                   
-                    DodajRequest.Slika =ms.ToArray();
-
-                    Image image = Image.FromStream(new MemoryStream(DodajRequest.Slika));
-                    Image thumb = image.GetThumbnailImage(75, 75, () => false, IntPtr.Zero);
-
-                    ImageConverter _imageConverter = new ImageConverter();
-                    byte[] imagethumbbyte = (byte[])_imageConverter.ConvertTo(thumb, typeof(byte[]));
-                    DodajRequest.SlikaThumb = imagethumbbyte;
-                }
-
-                DodajRequest.Ime = txtIme.Text;
-                DodajRequest.Prezime = txtPrezime.Text;
-                DodajRequest.Email = txtEmail.Text;
-                DodajRequest.UserName = txtUsername.Text;
-                DodajRequest.Telefon = txtTelefon.Text;
-                DodajRequest.Adresa = txtAdresa.Text;
-                DodajRequest.Password = txtPassword.Text;
-                DodajRequest.PasswordPotvrda = txtPasswordPotvrda.Text;
-                DodajRequest.Status = chBoxAktivan.Checked;
-                DodajRequest.DatumRegistracije = DateTime.Now;
-                DodajRequest.DatumRodjenja = dtpDatumRodjenja.Value;
-                DodajRequest.Uloge = uloge;
-
-                var entity= await _korisniciService.Insert<Model.Models.Korisnici>(DodajRequest);
-
-                if (entity != null)
-                {
-                    MessageBox.Show("Korisnik uspješno dodan");
-
-                    cmbGrad.SelectedIndex = -1;
-                    txtIme.Clear();
-                    txtPrezime.Clear();
-                    txtEmail.Clear();
-                    txtUsername.Clear();
-                    txtTelefon.Clear();
-                    txtAdresa.Clear();
-                    txtPassword.Clear();
-                    txtPasswordPotvrda.Clear();
-                    chBoxAktivan.Checked = true;
-                    dtpDatumRodjenja.Value = DateTime.Now.Date;
-                    metroTabControl1.SelectedTab = metroTabPage1;
-                }
-            }
-        }
-
+        //Učitavanje slike
         private void metroButton1_Click(object sender, EventArgs e)
         {
             var result = openFileDialog1.ShowDialog();
@@ -210,16 +295,57 @@ namespace CarHireRC.WinUI.Korisnici
 
                 var file = File.ReadAllBytes(filename);
 
-                DodajRequest.Slika = file;
                 Image image = Image.FromFile(filename);
                 Image thumb = image.GetThumbnailImage(75, 75, () => false, IntPtr.Zero);
 
                 ImageConverter _imageConverter = new ImageConverter();
                 byte[] imagethumbbyte = (byte[])_imageConverter.ConvertTo(thumb, typeof(byte[]));
+
+                DodajRequest.Slika = file;
                 DodajRequest.SlikaThumb = imagethumbbyte;
                 pictureBox1.Image = image;
             }
         }
+
+
+
+        #region Cmb Load
+
+        private async Task LoadGradovi()
+        {
+            var result = await _gradoviService.Get<List<Model.Models.Grad>>(null);
+            result.Insert(0, new Model.Models.Grad());
+
+            ComboBoxLoad<Model.Models.Grad> cmbLoad = new ComboBoxLoad<Model.Models.Grad>();
+            cmbLoad.Load(cmbGrad, result, "Naziv", "GradId");
+        }
+        private async Task LoadSearchGradovi()
+        {
+            var result = await _gradoviService.Get<List<Model.Models.Grad>>(null);
+            result.Insert(0, new Model.Models.Grad());
+
+            ComboBoxLoad<Model.Models.Grad> cmbLoad = new ComboBoxLoad<Model.Models.Grad>();
+            cmbLoad.Load(cmbSearchGrad, result, "Naziv", "GradId");
+        }
+
+        private async Task LoadUloge()
+        {
+            var result = await _ulogeService.Get<List<Model.Models.Uloge>>(null);
+            cLBUloge.DataSource = result;
+            cLBUloge.DisplayMember = "Naziv";
+        }
+        private async Task LoadUlogeEdit()
+        {
+            var result = await _ulogeService.Get<List<Model.Models.Uloge>>(null);
+            clbUlogeEdit.DataSource = result;
+            clbUlogeEdit.ValueMember = "UlogaId";
+            clbUlogeEdit.DisplayMember = "Naziv";
+        }
+
+        #endregion  
+
+
+        #region Validation
 
         private void txtIme_Validating(object sender, CancelEventArgs e)
         {
@@ -247,8 +373,9 @@ namespace CarHireRC.WinUI.Korisnici
             }
         }
 
-        private void txtEmail_Validating(object sender, CancelEventArgs e)
+        private async void txtEmail_Validating(object sender, CancelEventArgs e)
         {
+            bool postoji = false;
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
                 errorProvider.SetError(txtEmail, Properties.Resources.Validation_Required);
@@ -256,20 +383,79 @@ namespace CarHireRC.WinUI.Korisnici
             }
             else
             {
-                errorProvider.SetError(txtEmail, null);
+                KorisniciSearchRequest korisniciSearch = new KorisniciSearchRequest()
+                {
+                    Status = true,
+                    Email = txtEmail.Text
+                };
+
+                var users = await _korisniciService.Get<List<Model.Models.Korisnici>>(korisniciSearch);
+
+                if (users.Count > 0)
+                {
+                   postoji = true;
+                }
+
+                korisniciSearch.Status = false;
+
+                users = await _korisniciService.Get<List<Model.Models.Korisnici>>(korisniciSearch);
+                if (users.Count > 0)
+                {
+                  postoji = true;
+                }
+
+
+
+                if (postoji)
+                {
+                    errorProvider.SetError(txtEmail, Properties.Resources.Validation_EmailExists);
+                    e.Cancel = true;
+                }
+                else
+                    errorProvider.SetError(txtEmail, null);
             }
         }
 
-        private void txtUsername_Validating(object sender, CancelEventArgs e)
+        private async void txtUsername_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            bool postoji = false;
+
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
                 errorProvider.SetError(txtUsername, Properties.Resources.Validation_Required);
                 e.Cancel = true;
             }
             else
             {
-                errorProvider.SetError(txtUsername, null);
+                KorisniciSearchRequest korisniciSearch = new KorisniciSearchRequest()
+                {
+                    Status = true,
+                    UserName = txtUsername.Text
+                };
+
+
+                var user = await _korisniciService.Get<List<Model.Models.Korisnici>>(korisniciSearch);
+                if (user.Count > 0)
+                {
+                   
+                            postoji = true;
+                }
+
+                korisniciSearch.Status = false;
+                user = await _korisniciService.Get<List<Model.Models.Korisnici>>(korisniciSearch);
+                if (user.Count > 0)
+                {
+                  
+                   postoji = true;
+                }
+
+                if (postoji)
+                {
+                    errorProvider.SetError(txtUsername, Properties.Resources.Validation_UsernameExists);
+                    e.Cancel = true;
+                }
+                else
+                    errorProvider.SetError(txtUsername, null);
             }
         }
 
@@ -326,98 +512,10 @@ namespace CarHireRC.WinUI.Korisnici
             }
         }
 
-        private async void btnSacuvajEdit_Click(object sender, EventArgs e)
-        {
-            UrediRequest.Status = cbStatus.Checked;
-            UrediRequest.KorisnikId = _KorisnikID;
-            var uloge = clbUlogeEdit.CheckedItems.Cast<Model.Models.Uloge>().Select(x => x.UlogaId).ToList();
-
-            UrediRequest.Uloge = uloge;
-
-            var entity = await _korisniciService.Update<Model.Models.Korisnici>(_KorisnikID, UrediRequest);
-            if(entity != null)
-            {
-                MessageBox.Show("Uspješno izmjenjeni podaci o korisniku");
-                _KorisnikID = 0;
-                metroTabControl1.SelectedTab = metroTabPage1;
-                metroTabControl1.HideTab(metroTabPage2);
-                await PretragaKorisnika();
-            }
-        }
-
-        private async void dgvKorisnici_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            int Id = 0;
-            if (dgvKorisnici.RowCount > 0)
-            {
-                var val = dgvKorisnici.SelectedRows[0].Cells[0].Value;
-                Id = int.Parse(val.ToString());
-            }
-            if (_KorisnikID  <= 0 && Id > 0)
-            {
-                _KorisnikID = Id;
-                metroTabControl1.ShowTab(metroTabPage3);
-                await UcitajEditTab();
-                metroTabControl1.SelectedTab = metroTabPage3;
-            }
-        }
-
-        private async Task UcitajEditTab()
-        {
-            var user = await _korisniciService.GetById<Model.Models.Korisnici>(_KorisnikID);
-            KorisniciUlogeSearchRequest searchRequest = new KorisniciUlogeSearchRequest
-            {
-                KorisnikId = user.KorisnikId
-            };
-            var userUloge = await _korisniciUlogeService.Get<List<Model.Models.KorisniciUloge>>(searchRequest);
-            var grad = await _gradoviService.GetById<Model.Models.Grad>(user.GradId);
-
-            await LoadUlogeEdit();
+        #endregion
 
 
-
-            UrediRequest.Ime = user.Ime;
-            UrediRequest.Prezime = user.Prezime;
-            UrediRequest.Adresa = user.Adresa;
-            UrediRequest.UserName = user.UserName;
-            UrediRequest.Email = user.Email;
-            UrediRequest.Telefon = user.Telefon;
-            UrediRequest.GradId = user.GradId;
-            UrediRequest.Status = user.Status;
-            UrediRequest.DatumRegistracije = user.DatumRegistracije;
-            UrediRequest.DatumRodjenja = user.DatumRodjenja;
-            
-            if (user.Slika.Length > 0)
-            {
-                UrediRequest.Slika = user.Slika;
-                byte[] slika = user.Slika;
-                MemoryStream memoryStream = new MemoryStream(slika);
-                pictureBox1.Image = Image.FromStream(memoryStream);
-            }
-            txtImeEdit.Text = UrediRequest.Ime;
-            txtPrezimeEdit.Text = UrediRequest.Prezime;
-            txtAdresaEdit.Text = UrediRequest.Adresa;
-            txtUsernameEdit.Text = UrediRequest.UserName;
-            txtEmailEdit.Text = UrediRequest.Email;
-            txtTelefonEdit.Text = UrediRequest.Telefon;
-            txtDatumRegistracije.Text = UrediRequest.DatumRegistracije.Date.ToShortDateString();
-            if(UrediRequest.DatumRodjenja != null)
-            txtDatumRodjenja.Text = UrediRequest.DatumRodjenja.Value.ToShortDateString();
-            txtGrad.Text = grad.Naziv;
-            cbStatus.Checked = UrediRequest.Status;
-            for (int i = 0; i < userUloge.Count; i++)
-            {
-                foreach (var item in clbUlogeEdit.Items.Cast<Model.Models.Uloge>().ToList())
-                {
-                    if(item.UlogaId==userUloge.ElementAt(i).UlogaId)
-                        clbUlogeEdit.SetItemChecked(userUloge.ElementAt(i).UlogaId-1, true);
-                }
-               
-
-            }
-
-
-        }
+        #region Key press validation
 
         private void txtIme_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -500,6 +598,25 @@ namespace CarHireRC.WinUI.Korisnici
             }
         }
 
-       
+        private void chBOd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chBOd.Checked)
+                dtpOd.Enabled = true;
+            else
+                dtpOd.Enabled = false;
+        }
+
+        private void chbDo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbDo.Checked)
+                dtpDo.Enabled = true;
+            else
+                dtpDo.Enabled = false;
+        }
+
+
+        #endregion
+
+
     }
 }

@@ -45,7 +45,6 @@ namespace CarHireRC.Mobile.ViewModels.Poruke
         }
 
         public Command PosaljiCommand { get; }
-        public Command InitCommand { get; }
 
      
 

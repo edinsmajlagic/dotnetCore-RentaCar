@@ -1,4 +1,5 @@
 ﻿using CarHireRC.Model.Requests;
+using CarHireRC.WinUI.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,28 +20,29 @@ namespace CarHireRC.WinUI.Klijenti
         KlijentUpsertRequest UrediKlijentRequest = new KlijentUpsertRequest();
 
         private int _KlijentId;
+        private bool ulogaAdmin = false, ulogaMenadzer = false, ulogaUposlenik = false;
 
-        public frmKlijenti()
+        public frmKlijenti(bool ulogaA, bool ulogaM, bool ulogaU)
         {
+            ulogaAdmin = ulogaA;
+            ulogaMenadzer = ulogaM;
+            ulogaUposlenik = ulogaU;
             InitializeComponent();
         }
 
-        private void chBOd_CheckedChanged(object sender, EventArgs e)
+
+        private async void frmKlijenti_Load(object sender, EventArgs e)
         {
-            if (chBOd.Checked)
-                dtpOd.Enabled = true;
-            else
-                dtpOd.Enabled = false;
+            metroTabControl1.HideTab(metroTabPage2);
+            metroTabControl1.SelectedTab = metroTabPage1;
+            await LoadGradovi();
+            dtpDo.MaxDate = DateTime.Now.Date;
+            dtpOd.MaxDate = DateTime.Now.Date;
+            dtpOd.Value = DateTime.Now.Date;
+            dtpDo.Value = DateTime.Now.Date;
         }
 
-        private void chbDo_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chbDo.Checked)
-                dtpDo.Enabled = true;
-            else
-                dtpDo.Enabled = false;
-        }
-
+        //Pretraga klijenata
         private async void btnPrikazi_Click(object sender, EventArgs e)
         {
             await PretragaKlijenata();
@@ -82,23 +84,28 @@ namespace CarHireRC.WinUI.Klijenti
             dgvKlijenti.DataSource = result;
         }
 
+
         private async void dgvKlijenti_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int Id = 0;
-            if (dgvKlijenti.RowCount > 0)
+            if (ulogaAdmin)
             {
-                var val = dgvKlijenti.SelectedRows[0].Cells[0].Value;
-                Id = int.Parse(val.ToString());
-            }
-            if (_KlijentId <= 0 && Id > 0)
-            {
-                _KlijentId = Id;
-                metroTabControl1.ShowTab(metroTabPage2);
-                await UcitajEditTab();
-                metroTabControl1.SelectedTab = metroTabPage2;
+                int Id = 0;
+                if (dgvKlijenti.RowCount > 0)
+                {
+                    var val = dgvKlijenti.SelectedRows[0].Cells[0].Value;
+                    Id = int.Parse(val.ToString());
+                }
+                if (_KlijentId <= 0 && Id > 0)
+                {
+                    _KlijentId = Id;
+                    metroTabControl1.ShowTab(metroTabPage2);
+                    await UcitajEditTab();
+                    metroTabControl1.SelectedTab = metroTabPage2;
+                }
             }
         }
 
+        //Učitavanje  tab page-a za uređivanje podatka o klijentu
         private async Task UcitajEditTab()
         {
             var user = await _KlijentiService.GetById<Model.Models.Klijent>(_KlijentId);
@@ -119,6 +126,7 @@ namespace CarHireRC.WinUI.Klijenti
             if (user.Slika.Length > 0)
             {
                 UrediKlijentRequest.Slika = user.Slika;
+                UrediKlijentRequest.SlikaThumb = user.SlikaThumb;
                 byte[] slika = user.Slika;
                 MemoryStream memoryStream = new MemoryStream(slika);
                 pictureBox1.Image = Image.FromStream(memoryStream);
@@ -135,36 +143,12 @@ namespace CarHireRC.WinUI.Klijenti
             chBoxAktivan.Checked = UrediKlijentRequest.Status;
         }
 
-        private async Task LoadGradovi()
-        {
-            var result = await _GradService.Get<List<Model.Models.Grad>>(null);
-            result.Insert(0, new Model.Models.Grad());
-            cmbSearchGrad.DisplayMember = "Naziv";
-            cmbSearchGrad.ValueMember = "GradId";
-            cmbSearchGrad.DataSource = result;
-        }
-
+        //Spremanje izmjena podataka o klijentu
         private async void btnSacuvajUredi_Click(object sender, EventArgs e)
         {
             UrediKlijentRequest.Status = chBoxAktivan.Checked;
             UrediKlijentRequest.KlijentId = _KlijentId;
 
-            //if (UrediKlijentRequest.Slika == null)
-            //{
-            //    var filename = Properties.Resources.no_image;
-
-            //    MemoryStream ms = new MemoryStream();
-            //    filename.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-
-            //    UrediKlijentRequest.Slika = ms.ToArray();
-            //    Image x = (Bitmap)((new ImageConverter()).ConvertFrom(ms.ToArray()));
-
-            //    Image thumb = x.GetThumbnailImage(75, 75, () => false, IntPtr.Zero);
-
-            //    ImageConverter _imageConverter = new ImageConverter();
-            //    byte[] imagethumbbyte = (byte[])_imageConverter.ConvertTo(thumb, typeof(byte[]));
-            //    UrediKlijentRequest.SlikaThumb = imagethumbbyte;
-            //}
 
             var entity=await _KlijentiService.Update<Model.Models.Klijent>(_KlijentId, UrediKlijentRequest);
             if(entity != null)
@@ -178,16 +162,19 @@ namespace CarHireRC.WinUI.Klijenti
             }
         }
 
-        private async void frmKlijenti_Load(object sender, EventArgs e)
+
+
+        private async Task LoadGradovi()
         {
-            metroTabControl1.HideTab(metroTabPage2);
-            metroTabControl1.SelectedTab = metroTabPage1;
-            await LoadGradovi();
-            dtpDo.MaxDate = DateTime.Now.Date;
-            dtpOd.MaxDate = DateTime.Now.Date;
-            dtpOd.Value = DateTime.Now.Date;
-            dtpDo.Value = DateTime.Now.Date;
+            var result = await _GradService.Get<List<Model.Models.Grad>>(null);
+            result.Insert(0, new Model.Models.Grad());
+     
+            ComboBoxLoad<Model.Models.Grad> cmbLoad = new ComboBoxLoad<Model.Models.Grad>();
+            cmbLoad.Load(cmbSearchGrad, result, "Naziv", "GradId");
         }
+
+
+        #region Key press validation
 
         private void txtSearchIme_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -215,5 +202,22 @@ namespace CarHireRC.WinUI.Klijenti
                 e.Handled = true;
             }
         }
+
+        private void chBOd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chBOd.Checked)
+                dtpOd.Enabled = true;
+            else
+                dtpOd.Enabled = false;
+        }
+
+        private void chbDo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbDo.Checked)
+                dtpDo.Enabled = true;
+            else
+                dtpDo.Enabled = false;
+        }
+        #endregion
     }
 }

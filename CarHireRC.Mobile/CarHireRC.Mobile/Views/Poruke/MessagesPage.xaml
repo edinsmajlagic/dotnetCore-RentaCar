@@ -72,7 +72,12 @@
                                                Margin="0,5"
                                                FontSize="9"
                                                IsVisible="{Binding Posiljaoc, Converter={StaticResource isVisibleConverter}, ConverterParameter={x:Reference procitanolabel}}"></Label>
-                                    <Label Text="{Binding DatumVrijeme , Converter={StaticResource cnvDateTimeConverter}}" 
+                                    <Label x:Name="DVLabel"
+                       Text="dv"
+                       IsVisible="False">
+
+                                    </Label>
+                                    <Label Text="{Binding DatumVrijeme , Converter={StaticResource cnvDateTimeConverter}, ConverterParameter={x:Reference DVLabel}}" 
                                                x:Name="DatumVrijemeLabel"
                                                Grid.Column="2"
                                                TextColor="Black"
