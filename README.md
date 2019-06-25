@@ -1,5 +1,5 @@
-# dotnet-RentaCar
-
+# dotnetCore-RentaCar
+#
 This is .Net application (with desktop and mobile UI) written in C# programming language.
 
 .NET is a free, cross-platform, open source developer platform for building many different types of applications.
