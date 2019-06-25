@@ -21,8 +21,19 @@ Desktop Authentication: Basic Authentication
 Mobile Authentication: Basic Authentication
 
 Desktop UI: Windows forms with (Metro UI) --> https://thielj.github.io/MetroFramework/
+
+Mobile UI: Xamarin --> https://visualstudio.microsoft.com/xamarin/
 #
 
+## Xamarin
+#
+Xamarin provides a developer with tools that can help them in building cross-platform mobile applications.
+
+At the very root level, Xamarin has converted the entire existing Android and iOS SDK to C# so that you can code in a more familiar language.
+
+<img src="https://thewindowsclub-thewindowsclubco.netdna-ssl.com/wp-content/uploads/2017/04/Xamarin-Illustration.jpg" width="950" >
+
+#
 
 ## Flurl
 #
