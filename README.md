@@ -7,6 +7,7 @@ This is .Net application (with desktop and mobile UI) written in C# programming 
 Application consists of services for work with data implemented through APIs(REST) and UI(Desktop and mobile).
 
 Desktop UI will be used by workers of car rental agency and mobile UI will be used by clients.
+#
 
 
 # Technologies
@@ -20,6 +21,7 @@ Desktop Authentication: Basic Authentication
 Mobile Authentication: Basic Authentication
 
 Desktop UI: Windows forms with (Metro UI) --> https://thielj.github.io/MetroFramework/
+#
 
 
 ## Flurl
