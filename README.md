@@ -41,6 +41,6 @@ Flurl is a modern, fluent, asynchronous, testable, portable, buzzword-laden URL 
 
 Flurl is available on NuGet and is free for commercial use. It runs on a wide variety of platforms, including .NET Framework, .NET Core, Xamarin, and UWP.
 
-official site --> https://flurl.dev/
+Official site --> https://flurl.dev/
 
 Github --> https://github.com/tmenier/Flurl
